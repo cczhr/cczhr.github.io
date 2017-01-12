@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -84,12 +84,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Not Found Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="Activity之间传递数据(FirstAty传输给SecondAty)传单一数据(所用到的是Intent.putExtra()方法)下面是FirstAty.java所需要的代码123Intent i =new Intent(FirstAty.class,SecondAty.class);i.putExtra(&quot;data&quot;,&quot;Hi~&quot;);//putExtra(&quot;A&quot;,B)中，AB为键值对，第一个参">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android传递简单数据的方法">
+<meta property="og:url" content="http://yoursite.com/2017/01/12/Android传递简单数据的方法/index.html">
 <meta property="og:site_name" content="Not Found Blog">
+<meta property="og:description" content="Activity之间传递数据(FirstAty传输给SecondAty)传单一数据(所用到的是Intent.putExtra()方法)下面是FirstAty.java所需要的代码123Intent i =new Intent(FirstAty.class,SecondAty.class);i.putExtra(&quot;data&quot;,&quot;Hi~&quot;);//putExtra(&quot;A&quot;,B)中，AB为键值对，第一个参">
+<meta property="og:updated_time" content="2017-01-12T15:05:20.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Not Found Blog">
+<meta name="twitter:title" content="Android传递简单数据的方法">
+<meta name="twitter:description" content="Activity之间传递数据(FirstAty传输给SecondAty)传单一数据(所用到的是Intent.putExtra()方法)下面是FirstAty.java所需要的代码123Intent i =new Intent(FirstAty.class,SecondAty.class);i.putExtra(&quot;data&quot;,&quot;Hi~&quot;);//putExtra(&quot;A&quot;,B)中，AB为键值对，第一个参">
 
 
 
@@ -110,10 +114,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/12/Android传递简单数据的方法/"/>
 
 
-  <title> Not Found Blog </title>
+  <title> Android传递简单数据的方法 | Not Found Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -134,9 +138,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -215,9 +217,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -237,10 +239,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/01/12/Android传递简单数据的方法/" itemprop="url">
-                  Android传递简单数据的方法
-                </a>
+                Android传递简单数据的方法
               
             
           </h1>
@@ -280,9 +279,7 @@
       
 
       
-        
-          
-            <h2 id="Activity之间传递数据"><a href="#Activity之间传递数据" class="headerlink" title="Activity之间传递数据"></a>Activity之间传递数据</h2><h3 id="FirstAty传输给SecondAty"><a href="#FirstAty传输给SecondAty" class="headerlink" title="(FirstAty传输给SecondAty)"></a>(FirstAty传输给SecondAty)</h3><h4 id="传单一数据-所用到的是Intent-putExtra-方法"><a href="#传单一数据-所用到的是Intent-putExtra-方法" class="headerlink" title="传单一数据(所用到的是Intent.putExtra()方法)"></a>传单一数据(所用到的是Intent.putExtra()方法)</h4><p>下面是FirstAty.java所需要的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent i =<span class="keyword">new</span> Intent(FirstAty.class,SecondAty.class);</div><div class="line">i.putExtra(<span class="string">"data"</span>,<span class="string">"Hi~"</span>);<span class="comment">//putExtra("A",B)中，AB为键值对，第一个参数为键名，第二个参数为键对应的值。</span></div><div class="line">startActivity(i);</div></pre></td></tr></table></figure></p>
+        <h2 id="Activity之间传递数据"><a href="#Activity之间传递数据" class="headerlink" title="Activity之间传递数据"></a>Activity之间传递数据</h2><h3 id="FirstAty传输给SecondAty"><a href="#FirstAty传输给SecondAty" class="headerlink" title="(FirstAty传输给SecondAty)"></a>(FirstAty传输给SecondAty)</h3><h4 id="传单一数据-所用到的是Intent-putExtra-方法"><a href="#传单一数据-所用到的是Intent-putExtra-方法" class="headerlink" title="传单一数据(所用到的是Intent.putExtra()方法)"></a>传单一数据(所用到的是Intent.putExtra()方法)</h4><p>下面是FirstAty.java所需要的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent i =<span class="keyword">new</span> Intent(FirstAty.class,SecondAty.class);</div><div class="line">i.putExtra(<span class="string">"data"</span>,<span class="string">"Hi~"</span>);<span class="comment">//putExtra("A",B)中，AB为键值对，第一个参数为键名，第二个参数为键对应的值。</span></div><div class="line">startActivity(i);</div></pre></td></tr></table></figure></p>
 <p>putExtra可以传递的包括基本数据类型（含基本数据类型的数组）、String(包含数组)、Parcelable（包含数组）、Serializable、Bundle、CharSequence、Intent几种类型的数据。</p>
 <p>下面是SecondAty.java所需要的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Intent i =getIntent();</div><div class="line">String data=i.getStringExtra(<span class="string">"data"</span>);<span class="comment">//此处用新建一个字符串data保存获得的数据</span></div></pre></td></tr></table></figure></p>
 <h4 id="传数据包-引用到bundle"><a href="#传数据包-引用到bundle" class="headerlink" title="传数据包(引用到bundle)"></a>传数据包(引用到bundle)</h4><p>下面是FirstAty.java所需要的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   Bundle b = <span class="keyword">new</span> Bundle();   <span class="comment">//新建一个bundle类</span></div><div class="line">b.putString(<span class="string">"name"</span>,<span class="string">"张三"</span>)；</div><div class="line">b.putInt(<span class="string">"age"</span>,<span class="number">100</span>);</div><div class="line">Intent i =<span class="keyword">new</span> Intent(FirstAty.class,SecondAty.class);</div><div class="line">i.putExtra(b);</div></pre></td></tr></table></figure></p>
@@ -290,517 +287,59 @@
 <h3 id="SecondAty关闭后返回的数据给FirstAty"><a href="#SecondAty关闭后返回的数据给FirstAty" class="headerlink" title="(SecondAty关闭后返回的数据给FirstAty)"></a>(SecondAty关闭后返回的数据给FirstAty)</h3><p>下面是FirstAty.java所需要的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">   Intent i = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, TheAty.class);</div><div class="line"> 	startActivityForResult(i, <span class="number">2</span>);<span class="comment">//第二个参数为请求码，可以根据自己需求编号  </span></div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">       <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</div><div class="line">       <span class="keyword">if</span> (data == <span class="keyword">null</span>) &#123;</div><div class="line">          <span class="comment">//只能得到requestCode(请求码):2  ;resultCode(结果码):默认 0; </span></div><div class="line">       &#125;</div><div class="line">       <span class="keyword">else</span>&#123;</div><div class="line">           String name =data.getStringExtra(<span class="string">"name"</span>);</div><div class="line">		<span class="keyword">int</span> age=data.getIntExtra(<span class="string">"age"</span>);</div><div class="line">		<span class="keyword">int</span> resultcode=resultCode;<span class="comment">//结果码</span></div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
 <p>  下面是SecondAty.java所需要的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Bundle b = <span class="keyword">new</span> Bundle();   <span class="comment">//新建一个bundle类</span></div><div class="line">b.putString(<span class="string">"name"</span>,<span class="string">"张三"</span>)；</div><div class="line">b.putInt(<span class="string">"age"</span>,<span class="number">100</span>);</div><div class="line">Intent i =<span class="keyword">new</span> Intent();</div><div class="line">i.putExtra(b);</div><div class="line">setResult(<span class="number">1</span>,i);<span class="comment">//第一个参数为结果码</span></div></pre></td></tr></table></figure></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/08/总结/" itemprop="url">
-                  总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-08T14:41:31+08:00" content="2017-01-08">
-              2017-01-08
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
-          
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/Android/" rel="tag">#Android</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <pre><code>看到了年龄和我差不多的大神已经能够独立开发自己的应用了，我也羡慕他们。
-加油吧。
-新年快乐。
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/01/08/总结/" rel="next" title="总结">
+                <i class="fa fa-chevron-left"></i> 总结
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2017/01/07/弄个大新闻/" itemprop="url">
-                  弄个大新闻
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-07T10:15:32+08:00" content="2017-01-07">
-              2017-01-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>获得了 <a href="http://bignews.me" target="_blank" rel="external">大新闻</a> </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/06/markdown语法/" itemprop="url">
-                  markdown语法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-06T13:58:21+08:00" content="2017-01-06">
-              2017-01-06
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="img/yufa.png" alt="markdown语法" title="markdown语法"></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/06/好久不见/" itemprop="url">
-                  好久不见
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-06T12:54:23+08:00" content="2017-01-06">
-              2017-01-06
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="czh"><a href="#czh" class="headerlink" title="czh"></a>czh</h2><p>以后在这里更新<br>测试<br><img src="img/1.jpg" alt="一张图片"></p>
-<p>  <img src="http://www.baidu.com/img/bdlogo.gif" alt="baidu" title="百度logo"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/29/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T13:23:13+08:00" content="2016-10-29">
-              2016-10-29
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -808,6 +347,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -827,8 +370,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"
@@ -871,6 +423,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity之间传递数据"><span class="nav-number">1.</span> <span class="nav-text">Activity之间传递数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FirstAty传输给SecondAty"><span class="nav-number">1.1.</span> <span class="nav-text">(FirstAty传输给SecondAty)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#传单一数据-所用到的是Intent-putExtra-方法"><span class="nav-number">1.1.1.</span> <span class="nav-text">传单一数据(所用到的是Intent.putExtra()方法)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传数据包-引用到bundle"><span class="nav-number">1.1.2.</span> <span class="nav-text">传数据包(引用到bundle)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SecondAty关闭后返回的数据给FirstAty"><span class="nav-number">1.2.</span> <span class="nav-text">(SecondAty关闭后返回的数据给FirstAty)</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -967,6 +530,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
