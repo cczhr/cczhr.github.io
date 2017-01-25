@@ -94,7 +94,8 @@ LitePal是一款开源的Android数据库框架，采用了对象关系映射(OR
 LitePal是一款开源的Android数据库框架，采用了对象关系映射(ORM)的模式，将平时开发时最常用的一些数据库功能进行了封装，使得开发者不用编写一行SQL语句就可以完成各种建表、増删改查的操作。并且LitePal很“轻”，">
 <meta property="og:image" content="http://yoursite.com/2017/01/24/Android的数据库/l1.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/01/24/Android的数据库/sync.jpg">
-<meta property="og:updated_time" content="2017-01-25T14:00:19.756Z">
+<meta property="og:image" content="http://yoursite.com/2017/01/24/Android的数据库/hj.jpg">
+<meta property="og:updated_time" content="2017-01-25T14:10:36.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android的数据库">
 <meta name="twitter:description" content="LitePal熟悉Android的人都知道Android自带了一个SQLite数据库Android也给了一些api来操作它，不过有一个更好用的API就是LitePal。
@@ -298,7 +299,7 @@ LitePal是一款开源的Android数据库框架，采用了对象关系映射(OR
 <p>如果要新建多一个表只需要重复之前的动作即可，若要修改已生成的表字段只需要修改你要改的表的类，若要删除表就把相关代码删除。<br>做完所有的更改操作后最后在&lt; litepal&gt;标签下的  &lt; version value=”1” /&gt;里面的版本号加1即可。</p>
 <pre><code>注意：id字段在LitePal为默认自增主键，类型只能为int。
 </code></pre><h2 id="LitePal添加数据"><a href="#LitePal添加数据" class="headerlink" title="LitePal添加数据"></a>LitePal添加数据</h2><h3 id="LitePal添加数据（初级）"><a href="#LitePal添加数据（初级）" class="headerlink" title="LitePal添加数据（初级）"></a>LitePal添加数据（初级）</h3><p>LitePal添加数据（初级）很简单,用Book类的各种set方法对数据设置，最后使用save方法保存即可。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Book book=<span class="keyword">new</span> Book();</div><div class="line">book.setName(<span class="string">"新华字典"</span>);</div><div class="line">book.setAuthor(<span class="string">"新华出版社"</span>);</div><div class="line">book.setPages(<span class="number">666</span>);</div><div class="line">book.setPrice(<span class="number">16.66</span>);</div><div class="line">book.save();</div></pre></td></tr></table></figure></p>
-<h3 id="LitePal添加数据（进阶）"><a href="#LitePal添加数据（进阶）" class="headerlink" title="LitePal添加数据（进阶）"></a>LitePal添加数据（进阶）</h3><p>2339噢噢噢噢噢噢噢噢哦哦哦【</p>
+<h3 id="LitePal添加数据（进阶）"><a href="#LitePal添加数据（进阶）" class="headerlink" title="LitePal添加数据（进阶）"></a>LitePal添加数据（进阶）</h3><p>看完剩下的，你就会进阶玩法了。<br><img src="/2017/01/24/Android的数据库/hj.jpg" alt=""></p>
 <h2 id="LitePal更新数据"><a href="#LitePal更新数据" class="headerlink" title="LitePal更新数据"></a>LitePal更新数据</h2><p>LitePal更新数据，可以看到new了一个Book，然后直接set要修改的值，最后使用updateAll方法指定更新的条件，这里指定的是name =”新华字典” 同时 author =”新华出版社”的数据，若updateAll里面什么都不填则是修改全部的pages字段。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Book book=<span class="keyword">new</span> Book();</div><div class="line">book.setPages(<span class="number">233</span>);</div><div class="line">book.updateAll(<span class="string">"name = ? and author = ?"</span>,<span class="string">"新华字典"</span>,<span class="string">"新华出版社"</span>);</div></pre></td></tr></table></figure></p>
 <pre><code>注意，若你想把pages改为默认值0是不能直接book.setPages(0);的，
 LitePal提供了改默认值的setToDefault方法，如以下代码。
