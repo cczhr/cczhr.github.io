@@ -84,15 +84,16 @@
 
 
 
+<meta name="description" content="首先创建一个类继承Application12345678910public class MyApplication extends Application&amp;#123;	private static Context context;	@Override	public void onCreate()&amp;#123;		context=getApplicationContext();	&amp;#125;	publ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android通知栏的微技巧(转)">
-<meta property="og:url" content="http://yoursite.com/2017/02/04/Android通知栏的微技巧-转/index.html">
+<meta property="og:title" content="全局获得Context的方法">
+<meta property="og:url" content="http://yoursite.com/2017/02/12/全局获得Context的方法/index.html">
 <meta property="og:site_name" content="Not Found Blog">
-<meta property="og:image" content="http://yoursite.com/2017/02/04/Android通知栏的微技巧-转/Android通知栏.png">
-<meta property="og:updated_time" content="2017-02-04T15:11:01.178Z">
+<meta property="og:description" content="首先创建一个类继承Application12345678910public class MyApplication extends Application&amp;#123;	private static Context context;	@Override	public void onCreate()&amp;#123;		context=getApplicationContext();	&amp;#125;	publ">
+<meta property="og:updated_time" content="2017-02-12T12:24:30.190Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android通知栏的微技巧(转)">
-<meta name="twitter:image" content="http://yoursite.com/2017/02/04/Android通知栏的微技巧-转/Android通知栏.png">
+<meta name="twitter:title" content="全局获得Context的方法">
+<meta name="twitter:description" content="首先创建一个类继承Application12345678910public class MyApplication extends Application&amp;#123;	private static Context context;	@Override	public void onCreate()&amp;#123;		context=getApplicationContext();	&amp;#125;	publ">
 
 
 
@@ -113,10 +114,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/04/Android通知栏的微技巧-转/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/12/全局获得Context的方法/"/>
 
 
-  <title> Android通知栏的微技巧(转) | Not Found Blog </title>
+  <title> 全局获得Context的方法 | Not Found Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +239,7 @@
             
             
               
-                Android通知栏的微技巧(转)
+                全局获得Context的方法
               
             
           </h1>
@@ -250,8 +251,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-04T23:00:41+08:00" content="2017-02-04">
-              2017-02-04
+            <time itemprop="dateCreated" datetime="2017-02-12T20:00:30+08:00" content="2017-02-12">
+              2017-02-12
             </time>
           </span>
 
@@ -278,7 +279,9 @@
       
 
       
-        <p><img src="/2017/02/04/Android通知栏的微技巧-转/Android通知栏.png" alt=""></p>
+        <p>首先创建一个类继承Application<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> <span class="keyword">extends</span> <span class="title">Application</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Context context;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span></span>&#123;</div><div class="line">		context=getApplicationContext();</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Context <span class="title">getContext</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> context;</div><div class="line">	&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后在AndroidManifest.xml的 &lt; application&gt;标签指定即可<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">          <span class="attr">package</span>=<span class="string">"com.cczhr.mydemo"</span> &gt;</div><div class="line">		   <span class="tag">&lt;<span class="name">application</span></span></div><div class="line">				<span class="attr">...</span></div><div class="line">				<span class="attr">...</span></div><div class="line">				<span class="attr">android:name</span>=<span class="string">"com.cczhr.mydemo.MyApplication"</span>&gt;</div><div class="line">		   <span class="tag">&lt;/<span class="name">application</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>以后需要传入Context只需要写上即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MyApplication.getContext();</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -310,17 +313,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/01/简易翻墙的方法/" rel="next" title="简易翻墙的方法">
-                <i class="fa fa-chevron-left"></i> 简易翻墙的方法
+              <a href="/2017/02/05/Android的RecyclerView/" rel="next" title="Android的RecyclerView">
+                <i class="fa fa-chevron-left"></i> Android的RecyclerView
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/05/Android的RecyclerView/" rel="prev" title="Android的RecyclerView">
-                Android的RecyclerView <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
