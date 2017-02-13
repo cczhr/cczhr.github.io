@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -84,16 +84,21 @@
 
 
 
-<meta name="description" content="123456789101112131415161718192021222324252627class Notepad&amp;lt;K,V&amp;gt;&amp;#123;		// 此处指定了两个泛型类型	private K key ;		// 此变量的类型由外部决定	private V value ;	// 此变量的类型由外部决定	public K getKey()&amp;#123;		return this.key ;">
+<meta name="description" content="这里使用的是Context对象的getSharedPreferences()方法，目前个人感觉Activity对象的getPreferences()方法用处不大，完全可以被前者替代。
+理论区别:调用Context对象的getSharedPreferences()方法获得的SharedPreferences对象可以被同一应用程序下的其他组件共享。调用Activity对象的getPreferences">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java泛型笔记">
-<meta property="og:url" content="http://yoursite.com/2017/01/26/Java泛型笔记/index.html">
+<meta property="og:title" content="利用SharedPreferences存储用户名密码">
+<meta property="og:url" content="http://yoursite.com/2017/02/13/利用SharedPreferences存储用户名密码/index.html">
 <meta property="og:site_name" content="Not Found Blog">
-<meta property="og:description" content="123456789101112131415161718192021222324252627class Notepad&amp;lt;K,V&amp;gt;&amp;#123;		// 此处指定了两个泛型类型	private K key ;		// 此变量的类型由外部决定	private V value ;	// 此变量的类型由外部决定	public K getKey()&amp;#123;		return this.key ;">
-<meta property="og:updated_time" content="2017-01-27T09:56:07.963Z">
+<meta property="og:description" content="这里使用的是Context对象的getSharedPreferences()方法，目前个人感觉Activity对象的getPreferences()方法用处不大，完全可以被前者替代。
+理论区别:调用Context对象的getSharedPreferences()方法获得的SharedPreferences对象可以被同一应用程序下的其他组件共享。调用Activity对象的getPreferences">
+<meta property="og:image" content="http://yoursite.com/2017/02/13/利用SharedPreferences存储用户名密码/face.jpg">
+<meta property="og:updated_time" content="2017-02-13T15:38:26.806Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java泛型笔记">
-<meta name="twitter:description" content="123456789101112131415161718192021222324252627class Notepad&amp;lt;K,V&amp;gt;&amp;#123;		// 此处指定了两个泛型类型	private K key ;		// 此变量的类型由外部决定	private V value ;	// 此变量的类型由外部决定	public K getKey()&amp;#123;		return this.key ;">
+<meta name="twitter:title" content="利用SharedPreferences存储用户名密码">
+<meta name="twitter:description" content="这里使用的是Context对象的getSharedPreferences()方法，目前个人感觉Activity对象的getPreferences()方法用处不大，完全可以被前者替代。
+理论区别:调用Context对象的getSharedPreferences()方法获得的SharedPreferences对象可以被同一应用程序下的其他组件共享。调用Activity对象的getPreferences">
+<meta name="twitter:image" content="http://yoursite.com/2017/02/13/利用SharedPreferences存储用户名密码/face.jpg">
 
 
 
@@ -114,10 +119,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/01/26/Java泛型笔记/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/13/利用SharedPreferences存储用户名密码/"/>
 
 
-  <title> Java泛型笔记 | Not Found Blog </title>
+  <title> 利用SharedPreferences存储用户名密码 | Not Found Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -239,7 +244,7 @@
             
             
               
-                Java泛型笔记
+                利用SharedPreferences存储用户名密码
               
             
           </h1>
@@ -251,8 +256,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-26T21:50:36+08:00" content="2017-01-26">
-              2017-01-26
+            <time itemprop="dateCreated" datetime="2017-02-13T23:13:10+08:00" content="2017-02-13">
+              2017-02-13
             </time>
           </span>
 
@@ -279,7 +284,12 @@
       
 
       
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Notepad</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</span>&#123;		<span class="comment">// 此处指定了两个泛型类型</span></div><div class="line">	<span class="keyword">private</span> K key ;		<span class="comment">// 此变量的类型由外部决定</span></div><div class="line">	<span class="keyword">private</span> V value ;	<span class="comment">// 此变量的类型由外部决定</span></div><div class="line">	<span class="function"><span class="keyword">public</span> K <span class="title">getKey</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.key ;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> V <span class="title">getValue</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.value ;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setKey</span><span class="params">(K key)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.key = key ;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValue</span><span class="params">(V value)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.value = value ;</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericsDemo01</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">		Notepad&lt;String,Integer&gt; t = <span class="keyword">null</span> ;		<span class="comment">// 定义两个泛型类型的对象</span></div><div class="line">		t = <span class="keyword">new</span> Notepad&lt;String,Integer&gt;() ;		<span class="comment">// 里面的key为String，value为Integer</span></div><div class="line">		t.setKey(<span class="string">"Not Found"</span>) ;		<span class="comment">// 设置第一个内容</span></div><div class="line">		t.setValue(<span class="number">18</span>) ;			<span class="comment">// 设置第二个内容</span></div><div class="line">		System.out.print(<span class="string">"姓名；"</span> + t.getKey()) ;		<span class="comment">// 取得信息</span></div><div class="line">		System.out.print(<span class="string">"，年龄；"</span> + t.getValue()) ;		<span class="comment">// 取得信息</span></div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+        <p>这里使用的是Context对象的getSharedPreferences()方法，目前个人感觉Activity对象的getPreferences()方法用处不大，完全可以被前者替代。</p>
+<h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><p>区别:<br>调用Context对象的getSharedPreferences()方法获得的SharedPreferences对象可以被同一应用程序下的其他组件共享。<br>调用Activity对象的getPreferences()方法获得的SharedPreferences对象只能在该Activity中使用。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>保存模块<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">String userName=<span class="string">"abc"</span>;</div><div class="line">String password=<span class="string">"123"</span>;</div><div class="line">SharePreferences.Editor editor=getSharedPreferences(<span class="string">"date"</span>,Context.MODE_PRIVATE).editor();</div><div class="line">editor.putString(<span class="string">"userName"</span>,userName);</div><div class="line">editor.putString(<span class="string">"password"</span>, password);</div><div class="line">editor.apply();</div></pre></td></tr></table></figure></p>
+<p>提取模块<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SharedPreferences pref=getSharedPreferences(<span class="string">"date"</span>, Context.MODE_PRIVATE);</div><div class="line">pref.getString(<span class="string">"userName"</span>,<span class="string">""</span>);<span class="comment">//第二项是默认值</span></div><div class="line"> pref.getString(<span class="string">"password"</span>,<span class="string">""</span>);</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/02/13/利用SharedPreferences存储用户名密码/face.jpg" alt=""></p>
+
       
     </div>
 
@@ -301,7 +311,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag">#Java</a>
+            <a href="/tags/Android/" rel="tag">#Android</a>
           
         </div>
       
@@ -310,17 +320,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/24/Android的数据库/" rel="next" title="Android的数据库">
-                <i class="fa fa-chevron-left"></i> Android的数据库
+              <a href="/2017/02/12/Android解析json的方法/" rel="next" title="Android解析json的方法">
+                <i class="fa fa-chevron-left"></i> Android解析json的方法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/27/单例模式/" rel="prev" title="单例模式">
-                单例模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -427,7 +433,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论"><span class="nav-number">1.</span> <span class="nav-text">理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></div>
             
           </div>
         </section>
