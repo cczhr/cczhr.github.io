@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java笔记," />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -84,22 +84,19 @@
 
 
 
-<meta name="description" content="理论知识装饰模式 ：动态地将责任附加到对象上.若要扩展功能,装饰者提供了比继承更有弹性的替代方案。
-装饰模式使用被装饰类的一个子类的实例，把客户端的调用委派到被装饰类，装饰模式的关键在于这种扩展是完全透明的。装饰模式在Java种使用也很广泛，比如我们在重新定义按钮、对话框等时候，实际上已经在使用装饰模式了。装饰模式最浅显的例子是相片-相框的例子。其中类的职责如下：抽象构件角色（Project）：给">
+<meta name="description" content="回顾RxJava在Java里有两种实现，一种是手动的一种是调用Java里面的类，先回顾一下传统Java的做法手动版类版">
 <meta property="og:type" content="article">
-<meta property="og:title" content="装饰模式">
-<meta property="og:url" content="http://yoursite.com/2017/02/24/装饰模式/index.html">
+<meta property="og:title" content="Android的RxJava笔记">
+<meta property="og:url" content="http://yoursite.com/2017/03/07/Android的RxJava笔记/index.html">
 <meta property="og:site_name" content="Not Found Blog">
-<meta property="og:description" content="理论知识装饰模式 ：动态地将责任附加到对象上.若要扩展功能,装饰者提供了比继承更有弹性的替代方案。
-装饰模式使用被装饰类的一个子类的实例，把客户端的调用委派到被装饰类，装饰模式的关键在于这种扩展是完全透明的。装饰模式在Java种使用也很广泛，比如我们在重新定义按钮、对话框等时候，实际上已经在使用装饰模式了。装饰模式最浅显的例子是相片-相框的例子。其中类的职责如下：抽象构件角色（Project）：给">
-<meta property="og:image" content="http://yoursite.com/2017/02/24/装饰模式/z3.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/02/24/装饰模式/z1.jpg">
-<meta property="og:updated_time" content="2017-02-24T15:13:51.674Z">
+<meta property="og:description" content="回顾RxJava在Java里有两种实现，一种是手动的一种是调用Java里面的类，先回顾一下传统Java的做法手动版类版">
+<meta property="og:image" content="http://yoursite.com/2017/03/07/Android的RxJava笔记/Android的RxJava笔记\r1.png">
+<meta property="og:image" content="http://yoursite.com/2017/03/07/Android的RxJava笔记/Android的RxJava笔记\r2.png">
+<meta property="og:updated_time" content="2017-03-19T14:24:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="装饰模式">
-<meta name="twitter:description" content="理论知识装饰模式 ：动态地将责任附加到对象上.若要扩展功能,装饰者提供了比继承更有弹性的替代方案。
-装饰模式使用被装饰类的一个子类的实例，把客户端的调用委派到被装饰类，装饰模式的关键在于这种扩展是完全透明的。装饰模式在Java种使用也很广泛，比如我们在重新定义按钮、对话框等时候，实际上已经在使用装饰模式了。装饰模式最浅显的例子是相片-相框的例子。其中类的职责如下：抽象构件角色（Project）：给">
-<meta name="twitter:image" content="http://yoursite.com/2017/02/24/装饰模式/z3.jpg">
+<meta name="twitter:title" content="Android的RxJava笔记">
+<meta name="twitter:description" content="回顾RxJava在Java里有两种实现，一种是手动的一种是调用Java里面的类，先回顾一下传统Java的做法手动版类版">
+<meta name="twitter:image" content="http://yoursite.com/2017/03/07/Android的RxJava笔记/Android的RxJava笔记\r1.png">
 
 
 
@@ -120,10 +117,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/24/装饰模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/07/Android的RxJava笔记/"/>
 
 
-  <title> 装饰模式 | Not Found Blog </title>
+  <title> Android的RxJava笔记 | Not Found Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -258,7 +255,7 @@
             
             
               
-                装饰模式
+                Android的RxJava笔记
               
             
           </h1>
@@ -270,8 +267,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-24T21:19:14+08:00" content="2017-02-24">
-              2017-02-24
+            <time itemprop="dateCreated" datetime="2017-03-07T21:47:37+08:00" content="2017-03-07">
+              2017-03-07
             </time>
           </span>
 
@@ -298,17 +295,7 @@
       
 
       
-        <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><pre><code>装饰模式 ：动态地将责任附加到对象上.若要扩展功能,装饰者提供了比继承更有弹性的替代方案。
-</code></pre><p>装饰模式使用被装饰类的一个子类的实例，把客户端的调用委派到被装饰类，装饰模式的关键在于这种扩展是完全透明的。<br>装饰模式在Java种使用也很广泛，比如我们在重新定义按钮、对话框等时候，实际上已经在使用装饰模式了。装饰模式最浅显的例子是相片-相框的例子。<br><img src="/2017/02/24/装饰模式/z3.jpg" alt="" title="原理图"><br>其中类的职责如下：<br>抽象构件角色（Project）：给出一个接口，以规范准备接收附加责任的对象<br>具体构件角色（Employe）：定义一个将要接收附加责任的类<br>装饰角色（Manager）：持有一个构件对象的实例，并定义一个与抽象构件接口一致的接口<br>具体装饰角色（ManagerA、ManagerB）：负责给构件对象“贴上”附加的责任</p>
-<h2 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h2><p>装饰模式直接看代码挺难理解的，我通过一个例子来说明。<br>有一家公司是出口眼镜和汽车的，过完年，要开始给海外客户供货了，其中有三位需要汽车大客户分别需要三批不同的车：上了漆的车，上了漆和加尾翼的车，还有加了尾翼的车。还有一位需要眼镜的客户。造车和造眼镜本公司就可以直接制造。而汽车上漆和加尾翼需要委托代工工厂。</p>
-<p>新建一个公司老板(Boss.java)——抽象构件角色<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Boss</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeProject</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>接着造车部门(MakeCar.java)——具体构件角色<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MakeCar</span> <span class="keyword">implements</span> <span class="title">Boss</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeProject</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"造完车"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>造眼镜部门(MakeEyeglass.java)——具体构件角色<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MakeEyeglass</span> <span class="keyword">implements</span> <span class="title">Boss</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeProject</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"造完眼镜"</span>);		</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>代工工厂(Factory.java)——装饰角色<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Factory</span> <span class="keyword">implements</span> <span class="title">Boss</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> Boss boss;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Factory</span><span class="params">(Boss boss)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.boss=boss;</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeProject</span><span class="params">()</span> </span>&#123;</div><div class="line">		boss.makeProject();	</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>上漆(MakeCarPush1.java)——具体装饰角色<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MakeCarPush1</span> <span class="keyword">extends</span> <span class="title">Factory</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MakeCarPush1</span><span class="params">(Boss boss)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>(boss);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeProject</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.makeProject();</div><div class="line">		addColors();</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addColors</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"上漆"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>加尾翼(MakeCarPush2)——具体装饰角色<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MakeCarPush2</span> <span class="keyword">extends</span> <span class="title">Factory</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MakeCarPush2</span><span class="params">(Boss boss)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>(boss);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeProject</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.makeProject();</div><div class="line">		addWing();</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addWing</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"加尾翼"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>实现类(Start.java)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Start</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">		MakeCarPush1 mc1=<span class="keyword">new</span> MakeCarPush1(<span class="keyword">new</span> Factory(<span class="keyword">new</span> MakeCar()));</div><div class="line">		mc1.makeProject();</div><div class="line">		</div><div class="line">		MakeCarPush2 mc2=<span class="keyword">new</span> MakeCarPush2(<span class="keyword">new</span> MakeCarPush1(<span class="keyword">new</span> Factory(<span class="keyword">new</span> MakeCar())));</div><div class="line">		mc2.makeProject();</div><div class="line">		</div><div class="line">		MakeCarPush2 mc3=<span class="keyword">new</span> MakeCarPush2(<span class="keyword">new</span> Factory(<span class="keyword">new</span> MakeCar()));</div><div class="line">		mc3.makeProject();</div><div class="line">		</div><div class="line">		MakeEyeglass me=<span class="keyword">new</span> MakeEyeglass();</div><div class="line">		me.makeProject();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>最终效果<br><img src="/2017/02/24/装饰模式/z1.jpg" alt="" title="最终效果"></p>
+        <h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>RxJava在Java里有两种实现，一种是手动的一种是调用Java里面的类，先回顾一下传统Java的做法<br>手动版<br><img src="/2017/03/07/Android的RxJava笔记/Android的RxJava笔记\r1.png" alt=""><br>类版<br><img src="/2017/03/07/Android的RxJava笔记/Android的RxJava笔记\r2.png" alt=""></p>
 
       
     </div>
@@ -331,7 +318,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java笔记/" rel="tag">#Java笔记</a>
+            <a href="/tags/Android/" rel="tag">#Android</a>
           
         </div>
       
@@ -340,17 +327,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/21/Java的io流笔记/" rel="next" title="Java的io流笔记">
-                <i class="fa fa-chevron-left"></i> Java的io流笔记
+              <a href="/2017/02/26/Java的线程笔记/" rel="next" title="Java的线程笔记">
+                <i class="fa fa-chevron-left"></i> Java的线程笔记
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/26/Java的线程笔记/" rel="prev" title="Java的线程笔记">
-                Java的线程笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -471,7 +454,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论知识"><span class="nav-number">1.</span> <span class="nav-text">理论知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人理解"><span class="nav-number">2.</span> <span class="nav-text">个人理解</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾"><span class="nav-number">1.</span> <span class="nav-text">回顾</span></a></li></ol></div>
             
           </div>
         </section>
