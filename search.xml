@@ -4,6 +4,34 @@
   
     
     <entry>
+      <title><![CDATA[Android的NavigationView获取headerLayout组件的方法]]></title>
+      <url>http://yoursite.com/2017/03/30/Android%E7%9A%84NavigationView%E8%8E%B7%E5%8F%96headerLayout%E7%BB%84%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<p>1.获取NavigationView<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.......</div><div class="line">setContentView(R.layout.activity_main);</div><div class="line">...</div><div class="line">NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);</div></pre></td></tr></table></figure></p>
+<p>2.获取headerLayout<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header_main);</div></pre></td></tr></table></figure></p>
+<p>3.成功获取其中的组件<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TextView  teacher = (TextView) headerLayout.findViewById(R.id.teacher);</div></pre></td></tr></table></figure></p>
+<p>4.删除.activity_main.xml的app:headerLayout<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app:headerLayout="@layout/nav_header_main"</div></pre></td></tr></table></figure></p>
+<p>Done！<br>也可以这样(这种个人没有尝试)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">View headerView = navigationView.getHeaderView(<span class="number">0</span>);</div></pre></td></tr></table></figure></p>
+<p>详细可以转去<br><a href="https://segmentfault.com/a/1190000004151222" target="_blank" rel="external">https://segmentfault.com/a/1190000004151222</a></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android的Hanler笔记]]></title>
+      <url>http://yoursite.com/2017/03/25/Android%E7%9A%84Hanler%E7%AC%94%E8%AE%B0/</url>
+      <content type="html"></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android的RxJava笔记]]></title>
       <url>http://yoursite.com/2017/03/07/Android%E7%9A%84RxJava%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>RxJava在Java里有两种实现，一种是手动的一种是调用Java里面的类，先回顾一下传统Java的做法<br>手动版<br><img src="/2017/03/07/Android的RxJava笔记/Android的RxJava笔记\r1.png" alt=""><br>类版<br><img src="/2017/03/07/Android的RxJava笔记/Android的RxJava笔记\r2.png" alt=""></p>
