@@ -84,19 +84,20 @@
 
 
 
-<meta name="description" content="1.获取NavigationView1234.......setContentView(R.layout.activity_main);...NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-2.获取headerLayout1View headerLayout = navigationView">
+<meta name="description" content="第一章Activity的生命周期和启动模式Activity生命周期单个Activity启动ActivityonCreat-&amp;gt;onStart-&amp;gt;onResumeActivity切换到桌面(Activity用了透明主题不会回调onStop)onPause-&amp;gt;onStop返回ActivityonRestart-&amp;gt;onStart-&amp;gt;onResume按Back键回退onPaus">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android的NavigationView获取headerLayout组件的方法">
-<meta property="og:url" content="http://yoursite.com/2017/03/30/Android的NavigationView获取headerLayout组件的方法/index.html">
+<meta property="og:title" content="android开发艺术探索笔记">
+<meta property="og:url" content="http://yoursite.com/2017/07/01/android开发艺术探索笔记/index.html">
 <meta property="og:site_name" content="Not Found Blog">
-<meta property="og:description" content="1.获取NavigationView1234.......setContentView(R.layout.activity_main);...NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-2.获取headerLayout1View headerLayout = navigationView">
-<meta property="og:updated_time" content="2017-03-30T15:01:48.824Z">
+<meta property="og:description" content="第一章Activity的生命周期和启动模式Activity生命周期单个Activity启动ActivityonCreat-&amp;gt;onStart-&amp;gt;onResumeActivity切换到桌面(Activity用了透明主题不会回调onStop)onPause-&amp;gt;onStop返回ActivityonRestart-&amp;gt;onStart-&amp;gt;onResume按Back键回退onPaus">
+<meta property="og:image" content="http://yoursite.com/2017/07/01/android开发艺术探索笔记/face.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/07/01/android开发艺术探索笔记/b1.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/07/01/android开发艺术探索笔记/b2.jpg">
+<meta property="og:updated_time" content="2017-07-02T15:54:28.447Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android的NavigationView获取headerLayout组件的方法">
-<meta name="twitter:description" content="1.获取NavigationView1234.......setContentView(R.layout.activity_main);...NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-2.获取headerLayout1View headerLayout = navigationView">
+<meta name="twitter:title" content="android开发艺术探索笔记">
+<meta name="twitter:description" content="第一章Activity的生命周期和启动模式Activity生命周期单个Activity启动ActivityonCreat-&amp;gt;onStart-&amp;gt;onResumeActivity切换到桌面(Activity用了透明主题不会回调onStop)onPause-&amp;gt;onStop返回ActivityonRestart-&amp;gt;onStart-&amp;gt;onResume按Back键回退onPaus">
+<meta name="twitter:image" content="http://yoursite.com/2017/07/01/android开发艺术探索笔记/face.jpg">
 
 
 
@@ -117,10 +118,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/30/Android的NavigationView获取headerLayout组件的方法/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/01/android开发艺术探索笔记/"/>
 
 
-  <title> Android的NavigationView获取headerLayout组件的方法 | Not Found Blog </title>
+  <title> android开发艺术探索笔记 | Not Found Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +256,7 @@
             
             
               
-                Android的NavigationView获取headerLayout组件的方法
+                android开发艺术探索笔记
               
             
           </h1>
@@ -267,8 +268,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-30T22:49:01+08:00" content="2017-03-30">
-              2017-03-30
+            <time itemprop="dateCreated" datetime="2017-07-01T22:35:04+08:00" content="2017-07-01">
+              2017-07-01
             </time>
           </span>
 
@@ -295,12 +296,22 @@
       
 
       
-        <p>1.获取NavigationView<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.......</div><div class="line">setContentView(R.layout.activity_main);</div><div class="line">...</div><div class="line">NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);</div></pre></td></tr></table></figure></p>
-<p>2.获取headerLayout<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header_main);</div></pre></td></tr></table></figure></p>
-<p>3.成功获取其中的组件<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TextView  teacher = (TextView) headerLayout.findViewById(R.id.teacher);</div></pre></td></tr></table></figure></p>
-<p>4.删除.activity_main.xml的app:headerLayout<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app:headerLayout="@layout/nav_header_main"</div></pre></td></tr></table></figure></p>
-<p>Done！<br>也可以这样(这种个人没有尝试)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">View headerView = navigationView.getHeaderView(<span class="number">0</span>);</div></pre></td></tr></table></figure></p>
-<p>详细可以转去<br><a href="https://segmentfault.com/a/1190000004151222" target="_blank" rel="external">https://segmentfault.com/a/1190000004151222</a></p>
+        <h2 id="第一章Activity的生命周期和启动模式"><a href="#第一章Activity的生命周期和启动模式" class="headerlink" title="第一章Activity的生命周期和启动模式"></a>第一章Activity的生命周期和启动模式</h2><h3 id="Activity生命周期"><a href="#Activity生命周期" class="headerlink" title="Activity生命周期"></a>Activity生命周期</h3><h4 id="单个Activity"><a href="#单个Activity" class="headerlink" title="单个Activity"></a>单个Activity</h4><p>启动Activity<br>onCreat-&gt;onStart-&gt;onResume<br>Activity切换到桌面(Activity用了透明主题不会回调onStop)<br>onPause-&gt;onStop<br>返回Activity<br>onRestart-&gt;onStart-&gt;onResume<br>按Back键回退<br>onPause-&gt;onStop-&gt;onDestroy<br>直接强制停止应用<br>没有回调</p>
+<h4 id="两个Activity"><a href="#两个Activity" class="headerlink" title="两个Activity"></a>两个Activity</h4><p>Activity之间的切换<br>（A1切换A2）<br>A1 onPause<br>A2 onCreat-&gt;onStart-&gt;onResume<br>A1 onStop<br>（A2按Back键回退A1）<br>A2 onPause<br>A1 onRestart-&gt;onStart-&gt;onResume<br>A2 onStop-&gt;onDestroy</p>
+<h3 id="Activity启动模式"><a href="#Activity启动模式" class="headerlink" title="Activity启动模式"></a>Activity启动模式</h3><h4 id="standard-标准模式"><a href="#standard-标准模式" class="headerlink" title="standard(标准模式)"></a>standard(标准模式)</h4><p>每个Activity都在同一个栈<br>每次启动一个Activity都新建实例</p>
+<h4 id="singleTop"><a href="#singleTop" class="headerlink" title="singleTop"></a>singleTop</h4><p>每个Activity都在同一个栈<br>除了启动本来就在栈顶的Activity不会新建实例<br>启动不在栈顶的Activity都新建实例</p>
+<h4 id="singleTask"><a href="#singleTask" class="headerlink" title="singleTask"></a>singleTask</h4><p>每个Activity都在同一个栈<br>要启动的Activity在栈内的不会重复新建实例<br>每次切换非栈顶的Activity会把在它后入栈Activity清除</p>
+<h4 id="singleInstance"><a href="#singleInstance" class="headerlink" title="singleInstance"></a>singleInstance</h4><p>每个Activity独立一个栈<br>要启动的Activity在栈内的不会重复新建实例<br>每次切换Activity切换栈</p>
+<h3 id="Activity启动方式"><a href="#Activity启动方式" class="headerlink" title="Activity启动方式"></a>Activity启动方式</h3><h4 id="显式-Intent"><a href="#显式-Intent" class="headerlink" title="显式 Intent"></a>显式 Intent</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Intent i=<span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>,Main2.class);</div><div class="line">startActivity(i);</div></pre></td></tr></table></figure>
+<h4 id="隐式-Intent"><a href="#隐式-Intent" class="headerlink" title="隐式 Intent"></a>隐式 Intent</h4><p>隐式 Intent不明确指定启动哪个Activity，而是设置Action、Data、Category，让系统来筛选出合适的Activity。筛选是根据所有的&lt; intent-filter &gt;来筛选，可以使用隐式 Intent从A应用启动B应用。</p>
+<h5 id="设置Action"><a href="#设置Action" class="headerlink" title="设置Action"></a>设置Action</h5><p>android:label是设置标签用来区分同一个应用不同activity用同一个action的情况。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".Main2"</span> <span class="attr">android:label</span>=<span class="string">"hhh"</span>&gt;</span> </div><div class="line"><span class="comment">&lt;!--&lt;activity android:name=".Main2" android:exported="false"&gt;改为这样其它应用无法访问 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span><span class="comment">&lt;!--此句一般都要加 --&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"com.app.cczhr.democ.my2"</span>/&gt;</span><span class="comment">&lt;!--一般命名方式是包名+Action名 --&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>启动<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Intent i=<span class="keyword">new</span> Intent(<span class="string">"com.app.cczhr.democ.my2"</span>);</div><div class="line"><span class="comment">/*也可以这样写</span></div><div class="line">Intent i=new Intent();</div><div class="line">i.setAction("com.app.cczhr.democ.my2");*/</div><div class="line">startActivity(i);</div></pre></td></tr></table></figure></p>
+<h5 id="设置Data"><a href="#设置Data" class="headerlink" title="设置Data"></a>设置Data</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".Main2"</span> <span class="attr">android:label</span>=<span class="string">"main2"</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></div><div class="line">		 </div><div class="line">         <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"app"</span> /&gt;</span></div><div class="line">		 <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.BROWSABLE"</span>/&gt;</span><span class="comment">&lt;!--设置可以浏览器启动 --&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.VIEW"</span>/&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>启动<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> Intent i=<span class="keyword">new</span> Intent();</div><div class="line"> i.setData(Uri.parse(<span class="string">"app://"</span>));</div><div class="line">startActivity(i);</div></pre></td></tr></table></figure></p>
+<p>也可以浏览器直接访问”app://“启动<br>其它语法（懒得打）<br><img src="/2017/07/01/android开发艺术探索笔记/face.jpg" alt=""><br><img src="/2017/07/01/android开发艺术探索笔记/b1.jpg" alt=""><br><img src="/2017/07/01/android开发艺术探索笔记/b2.jpg" alt=""></p>
+<h5 id="设置Category"><a href="#设置Category" class="headerlink" title="设置Category"></a>设置Category</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".Main2"</span> <span class="attr">android:label</span>=<span class="string">"main2"</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></div><div class="line">		 <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"jjj"</span> /&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>启动<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent i=<span class="keyword">new</span> Intent();</div><div class="line">i.addCategory(<span class="string">"jjj"</span>);</div><div class="line">startActivity(i);</div></pre></td></tr></table></figure></p>
+<h2 id="第二章IPC机制"><a href="#第二章IPC机制" class="headerlink" title="第二章IPC机制"></a>第二章IPC机制</h2><p>待续………</p>
 
       
     </div>
@@ -332,17 +343,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/07/Android的RxJava笔记/" rel="next" title="Android的RxJava笔记">
-                <i class="fa fa-chevron-left"></i> Android的RxJava笔记
+              <a href="/2017/06/15/Retrofit2笔记/" rel="next" title="Retrofit2笔记">
+                <i class="fa fa-chevron-left"></i> Retrofit2笔记
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/16/Android使用okhttp3和handler实现简单联网交互/" rel="prev" title="Android使用okhttp3和handler实现简单联网交互">
-                Android使用okhttp3和handler实现简单联网交互 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -483,7 +490,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章Activity的生命周期和启动模式"><span class="nav-number">1.</span> <span class="nav-text">第一章Activity的生命周期和启动模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity生命周期"><span class="nav-number">1.1.</span> <span class="nav-text">Activity生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单个Activity"><span class="nav-number">1.1.1.</span> <span class="nav-text">单个Activity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两个Activity"><span class="nav-number">1.1.2.</span> <span class="nav-text">两个Activity</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity启动模式"><span class="nav-number">1.2.</span> <span class="nav-text">Activity启动模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#standard-标准模式"><span class="nav-number">1.2.1.</span> <span class="nav-text">standard(标准模式)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#singleTop"><span class="nav-number">1.2.2.</span> <span class="nav-text">singleTop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#singleTask"><span class="nav-number">1.2.3.</span> <span class="nav-text">singleTask</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#singleInstance"><span class="nav-number">1.2.4.</span> <span class="nav-text">singleInstance</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity启动方式"><span class="nav-number">1.3.</span> <span class="nav-text">Activity启动方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显式-Intent"><span class="nav-number">1.3.1.</span> <span class="nav-text">显式 Intent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隐式-Intent"><span class="nav-number">1.3.2.</span> <span class="nav-text">隐式 Intent</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设置Action"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">设置Action</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设置Data"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">设置Data</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设置Category"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">设置Category</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章IPC机制"><span class="nav-number">2.</span> <span class="nav-text">第二章IPC机制</span></a></li></ol></div>
             
           </div>
         </section>
