@@ -4,6 +4,30 @@
   
     
     <entry>
+      <title><![CDATA[git与github快速入门]]></title>
+      <url>http://yoursite.com/2017/07/21/git%E4%B8%8Egithub%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
+      <content type="html"><![CDATA[<h2 id="第一步-github-和一部分git介绍"><a href="#第一步-github-和一部分git介绍" class="headerlink" title="第一步 github 和一部分git介绍"></a>第一步 github 和一部分git介绍</h2><p>官网 <a href="http://yun.itheima.com/course/209.html" target="_blank" rel="external">http://yun.itheima.com/course/209.html</a><br> b站 <a href="http://www.bilibili.com/video/av10475153" target="_blank" rel="external">http://www.bilibili.com/video/av10475153</a><br> 内容相同，github讲的很清楚，git也讲一些内容。<br><img src="/2017/07/21/git与github快速入门/face.jpg" alt=""><br>这里就简单贴几张github的图<br><img src="/2017/07/21/git与github快速入门/g1.jpg" alt=""><br><img src="/2017/07/21/git与github快速入门/g2.jpg" alt=""><br><img src="/2017/07/21/git与github快速入门/g3.jpg" alt=""><br><img src="/2017/07/21/git与github快速入门/g4.jpg" alt=""><br>git的概念<br><img src="/2017/07/21/git与github快速入门/git.jpg" alt=""></p>
+<h2 id="第二步-git-实操"><a href="#第二步-git-实操" class="headerlink" title="第二步 git 实操"></a>第二步 git 实操</h2><h3 id="新建本地仓库"><a href="#新建本地仓库" class="headerlink" title="新建本地仓库"></a>新建本地仓库</h3><p>新建一个文件夹(准备放代码)<br>然后按鼠标右键<br><img src="/2017/07/21/git与github快速入门/git1.jpg" alt=""><br>输入 git init 即可创建仓库成功<br><img src="/2017/07/21/git与github快速入门/git2.jpg" alt=""><br>然后就可以在这个文件夹工作啦~<br>具体操作可以看我分享的流程图~<br>看不清的可以打开 <a href="http://naotu.baidu.com/file/dbbefe2c0abcc3d270b557731d461c45?token=c69294587385204b" target="_blank" rel="external">http://naotu.baidu.com/file/dbbefe2c0abcc3d270b557731d461c45?token=c69294587385204b</a><br><img src="/2017/07/21/git与github快速入门/study.png" alt=""></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[BroadcastReceiver广播]]></title>
+      <url>http://yoursite.com/2017/07/19/BroadcastReceiver%E5%B9%BF%E6%92%AD/</url>
+      <content type="html"></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[代理模式]]></title>
       <url>http://yoursite.com/2017/07/16/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</url>
       <content type="html"><![CDATA[<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><h3 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h3><p>1.Subject(抽象主题类):<br>抽象类或者接口，主要负责<font color="#FF0000">声明真实主题和代理的共同接口方法</font>。<br>2.RealSubject(真实主题类):<br>也叫被委托类或被代理类，继承抽象主题类或是实现抽象主题类接口，负责<font color="#FF0000">定义抽象主题类声明的方法的具体内容</font>。<br>3.ProxySubject(代理类):<br>也叫委托类或代理类，继承抽象主题类或是实现抽象主题类接口，该类有一个对真实主题的引用，负责<font color="#FF0000">在实现的方法中直接调用真实主题类的方法</font>。<br>4.Client:客户类:<br>即<font color="#FF0000">使用代理的类</font>。</p>
