@@ -1,0 +1,830 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="git的使用流程本地使用第一次使用git init新建仓库例如新建文件demo.txtgit status 可以查看新建的文件####### git add demo.txt 到暂存区(git add . 可以把所有文件提交到暂存区)
+######## git　commit -m “描述内容”， 例如写git　commit -m “add demo.txt”(提交到本地仓库完成)
+第二次以上使用例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git笔记">
+<meta property="og:url" content="http://yoursite.com/2017/07/23/git笔记/index.html">
+<meta property="og:site_name" content="Not Found Blog">
+<meta property="og:description" content="git的使用流程本地使用第一次使用git init新建仓库例如新建文件demo.txtgit status 可以查看新建的文件####### git add demo.txt 到暂存区(git add . 可以把所有文件提交到暂存区)
+######## git　commit -m “描述内容”， 例如写git　commit -m “add demo.txt”(提交到本地仓库完成)
+第二次以上使用例">
+<meta property="og:updated_time" content="2017-07-23T03:26:59.398Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git笔记">
+<meta name="twitter:description" content="git的使用流程本地使用第一次使用git init新建仓库例如新建文件demo.txtgit status 可以查看新建的文件####### git add demo.txt 到暂存区(git add . 可以把所有文件提交到暂存区)
+######## git　commit -m “描述内容”， 例如写git　commit -m “add demo.txt”(提交到本地仓库完成)
+第二次以上使用例">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/23/git笔记/"/>
+
+
+  <title> git笔记 | Not Found Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Not Found Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                git笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-23T11:26:28+08:00" content="2017-07-23">
+              2017-07-23
+            </time>
+          </span>
+
+          
+
+          
+            
+ <!--noindex-->
+    <span class="post-comments-count">
+     &nbsp;|&nbsp;
+       <span class="post-meta-item-icon">
+         <i class="fa fa-comment-o"></i>
+         <a href="/2017/07/23/git笔记/#comments" itemprop="discussionUrl">
+           <span class="post-comments-count hc-comment-count" data-xid="2017/07/23/git笔记/" itemprop="commentsCount"></span>
+         </a>
+       </span>
+   </span>
+   <!--/noindex-->
+
+
+
+
+
+
+            
+          
+
+          
+
+          
+          
+
+
+
+         <span class="post-time">
+	   &nbsp; | &nbsp;
+           <span class="post-meta-item-icon">
+             <i class="fa fa-calendar-o"></i>
+           </span>
+           <span class="post-meta-item-text">字数统计:</span>
+           <span class="post-count">802(字)</span>
+           
+         </span>
+	  
+      <span class="post-time">
+	   &nbsp; | &nbsp;
+           <span class="post-meta-item-icon">
+             <i class="fa fa-calendar-o"></i>
+           </span>
+           <span class="post-meta-item-text">阅读时长:</span>
+           <span class="post-count">3(分)</span>
+           
+         </span>
+
+
+
+
+
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="git的使用流程"><a href="#git的使用流程" class="headerlink" title="git的使用流程"></a>git的使用流程</h1><h2 id="本地使用"><a href="#本地使用" class="headerlink" title="本地使用"></a>本地使用</h2><h3 id="第一次使用"><a href="#第一次使用" class="headerlink" title="第一次使用"></a>第一次使用</h3><h4 id="git-init新建仓库"><a href="#git-init新建仓库" class="headerlink" title="git init新建仓库"></a>git init新建仓库</h4><h5 id="例如新建文件demo-txt"><a href="#例如新建文件demo-txt" class="headerlink" title="例如新建文件demo.txt"></a>例如新建文件demo.txt</h5><h6 id="git-status-可以查看新建的文件"><a href="#git-status-可以查看新建的文件" class="headerlink" title="git status 可以查看新建的文件"></a>git status 可以查看新建的文件</h6><p>####### git add demo.txt 到暂存区(git add . 可以把所有文件提交到暂存区)</p>
+<p>######## git　commit -m “描述内容”， 例如写git　commit -m “add demo.txt”(提交到本地仓库完成)</p>
+<h3 id="第二次以上使用"><a href="#第二次以上使用" class="headerlink" title="第二次以上使用"></a>第二次以上使用</h3><h4 id="例如修改demo-txt-里面的文字和新增一个hh-txt"><a href="#例如修改demo-txt-里面的文字和新增一个hh-txt" class="headerlink" title="例如修改demo.txt 里面的文字和新增一个hh.txt"></a>例如修改demo.txt 里面的文字和新增一个hh.txt</h4><h5 id="git-status-可以查看新建和修改过的文件"><a href="#git-status-可以查看新建和修改过的文件" class="headerlink" title="git status 可以查看新建和修改过的文件"></a>git status 可以查看新建和修改过的文件</h5><h5 id="git-diff-可以查看所有文件修改的具体内容-git-diff-demo-txt-查看具体文件修改内容"><a href="#git-diff-可以查看所有文件修改的具体内容-git-diff-demo-txt-查看具体文件修改内容" class="headerlink" title="git diff 可以查看所有文件修改的具体内容 git diff demo.txt 查看具体文件修改内容"></a>git diff 可以查看所有文件修改的具体内容 git diff demo.txt 查看具体文件修改内容</h5><h6 id="想还原上次demo-txt-提交仓库的内容"><a href="#想还原上次demo-txt-提交仓库的内容" class="headerlink" title="想还原上次demo.txt 提交仓库的内容"></a>想还原上次demo.txt 提交仓库的内容</h6><p>####### git checkout demo.txt </p>
+<h6 id="不想还原"><a href="#不想还原" class="headerlink" title="不想还原"></a>不想还原</h6><p>####### git add . 提交所有文件到暂存区</p>
+<p>######## 再次修改demo.txt</p>
+<p>######### 想还原上次add 的demo.txt</p>
+<p>########## git checkout demo.txt </p>
+<p>######### 想还原上次提交仓库的demo.txt</p>
+<p>########## git reset 上次提交的哈希码 demo.txt 哈希码 git log可以看 例如git reset 2aef3b5a73e1c6a2ead8647717b3958bf7258a8b demo.txt</p>
+<p>########## 再次提交 git commit -m “描述”</p>
+<p>########## git checkout demo.txt </p>
+<p>######### 不想还原 提交</p>
+<p>########## 提交 git commit -m “描述”</p>
+<p>######## 想全部还原上一个版本</p>
+<p>######### git reset –hard HEAD~1</p>
+<h3 id="文件暂存操作"><a href="#文件暂存操作" class="headerlink" title="文件暂存操作"></a>文件暂存操作</h3><h4 id="正式版本master有bug"><a href="#正式版本master有bug" class="headerlink" title="正式版本master有bug"></a>正式版本master有bug</h4><h4 id="新功能版本new分支有dd-txt-demo-txt-但是新功能-dd-txt还没写完不想先提交"><a href="#新功能版本new分支有dd-txt-demo-txt-但是新功能-dd-txt还没写完不想先提交" class="headerlink" title="新功能版本new分支有dd.txt demo.txt 但是新功能 dd.txt还没写完不想先提交"></a>新功能版本new分支有dd.txt demo.txt 但是新功能 dd.txt还没写完不想先提交</h4><h4 id="想新建切换bug分区修改demo-txt，同时保留新功能分支未提交的dd-txt"><a href="#想新建切换bug分区修改demo-txt，同时保留新功能分支未提交的dd-txt" class="headerlink" title="想新建切换bug分区修改demo.txt，同时保留新功能分支未提交的dd.txt"></a>想新建切换bug分区修改demo.txt，同时保留新功能分支未提交的dd.txt</h4><h5 id="首先在new-git-add"><a href="#首先在new-git-add" class="headerlink" title="首先在new git add ."></a>首先在new git add .</h5><h6 id="接着git-stash保存到Git栈"><a href="#接着git-stash保存到Git栈" class="headerlink" title="接着git stash保存到Git栈"></a>接着git stash保存到Git栈</h6><p>####### git checkout -b fixbug 创建修复bug分支并切换fixbug分支</p>
+<p>######## 修复bug，提交</p>
+<p>######### git checkout  new<br> 切换新功能分支</p>
+<p>########## git stash list查看Git栈列表</p>
+<p>########### git stash apply stash@{0}恢复dd.txt 0代表版本号git stash list可看</p>
+<p>############ git stash clear清除没有用的栈</p>
+<h2 id="连接到远程仓库-github"><a href="#连接到远程仓库-github" class="headerlink" title="连接到远程仓库(github)"></a>连接到远程仓库(github)</h2><h3 id="ssh-key配置好-ssh-keygen-t-rsa-C-“你的电子邮件”"><a href="#ssh-key配置好-ssh-keygen-t-rsa-C-“你的电子邮件”" class="headerlink" title="ssh key配置好 ssh-keygen -t rsa -C “你的电子邮件”"></a>ssh key配置好 ssh-keygen -t rsa -C “你的电子邮件”</h3><h3 id="生成id-rsa私钥和id-rsa-pub公钥"><a href="#生成id-rsa私钥和id-rsa-pub公钥" class="headerlink" title="生成id_rsa私钥和id_rsa.pub公钥"></a>生成id_rsa私钥和id_rsa.pub公钥</h3><h3 id="把公钥放在在github的setting目录的SSH-and-GPG-key-里面"><a href="#把公钥放在在github的setting目录的SSH-and-GPG-key-里面" class="headerlink" title="把公钥放在在github的setting目录的SSH and GPG key 里面"></a>把公钥放在在github的setting目录的SSH and GPG key 里面</h3><h4 id="第一次把本地仓库提交远程仓库"><a href="#第一次把本地仓库提交远程仓库" class="headerlink" title="第一次把本地仓库提交远程仓库"></a>第一次把本地仓库提交远程仓库</h4><h5 id="git-add-README-md"><a href="#git-add-README-md" class="headerlink" title="git add README.md"></a>git add README.md</h5><h5 id="git-commit-m-“first-commit”"><a href="#git-commit-m-“first-commit”" class="headerlink" title="git commit -m “first commit”"></a>git commit -m “first commit”</h5><h5 id="remote-add-origin-git-github-com-cczhr-new-git-origin后面的网址是github的new仓库ssh链接"><a href="#remote-add-origin-git-github-com-cczhr-new-git-origin后面的网址是github的new仓库ssh链接" class="headerlink" title="remote add origin git@github.com:cczhr/new.git  origin后面的网址是github的new仓库ssh链接"></a>remote add origin git@github.com:cczhr/new.git  origin后面的网址是github的new仓库ssh链接</h5><h5 id="git-push-u-origin-master-提交-u会把maste分支与github-master分支关联-若有多个分支把master-改为你的分支名再次提交即可"><a href="#git-push-u-origin-master-提交-u会把maste分支与github-master分支关联-若有多个分支把master-改为你的分支名再次提交即可" class="headerlink" title="git push -u origin master 提交 -u会把maste分支与github master分支关联 若有多个分支把master 改为你的分支名再次提交即可"></a>git push -u origin master 提交 -u会把maste分支与github master分支关联 若有多个分支把master 改为你的分支名再次提交即可</h5><h4 id="第二次使用"><a href="#第二次使用" class="headerlink" title="第二次使用"></a>第二次使用</h4><h5 id="已经绑定"><a href="#已经绑定" class="headerlink" title="已经绑定"></a>已经绑定</h5><h6 id="直接-git-push"><a href="#直接-git-push" class="headerlink" title="直接 git push"></a>直接 git push</h6><h5 id="没有绑定"><a href="#没有绑定" class="headerlink" title="没有绑定"></a>没有绑定</h5><h6 id="git-push-origin-分支名称"><a href="#git-push-origin-分支名称" class="headerlink" title="git push  origin 分支名称"></a>git push  origin 分支名称</h6><h3 id="从远程仓库拉代码"><a href="#从远程仓库拉代码" class="headerlink" title="从远程仓库拉代码"></a>从远程仓库拉代码</h3><h4 id="git-clone-ssh链接-即可"><a href="#git-clone-ssh链接-即可" class="headerlink" title="git clone ssh链接 即可"></a>git clone ssh链接 即可</h4><h2 id="一些命令"><a href="#一些命令" class="headerlink" title="一些命令"></a>一些命令</h2><h3 id="git-log-查看提交仓库详细记录"><a href="#git-log-查看提交仓库详细记录" class="headerlink" title="git log 查看提交仓库详细记录"></a>git log 查看提交仓库详细记录</h3><h3 id="git-shortlog-显示文件修改的记录"><a href="#git-shortlog-显示文件修改的记录" class="headerlink" title="git shortlog 显示文件修改的记录"></a>git shortlog 显示文件修改的记录</h3><h3 id="git-commit-–amend-m-“描述内容”-修改上次提交的描述内容"><a href="#git-commit-–amend-m-“描述内容”-修改上次提交的描述内容" class="headerlink" title="git commit –amend -m “描述内容”   修改上次提交的描述内容"></a>git commit –amend -m “描述内容”   修改上次提交的描述内容</h3><h3 id="git-diff-HEAD-1-查看本地修改上次提交的区间-1为版本号-2为上上次以此类推"><a href="#git-diff-HEAD-1-查看本地修改上次提交的区间-1为版本号-2为上上次以此类推" class="headerlink" title="git diff HEAD~1 查看本地修改上次提交的区间 1为版本号 2为上上次以此类推"></a>git diff HEAD~1 查看本地修改上次提交的区间 1为版本号 2为上上次以此类推</h3><h3 id="gitk-以图形界面显示仓库"><a href="#gitk-以图形界面显示仓库" class="headerlink" title="gitk 以图形界面显示仓库"></a>gitk 以图形界面显示仓库</h3><h3 id="git-blame-文件路径-查看指定文件的历史提交具体的修改"><a href="#git-blame-文件路径-查看指定文件的历史提交具体的修改" class="headerlink" title="git blame 文件路径  查看指定文件的历史提交具体的修改"></a>git blame 文件路径  查看指定文件的历史提交具体的修改</h3><h3 id="git-config-–global-alias-别名-具体命令-配置别名"><a href="#git-config-–global-alias-别名-具体命令-配置别名" class="headerlink" title="git config –global alias.别名 具体命令    配置别名"></a>git config –global alias.别名 具体命令    配置别名</h3><h3 id="git-rm-文件名-相当于删除一个文件并add一次"><a href="#git-rm-文件名-相当于删除一个文件并add一次" class="headerlink" title="git rm 文件名  相当于删除一个文件并add一次"></a>git rm 文件名  相当于删除一个文件并add一次</h3><h3 id="查看分支-git-branch"><a href="#查看分支-git-branch" class="headerlink" title="查看分支 git branch"></a>查看分支 git branch</h3><h3 id="切换分支-checkout-分支名"><a href="#切换分支-checkout-分支名" class="headerlink" title="切换分支 checkout 分支名"></a>切换分支 checkout 分支名</h3><h3 id="创建分支-git-branch-分支名"><a href="#创建分支-git-branch-分支名" class="headerlink" title="创建分支 git branch 分支名"></a>创建分支 git branch 分支名</h3><h3 id="创建并切换分支-git-checkout-b-分支名"><a href="#创建并切换分支-git-checkout-b-分支名" class="headerlink" title="创建并切换分支 git checkout -b 分支名"></a>创建并切换分支 git checkout -b 分支名</h3><h3 id="合并分支-git-merge-要被合并的分支名"><a href="#合并分支-git-merge-要被合并的分支名" class="headerlink" title="合并分支 git merge 要被合并的分支名"></a>合并分支 git merge 要被合并的分支名</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/21/git与github快速入门/" rel="next" title="git与github快速入门">
+                <i class="fa fa-chevron-left"></i> git与github快速入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+
+
+
+
+
+
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+
+  <div class="comments" id="comments">
+
+
+</script>
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"
+               alt="cczhr" />
+          <p class="site-author-name" itemprop="name">cczhr</p>
+          <p class="site-description motion-element" itemprop="description">或许你真的可以改变世界。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cczhr" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/cczhr" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=3407804&auto=0&height=66"></iframe>
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#git的使用流程"><span class="nav-number">1.</span> <span class="nav-text">git的使用流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地使用"><span class="nav-number">1.1.</span> <span class="nav-text">本地使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一次使用"><span class="nav-number">1.1.1.</span> <span class="nav-text">第一次使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-init新建仓库"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">git init新建仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#例如新建文件demo-txt"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">例如新建文件demo.txt</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#git-status-可以查看新建的文件"><span class="nav-number">1.1.1.1.1.1.</span> <span class="nav-text">git status 可以查看新建的文件</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二次以上使用"><span class="nav-number">1.1.2.</span> <span class="nav-text">第二次以上使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例如修改demo-txt-里面的文字和新增一个hh-txt"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">例如修改demo.txt 里面的文字和新增一个hh.txt</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#git-status-可以查看新建和修改过的文件"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">git status 可以查看新建和修改过的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-diff-可以查看所有文件修改的具体内容-git-diff-demo-txt-查看具体文件修改内容"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">git diff 可以查看所有文件修改的具体内容 git diff demo.txt 查看具体文件修改内容</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#想还原上次demo-txt-提交仓库的内容"><span class="nav-number">1.1.2.1.2.1.</span> <span class="nav-text">想还原上次demo.txt 提交仓库的内容</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#不想还原"><span class="nav-number">1.1.2.1.2.2.</span> <span class="nav-text">不想还原</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件暂存操作"><span class="nav-number">1.1.3.</span> <span class="nav-text">文件暂存操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正式版本master有bug"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">正式版本master有bug</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新功能版本new分支有dd-txt-demo-txt-但是新功能-dd-txt还没写完不想先提交"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">新功能版本new分支有dd.txt demo.txt 但是新功能 dd.txt还没写完不想先提交</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#想新建切换bug分区修改demo-txt，同时保留新功能分支未提交的dd-txt"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">想新建切换bug分区修改demo.txt，同时保留新功能分支未提交的dd.txt</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#首先在new-git-add"><span class="nav-number">1.1.3.3.1.</span> <span class="nav-text">首先在new git add .</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#接着git-stash保存到Git栈"><span class="nav-number">1.1.3.3.1.1.</span> <span class="nav-text">接着git stash保存到Git栈</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接到远程仓库-github"><span class="nav-number">1.2.</span> <span class="nav-text">连接到远程仓库(github)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh-key配置好-ssh-keygen-t-rsa-C-“你的电子邮件”"><span class="nav-number">1.2.1.</span> <span class="nav-text">ssh key配置好 ssh-keygen -t rsa -C “你的电子邮件”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成id-rsa私钥和id-rsa-pub公钥"><span class="nav-number">1.2.2.</span> <span class="nav-text">生成id_rsa私钥和id_rsa.pub公钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把公钥放在在github的setting目录的SSH-and-GPG-key-里面"><span class="nav-number">1.2.3.</span> <span class="nav-text">把公钥放在在github的setting目录的SSH and GPG key 里面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次把本地仓库提交远程仓库"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">第一次把本地仓库提交远程仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#git-add-README-md"><span class="nav-number">1.2.3.1.1.</span> <span class="nav-text">git add README.md</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-commit-m-“first-commit”"><span class="nav-number">1.2.3.1.2.</span> <span class="nav-text">git commit -m “first commit”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#remote-add-origin-git-github-com-cczhr-new-git-origin后面的网址是github的new仓库ssh链接"><span class="nav-number">1.2.3.1.3.</span> <span class="nav-text">remote add origin git@github.com:cczhr/new.git  origin后面的网址是github的new仓库ssh链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-push-u-origin-master-提交-u会把maste分支与github-master分支关联-若有多个分支把master-改为你的分支名再次提交即可"><span class="nav-number">1.2.3.1.4.</span> <span class="nav-text">git push -u origin master 提交 -u会把maste分支与github master分支关联 若有多个分支把master 改为你的分支名再次提交即可</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二次使用"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">第二次使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#已经绑定"><span class="nav-number">1.2.3.2.1.</span> <span class="nav-text">已经绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#直接-git-push"><span class="nav-number">1.2.3.2.1.1.</span> <span class="nav-text">直接 git push</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#没有绑定"><span class="nav-number">1.2.3.2.2.</span> <span class="nav-text">没有绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#git-push-origin-分支名称"><span class="nav-number">1.2.3.2.2.1.</span> <span class="nav-text">git push  origin 分支名称</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从远程仓库拉代码"><span class="nav-number">1.2.4.</span> <span class="nav-text">从远程仓库拉代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-clone-ssh链接-即可"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">git clone ssh链接 即可</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些命令"><span class="nav-number">1.3.</span> <span class="nav-text">一些命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-log-查看提交仓库详细记录"><span class="nav-number">1.3.1.</span> <span class="nav-text">git log 查看提交仓库详细记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-shortlog-显示文件修改的记录"><span class="nav-number">1.3.2.</span> <span class="nav-text">git shortlog 显示文件修改的记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-commit-–amend-m-“描述内容”-修改上次提交的描述内容"><span class="nav-number">1.3.3.</span> <span class="nav-text">git commit –amend -m “描述内容”   修改上次提交的描述内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-diff-HEAD-1-查看本地修改上次提交的区间-1为版本号-2为上上次以此类推"><span class="nav-number">1.3.4.</span> <span class="nav-text">git diff HEAD~1 查看本地修改上次提交的区间 1为版本号 2为上上次以此类推</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitk-以图形界面显示仓库"><span class="nav-number">1.3.5.</span> <span class="nav-text">gitk 以图形界面显示仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-blame-文件路径-查看指定文件的历史提交具体的修改"><span class="nav-number">1.3.6.</span> <span class="nav-text">git blame 文件路径  查看指定文件的历史提交具体的修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-config-–global-alias-别名-具体命令-配置别名"><span class="nav-number">1.3.7.</span> <span class="nav-text">git config –global alias.别名 具体命令    配置别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rm-文件名-相当于删除一个文件并add一次"><span class="nav-number">1.3.8.</span> <span class="nav-text">git rm 文件名  相当于删除一个文件并add一次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看分支-git-branch"><span class="nav-number">1.3.9.</span> <span class="nav-text">查看分支 git branch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换分支-checkout-分支名"><span class="nav-number">1.3.10.</span> <span class="nav-text">切换分支 checkout 分支名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建分支-git-branch-分支名"><span class="nav-number">1.3.11.</span> <span class="nav-text">创建分支 git branch 分支名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建并切换分支-git-checkout-b-分支名"><span class="nav-number">1.3.12.</span> <span class="nav-text">创建并切换分支 git checkout -b 分支名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并分支-git-merge-要被合并的分支名"><span class="nav-number">1.3.13.</span> <span class="nav-text">合并分支 git merge 要被合并的分支名</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cczhr</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+		_hcwp.push({widget:"Bloggerstream", widget_id: 93348, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+		
+		_hcwp.push({widget:"Stream", widget_id: 93348, xid: "2017/07/23/git笔记/"});
+		
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/93348/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+	
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+ 
+
+ 
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>

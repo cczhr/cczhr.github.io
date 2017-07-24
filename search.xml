@@ -4,6 +4,24 @@
   
     
     <entry>
+      <title><![CDATA[Android Butter Knife 框架]]></title>
+      <url>http://yoursite.com/2017/07/24/Android-Butter-Knife-%E6%A1%86%E6%9E%B6/</url>
+      <content type="html"><![CDATA[<pre><code>just take a few notes
+</code></pre><h2 id="配置与使用"><a href="#配置与使用" class="headerlink" title="配置与使用"></a>配置与使用</h2><p><img src="/2017/07/24/Android-Butter-Knife-框架/b1.jpg" alt=""><br><img src="/2017/07/24/Android-Butter-Knife-框架/b2.jpg" alt=""><br><img src="/2017/07/24/Android-Butter-Knife-框架/b3.jpg" alt=""></p>
+<h2 id="加多个Glide使用"><a href="#加多个Glide使用" class="headerlink" title="加多个Glide使用"></a>加多个Glide使用</h2><pre><code>compile &apos;com.github.bumptech.glide:glide:3.7.0&apos;
+</code></pre><p><img src="/2017/07/24/Android-Butter-Knife-框架/b4.jpg" alt=""></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[git与github快速入门]]></title>
       <url>http://yoursite.com/2017/07/21/git%E4%B8%8Egithub%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
       <content type="html"><![CDATA[<h2 id="第一步-github-和一部分git介绍"><a href="#第一步-github-和一部分git介绍" class="headerlink" title="第一步 github 和一部分git介绍"></a>第一步 github 和一部分git介绍</h2><p>官网 <a href="http://yun.itheima.com/course/209.html" target="_blank" rel="external">http://yun.itheima.com/course/209.html</a><br> b站 <a href="http://www.bilibili.com/video/av10475153" target="_blank" rel="external">http://www.bilibili.com/video/av10475153</a><br> 内容相同，github讲的很清楚，git也讲一些内容。<br><img src="/2017/07/21/git与github快速入门/face.jpg" alt=""><br>这里就简单贴几张github的图<br><img src="/2017/07/21/git与github快速入门/g1.jpg" alt=""><br><img src="/2017/07/21/git与github快速入门/g2.jpg" alt=""><br><img src="/2017/07/21/git与github快速入门/g3.jpg" alt=""><br><img src="/2017/07/21/git与github快速入门/g4.jpg" alt=""><br>git的概念<br><img src="/2017/07/21/git与github快速入门/git.jpg" alt=""></p>

@@ -84,16 +84,27 @@
 
 
 
-<meta name="description" content="首先创建一个类继承Application12345678910public class MyApplication extends Application&amp;#123;	private static Context context;	@Override	public void onCreate()&amp;#123;		context=getApplicationContext();	&amp;#125;	publ">
+<meta name="description" content="just take a few notes
+配置与使用
+加多个Glide使用compile &amp;apos;com.github.bumptech.glide:glide:3.7.0&amp;apos;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="全局获得Context的方法">
-<meta property="og:url" content="http://yoursite.com/2017/02/12/全局获得Context的方法/index.html">
+<meta property="og:title" content="Android Butter Knife 框架">
+<meta property="og:url" content="http://yoursite.com/2017/07/24/Android-Butter-Knife-框架/index.html">
 <meta property="og:site_name" content="Not Found Blog">
-<meta property="og:description" content="首先创建一个类继承Application12345678910public class MyApplication extends Application&amp;#123;	private static Context context;	@Override	public void onCreate()&amp;#123;		context=getApplicationContext();	&amp;#125;	publ">
-<meta property="og:updated_time" content="2017-02-12T12:43:20.158Z">
+<meta property="og:description" content="just take a few notes
+配置与使用
+加多个Glide使用compile &amp;apos;com.github.bumptech.glide:glide:3.7.0&amp;apos;">
+<meta property="og:image" content="http://yoursite.com/2017/07/24/Android-Butter-Knife-框架/b1.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/07/24/Android-Butter-Knife-框架/b2.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/07/24/Android-Butter-Knife-框架/b3.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/07/24/Android-Butter-Knife-框架/b4.jpg">
+<meta property="og:updated_time" content="2017-07-24T13:57:56.356Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="全局获得Context的方法">
-<meta name="twitter:description" content="首先创建一个类继承Application12345678910public class MyApplication extends Application&amp;#123;	private static Context context;	@Override	public void onCreate()&amp;#123;		context=getApplicationContext();	&amp;#125;	publ">
+<meta name="twitter:title" content="Android Butter Knife 框架">
+<meta name="twitter:description" content="just take a few notes
+配置与使用
+加多个Glide使用compile &amp;apos;com.github.bumptech.glide:glide:3.7.0&amp;apos;">
+<meta name="twitter:image" content="http://yoursite.com/2017/07/24/Android-Butter-Knife-框架/b1.jpg">
 
 
 
@@ -114,10 +125,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/12/全局获得Context的方法/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/24/Android-Butter-Knife-框架/"/>
 
 
-  <title> 全局获得Context的方法 | Not Found Blog </title>
+  <title> Android Butter Knife 框架 | Not Found Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -252,7 +263,7 @@
             
             
               
-                全局获得Context的方法
+                Android Butter Knife 框架
               
             
           </h1>
@@ -264,8 +275,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-12T20:00:30+08:00" content="2017-02-12">
-              2017-02-12
+            <time itemprop="dateCreated" datetime="2017-07-24T21:35:05+08:00" content="2017-07-24">
+              2017-07-24
             </time>
           </span>
 
@@ -278,8 +289,8 @@
      &nbsp;|&nbsp;
        <span class="post-meta-item-icon">
          <i class="fa fa-comment-o"></i>
-         <a href="/2017/02/12/全局获得Context的方法/#comments" itemprop="discussionUrl">
-           <span class="post-comments-count hc-comment-count" data-xid="2017/02/12/全局获得Context的方法/" itemprop="commentsCount"></span>
+         <a href="/2017/07/24/Android-Butter-Knife-框架/#comments" itemprop="discussionUrl">
+           <span class="post-comments-count hc-comment-count" data-xid="2017/07/24/Android-Butter-Knife-框架/" itemprop="commentsCount"></span>
          </a>
        </span>
    </span>
@@ -306,7 +317,7 @@
              <i class="fa fa-calendar-o"></i>
            </span>
            <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">93(字)</span>
+           <span class="post-count">25(字)</span>
            
          </span>
 	  
@@ -337,9 +348,10 @@
       
 
       
-        <p>首先创建一个类继承Application<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> <span class="keyword">extends</span> <span class="title">Application</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Context context;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span></span>&#123;</div><div class="line">		context=getApplicationContext();</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Context <span class="title">getContext</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> context;</div><div class="line">	&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>然后在AndroidManifest.xml的 &lt; application&gt;标签指定即可<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">          <span class="attr">package</span>=<span class="string">"com.cczhr.mydemo"</span> &gt;</div><div class="line">		   <span class="tag">&lt;<span class="name">application</span></span></div><div class="line">				<span class="attr">...</span></div><div class="line">				<span class="attr">...</span></div><div class="line">				<span class="attr">android:name</span>=<span class="string">"com.cczhr.mydemo.MyApplication"</span>&gt;</div><div class="line">		   <span class="tag">&lt;/<span class="name">application</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>以后需要传入Context只需要写上即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MyApplication.getContext();</div></pre></td></tr></table></figure></p>
+        <pre><code>just take a few notes
+</code></pre><h2 id="配置与使用"><a href="#配置与使用" class="headerlink" title="配置与使用"></a>配置与使用</h2><p><img src="/2017/07/24/Android-Butter-Knife-框架/b1.jpg" alt=""><br><img src="/2017/07/24/Android-Butter-Knife-框架/b2.jpg" alt=""><br><img src="/2017/07/24/Android-Butter-Knife-框架/b3.jpg" alt=""></p>
+<h2 id="加多个Glide使用"><a href="#加多个Glide使用" class="headerlink" title="加多个Glide使用"></a>加多个Glide使用</h2><pre><code>compile &apos;com.github.bumptech.glide:glide:3.7.0&apos;
+</code></pre><p><img src="/2017/07/24/Android-Butter-Knife-框架/b4.jpg" alt=""></p>
 
       
     </div>
@@ -371,17 +383,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/05/Android的RecyclerView/" rel="next" title="Android的RecyclerView">
-                <i class="fa fa-chevron-left"></i> Android的RecyclerView
+              <a href="/2017/07/21/git与github快速入门/" rel="next" title="git与github快速入门">
+                <i class="fa fa-chevron-left"></i> git与github快速入门
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/12/Android解析json的方法/" rel="prev" title="Android解析json的方法">
-                Android解析json的方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -522,7 +530,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置与使用"><span class="nav-number">1.</span> <span class="nav-text">配置与使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加多个Glide使用"><span class="nav-number">2.</span> <span class="nav-text">加多个Glide使用</span></a></li></ol></div>
             
           </div>
         </section>
@@ -655,7 +663,7 @@
 		_hcwp = window._hcwp || [];
 		_hcwp.push({widget:"Bloggerstream", widget_id: 93348, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 		
-		_hcwp.push({widget:"Stream", widget_id: 93348, xid: "2017/02/12/全局获得Context的方法/"});
+		_hcwp.push({widget:"Stream", widget_id: 93348, xid: "2017/07/24/Android-Butter-Knife-框架/"});
 		
 		(function() {
 		if("HC_LOAD_INIT" in window)return;
