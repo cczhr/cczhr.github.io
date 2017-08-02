@@ -1,0 +1,897 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="CardView需要的依赖，不过貌似可以alt+enter自动导入。
+compile &amp;apos;com.android.support:cardview-v7:25.3.1&amp;apos;
+
+记得是 xmlns:card_view=&amp;quot;http://schemas.android.com/apk/res-auto&amp;quot;，
+而不是  xmlns:card_view=&amp;quot;http:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些android笔记">
+<meta property="og:url" content="http://yoursite.com/2017/07/31/一些android笔记/index.html">
+<meta property="og:site_name" content="Not Found Blog">
+<meta property="og:description" content="CardView需要的依赖，不过貌似可以alt+enter自动导入。
+compile &amp;apos;com.android.support:cardview-v7:25.3.1&amp;apos;
+
+记得是 xmlns:card_view=&amp;quot;http://schemas.android.com/apk/res-auto&amp;quot;，
+而不是  xmlns:card_view=&amp;quot;http:">
+<meta property="og:image" content="http://yoursite.com/2017/07/31/一些android笔记/c1.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/07/31/一些android笔记/s1.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/07/31/一些android笔记/s2.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/07/31/一些android笔记/sw1.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/07/31/一些android笔记/b1.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/07/31/一些android笔记/b3.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/07/31/一些android笔记/ba1.jpg">
+<meta property="og:updated_time" content="2017-07-31T14:44:51.782Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一些android笔记">
+<meta name="twitter:description" content="CardView需要的依赖，不过貌似可以alt+enter自动导入。
+compile &amp;apos;com.android.support:cardview-v7:25.3.1&amp;apos;
+
+记得是 xmlns:card_view=&amp;quot;http://schemas.android.com/apk/res-auto&amp;quot;，
+而不是  xmlns:card_view=&amp;quot;http:">
+<meta name="twitter:image" content="http://yoursite.com/2017/07/31/一些android笔记/c1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/31/一些android笔记/"/>
+
+
+  <title> 一些android笔记 | Not Found Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Not Found Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                一些android笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-31T14:14:11+08:00" content="2017-07-31">
+              2017-07-31
+            </time>
+          </span>
+
+          
+
+          
+            
+ <!--noindex-->
+    <span class="post-comments-count">
+     &nbsp;|&nbsp;
+       <span class="post-meta-item-icon">
+         <i class="fa fa-comment-o"></i>
+         <a href="/2017/07/31/一些android笔记/#comments" itemprop="discussionUrl">
+           <span class="post-comments-count hc-comment-count" data-xid="2017/07/31/一些android笔记/" itemprop="commentsCount"></span>
+         </a>
+       </span>
+   </span>
+   <!--/noindex-->
+
+
+
+
+
+
+            
+          
+
+          
+
+          
+          
+
+
+
+         <span class="post-time">
+	   &nbsp; | &nbsp;
+           <span class="post-meta-item-icon">
+             <i class="fa fa-calendar-o"></i>
+           </span>
+           <span class="post-meta-item-text">字数统计:</span>
+           <span class="post-count">2,123(字)</span>
+           
+         </span>
+	  
+      <span class="post-time">
+	   &nbsp; | &nbsp;
+           <span class="post-meta-item-icon">
+             <i class="fa fa-calendar-o"></i>
+           </span>
+           <span class="post-meta-item-text">阅读时长:</span>
+           <span class="post-count">11(分)</span>
+           
+         </span>
+
+
+
+
+
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="CardView"><a href="#CardView" class="headerlink" title="CardView"></a>CardView</h2><p>需要的依赖，不过貌似可以alt+enter自动导入。</p>
+<pre><code>compile &apos;com.android.support:cardview-v7:25.3.1&apos;
+
+记得是 xmlns:card_view=&quot;http://schemas.android.com/apk/res-auto&quot;，
+而不是  xmlns:card_view=&quot;http://schemas.android.com/tools&quot;，不然没效果。
+</code></pre><p>android:focusable=”true”代表可以获取焦点，<br>android:clickable=”true”代表可以被点击，<br>android:foreground=”?android:attr/selectableItemBackground”代表前景色，这里是添加点击水波纹效果，<br>card_view:cardPreventCornerOverlap=”true”代表将CardView里边的元素单独做圆角处理，<br>card_view:cardUseCompatPadding=”true”设置内边距，<br>card_view:contentPadding=”8dp”边界距离内部的距离，<br> card_view:cardElevation=”8dp”添加卡片阴影</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">              <span class="attr">xmlns:card_view</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></div><div class="line">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">              <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">              <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">android.support.v7.widget.CardView</span></span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/card_stories"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"60dp"</span></div><div class="line">    <span class="attr">android:clickable</span>=<span class="string">"true"</span></div><div class="line">    <span class="attr">android:focusable</span>=<span class="string">"true"</span></div><div class="line">    <span class="attr">android:foreground</span>=<span class="string">"?android:attr/selectableItemBackground"</span></div><div class="line">    <span class="attr">card_view:cardElevation</span>=<span class="string">"3dp"</span></div><div class="line">    <span class="attr">card_view:cardPreventCornerOverlap</span>=<span class="string">"true"</span></div><div class="line">    <span class="attr">card_view:cardUseCompatPadding</span>=<span class="string">"true"</span></div><div class="line">    <span class="attr">card_view:contentPadding</span>=<span class="string">"8dp"</span>&gt;</div><div class="line">       <span class="comment">&lt;!--里面可以放各种东西</span></div><div class="line">	   .......</div><div class="line">	   .......</div><div class="line">	   ......</div><div class="line">	   --&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">android.support.v7.widget.CardView</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>效果<br><img src="/2017/07/31/一些android笔记/c1.jpg" alt=""></p>
+<h2 id="Snackbar"><a href="#Snackbar" class="headerlink" title="Snackbar"></a>Snackbar</h2><p>需要的依赖</p>
+<pre><code>compile &apos;com.android.support:design:25.3.1&apos;
+</code></pre><p>简单使用，和Toast不一样Snackbar传的是view<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Snackbar snackbar = Snackbar.make(view,<span class="string">"消息已发出"</span>,Snackbar.LENGTH_SHORT);</div><div class="line">            <span class="comment">//添加点击事件</span></div><div class="line">             <span class="comment">/* snackbar .setAction("添加了点击我", new View.OnClickListener() &#123;</span></div><div class="line">                  @Override</div><div class="line">                  public void onClick(View view) &#123;</div><div class="line">                  &#125;</div><div class="line">              &#125;);*/</div><div class="line">             <span class="comment">//  View mView = snackbar.getView();</span></div><div class="line">             <span class="comment">// snackbar.setActionTextColor(Color.BLUE); 点击字体颜色</span></div><div class="line">             <span class="comment">// mView.setBackgroundColor(Color.GRAY);设置背景颜色</span></div><div class="line">              snackbar.show();</div></pre></td></tr></table></figure></p>
+<p>效果<br><img src="/2017/07/31/一些android笔记/s1.jpg" alt=""><br><img src="/2017/07/31/一些android笔记/s2.jpg" alt=""></p>
+<h2 id="RecyclerView"><a href="#RecyclerView" class="headerlink" title="RecyclerView"></a>RecyclerView</h2><p>配置</p>
+<pre><code>注意：如果使用瀑布流布局，那么宽度应该是根据布局的列数来自动适配的，
+而不是一个固定值。另外可以使用了layout_margin 属性来让子项之间互留一点间距，
+这样就不至于所有子项都紧贴在一些。android:padding和android:margin的区别
+一个是容器内间距，一个是容器外间距。
+</code></pre><p>在需要的布局xml加上即可<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.v7.widget.RecyclerView</span></span></div><div class="line">          <span class="attr">android:id</span>=<span class="string">"@+id/recycler_view"</span></div><div class="line">          <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">          <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>/&gt;</div></pre></td></tr></table></figure></p>
+<p>里面加上自定义view 可以新建一个text.xml,这里用CardView套TextView<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">              <span class="attr">xmlns:card_view</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></div><div class="line">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">              <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">              <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</div><div class="line"><span class="tag">&lt;<span class="name">android.support.v7.widget.CardView</span></span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/card_stories"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"60dp"</span></div><div class="line">    <span class="attr">android:clickable</span>=<span class="string">"true"</span></div><div class="line">    <span class="attr">android:focusable</span>=<span class="string">"true"</span></div><div class="line">    <span class="attr">android:foreground</span>=<span class="string">"?android:attr/selectableItemBackground"</span></div><div class="line">    <span class="attr">card_view:cardElevation</span>=<span class="string">"3dp"</span></div><div class="line">    <span class="attr">card_view:cardPreventCornerOverlap</span>=<span class="string">"true"</span></div><div class="line">    <span class="attr">card_view:cardUseCompatPadding</span>=<span class="string">"true"</span></div><div class="line">    <span class="attr">card_view:contentPadding</span>=<span class="string">"8dp"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/myText"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"TextView"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">android.support.v7.widget.CardView</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>使用时需要自定义一个Adapter和ViewHolder这里新建一个MyAdapter.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.app.cczhr.recyclerviewdemo;</div><div class="line"><span class="keyword">import</span> android.support.design.widget.Snackbar;</div><div class="line"><span class="keyword">import</span> android.support.v7.widget.CardView;</div><div class="line"><span class="keyword">import</span> android.support.v7.widget.RecyclerView;</div><div class="line"><span class="keyword">import</span> android.view.LayoutInflater;</div><div class="line"><span class="keyword">import</span> android.view.View;</div><div class="line"><span class="keyword">import</span> android.view.ViewGroup;</div><div class="line"><span class="keyword">import</span> android.widget.TextView;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="comment">//第二步主类继承RecyclerView.Adapter 泛型填自定义的MyViewHolder，</span></div><div class="line"><span class="comment">//添加构造方法用来传输要显示的数据，这里传输一个 List&lt;String&gt;</span></div><div class="line"><span class="comment">//重写onCreateViewHolder 和onBindViewHolder 以及getItemCount</span></div><div class="line"><span class="comment">//onCreateViewHolder负责把自定义view传给MyViewHolder</span></div><div class="line"><span class="comment">//onBindViewHolder则是负责从拿出控件填入数据以及设置监听器 int position从getItemCount来决定</span></div><div class="line"><span class="comment">//getItemCount负责显示多少条</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span>&lt;<span class="title">MyAdapter</span>.<span class="title">MyViewHolder</span>&gt;</span>&#123;</div><div class="line">    List&lt;String&gt; mStringList;</div><div class="line">    <span class="function"><span class="keyword">public</span>  <span class="title">MyAdapter</span><span class="params">( List&lt;String&gt; mStringList)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.mStringList=mStringList;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> MyViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</div><div class="line">        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.text,parent,<span class="keyword">false</span>);<span class="comment">//把xml布局文件转为View对象</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyViewHolder(view);</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(MyViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> k=position;</div><div class="line">        holder.mTextView.setText(mStringList.get(position));</div><div class="line">        holder.mCardView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</div><div class="line"></div><div class="line">                Snackbar snackbar = Snackbar.make(view,<span class="string">"消息已发出"</span>,Snackbar.LENGTH_SHORT);</div><div class="line">                snackbar.show();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mStringList.size();</div><div class="line">    &#125;</div><div class="line">	<span class="comment">//第一步是新建一个MyViewHolde内部类继承 RecyclerView.ViewHolder 重写父类构造方法</span></div><div class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyViewHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span> </span>&#123;</div><div class="line">        TextView mTextView;</div><div class="line">        CardView mCardView;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MyViewHolder</span><span class="params">(View itemView)</span> </span>&#123;</div><div class="line">            <span class="keyword">super</span>(itemView);</div><div class="line">            mTextView=(TextView)itemView.findViewById(R.id.myText);</div><div class="line">            mCardView=(CardView)itemView.findViewById(R.id.card_stories);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在需要显示的地方设置好</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line">    List&lt;String&gt; mStringList;</div><div class="line">	MyAdapter myAdapter;</div><div class="line">    <span class="meta">@BindView</span>(R.id.recycler_view)</div><div class="line">    RecyclerView mRecyclerView;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ButterKnife.bind(<span class="keyword">this</span>);</div><div class="line">        initDate();</div><div class="line">		<span class="comment">//数字代表行/列的个数</span></div><div class="line">        StaggeredGridLayoutManager layoutManager = <span class="keyword">new</span> StaggeredGridLayoutManager(<span class="number">1</span>, StaggeredGridLayoutManager.VERTICAL);<span class="comment">//瀑布流布局</span></div><div class="line">		<span class="comment">/*LinearLayoutManager layoutManager = new LinearLayoutManager(this);</span></div><div class="line">		layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);</div><div class="line">       GridLayoutManager layoutManager = new  GridLayoutManager(this,6);//网格布局</div><div class="line">	   layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);</div><div class="line">	   */</div><div class="line">        mRecyclerView.setLayoutManager(layoutManager);<span class="comment">//设置布局</span></div><div class="line">        myAdapter = <span class="keyword">new</span> MyAdapter(mStringList);<span class="comment">//新建适配器填充数据</span></div><div class="line">        mRecyclerView.setAdapter(myAdapter);<span class="comment">//设置适配器</span></div><div class="line">     </div><div class="line">    &#125;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initDate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">40</span>; i++) &#123;</div><div class="line">            mStringList.add(<span class="string">"第"</span> + <span class="keyword">new</span> Random().nextInt(<span class="number">100</span>));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="SwipeRefreshLayout"><a href="#SwipeRefreshLayout" class="headerlink" title="SwipeRefreshLayout"></a>SwipeRefreshLayout</h2><p>详细教程 <a href="http://www.jianshu.com/p/d23b42b6360b" target="_blank" rel="external">http://www.jianshu.com/p/d23b42b6360b</a><br>配置 通常和列表配合使用<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.v4.widget.SwipeRefreshLayout</span></span></div><div class="line">       <span class="attr">android:id</span>=<span class="string">"@+id/swipe_refresh"</span></div><div class="line">       <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">       <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">       &gt;</div><div class="line">       <span class="tag">&lt;<span class="name">android.support.v7.widget.RecyclerView</span></span></div><div class="line">           <span class="attr">android:id</span>=<span class="string">"@+id/recycler_view"</span></div><div class="line">           <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">           <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>/&gt;</div><div class="line">   <span class="tag">&lt;/<span class="name">android.support.v4.widget.SwipeRefreshLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在需要使用的地方(实际使用并非如此)<br>setColorSchemeResources(int… colorResIds) 可以设置圈圈颜色<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line">    <span class="meta">@BindView</span>(R.id.swipe_refresh)</div><div class="line">    SwipeRefreshLayout mSwipeRefresh;</div><div class="line">	</div><div class="line">	    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setSwipeRefresh</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    Thread.sleep(<span class="number">1000</span>);</div><div class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">                runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                        mSwipeRefresh.setRefreshing(<span class="keyword">false</span>);<span class="comment">//关闭圈圈</span></div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">            &#125;</div><div class="line">        &#125;).start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	</div><div class="line">	</div><div class="line"><span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ButterKnife.bind(<span class="keyword">this</span>);</div><div class="line">		<span class="comment">//设置下滑监听</span></div><div class="line">		mSwipeRefresh.setOnRefreshListener(<span class="keyword">new</span> SwipeRefreshLayout.OnRefreshListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRefresh</span><span class="params">()</span> </span>&#123;</div><div class="line">                setSwipeRefresh();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">		&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>效果<br><img src="/2017/07/31/一些android笔记/sw1.jpg" alt=""></p>
+<h2 id="Butter-Knife"><a href="#Butter-Knife" class="headerlink" title="Butter Knife"></a>Butter Knife</h2><p>配置</p>
+<pre><code>compile &apos;com.jakewharton:butterknife-compiler:8.7.0&apos;
+compile &apos;com.jakewharton:butterknife:8.7.0&apos;
+</code></pre><p>安装插件(非必须)<br><img src="/2017/07/31/一些android笔记/b1.jpg" alt=""><br>使用<br><img src="/2017/07/31/一些android笔记/b3.jpg" alt=""></p>
+<p>效果<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@BindView</span>(R.id.toolbar)</div><div class="line">    Toolbar mToolbar;</div><div class="line">    <span class="meta">@BindView</span>(R.id.banner)</div><div class="line">    Banner mBanner;</div><div class="line">    <span class="meta">@BindView</span>(R.id.recycler_view)</div><div class="line">    RecyclerView mRecyclerView;</div><div class="line">    <span class="meta">@BindView</span>(R.id.swipe_refresh)</div><div class="line">    SwipeRefreshLayout mSwipeRefresh;</div></pre></td></tr></table></figure></p>
+<h2 id="Glide"><a href="#Glide" class="headerlink" title="Glide"></a>Glide</h2><p>配置</p>
+<pre><code>compile &apos;com.github.bumptech.glide:glide:3.7.0&apos;
+</code></pre><p>权限(非必须)<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">   <span class="comment">&lt;!-- if you want to load images from a file OR from the internet --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_EXTERNAL_STORAGE"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>简单使用</p>
+<pre><code>with(Context context). 使用Application上下文，Glide请求将不受Activity/Fragment生命周期控制。
+with(Activity activity).使用Activity作为上下文，Glide的请求会受到Activity生命周期控制。
+with(FragmentActivity activity).Glide的请求会受到FragmentActivity生命周期控制。
+with(android.app.Fragment fragment).Glide的请求会受到Fragment 生命周期控制。
+with(android.support.v4.app.Fragment fragment).Glide的请求会受到Fragment生命周期控制。
+
+load SD卡资源:load(&quot;file://&quot;+Environment.getExternalStorageDirectory().getPath()+&quot;/test.jpg&quot;) 
+load assets资源：load(&quot;file:///android_asset/f003.gif&quot;) 
+load raw资源：load(&quot;Android.resource://com.frank.glide/raw/raw_1&quot;)或        load(&quot;android.resource://com.frank.glide/raw/&quot;+R.raw.raw_1) 
+load drawable资源：load(&quot;android.resource://com.frank.glide/drawable/news&quot;)或load(&quot;android.resource://com.frank.glide/drawable/&quot;+R.drawable.news) 
+load ContentProvider资源：load(&quot;content://media/external/images/media/139469&quot;) 
+load http资源：load(&quot;http://img.my.csdn.net/uploads/201508/05/1438760757_3588.jpg&quot;) 
+load https资源：load(&quot;https://img.alicdn.com/tps/TB1uyhoMpXXXXcLXVXXXXXXXXXX-476-538.jpg_240x5000q50.jpg_.webp&quot;) 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Glide.with(<span class="keyword">this</span>)</div><div class="line">              .load(<span class="string">"http:/xxx.xxx"</span>)</div><div class="line">              .asBitmap() <span class="comment">//强制静态或者动态图</span></div><div class="line">              .placeholder(R.drawable.gray_radius) <span class="comment">//设定等待图</span></div><div class="line">              .override(<span class="number">100</span>,<span class="number">100</span>)<span class="comment">//强制指定图片大小</span></div><div class="line">              .error(R.drawable.ic_backup)<span class="comment">//请求失败图</span></div><div class="line">              .into(mImage);<span class="comment">//指定显示的ImageView</span></div></pre></td></tr></table></figure>
+<p>更多详细使用 参考以下网站<br><a href="http://blog.csdn.net/shangmingchao/article/details/51125554/" target="_blank" rel="external">http://blog.csdn.net/shangmingchao/article/details/51125554/</a></p>
+<h2 id="轮播图控件Banner"><a href="#轮播图控件Banner" class="headerlink" title="轮播图控件Banner"></a>轮播图控件Banner</h2><p>配置</p>
+<pre><code>compile &apos;com.youth.banner:banner:1.4.9&apos;
+</code></pre><p>github <a href="https://github.com/youth5201314/banner" target="_blank" rel="external">https://github.com/youth5201314/banner</a><br>权限(非必须)<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">   <span class="comment">&lt;!-- if you want to load images from a file OR from the internet --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_EXTERNAL_STORAGE"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>简单使用<br>在需要的布局文件加上,属性自己定义<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">com.youth.banner.Banner</span></span></div><div class="line">        <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/banner"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"200dp"</span> /&gt;</div></pre></td></tr></table></figure></p>
+<p>首先新建一个适配器继承ImageLoader类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyGlideImageLoader</span> <span class="keyword">extends</span> <span class="title">ImageLoader</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">displayImage</span><span class="params">(Context context, Object path, ImageView imageView)</span> </span>&#123;</div><div class="line">		<span class="comment">//使用Glide显示图片</span></div><div class="line">        Glide.with(context).load((String) path).into(imageView);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>然后在需要显示的地方显示<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line">    <span class="meta">@BindView</span>(R.id.banner)</div><div class="line">    Banner mBanner;</div><div class="line">	</div><div class="line">    <span class="keyword">private</span> List&lt;String &gt;mImageId = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">    <span class="keyword">private</span> List&lt;String &gt;mTitle = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addImage</span><span class="params">()</span></span>&#123;</div><div class="line">        mImageId.add(<span class="string">"http://wx4.sinaimg.cn/wap720/90eb2137ly1fi1px332omj21f80y5qkb.jpg"</span>);</div><div class="line">        mImageId.add(<span class="string">"http://wx3.sinaimg.cn/wap720/90eb2137ly1fhzffgnaimj20go09e75p.jpg"</span>);</div><div class="line">        mImageId.add(<span class="string">"http://wx4.sinaimg.cn/wap720/90eb2137ly1fi0ltqso3yj20hq0c4mxw.jpg"</span>);</div><div class="line">        mTitle.add(<span class="string">"czh标题1"</span>);</div><div class="line">        mTitle.add(<span class="string">"czh标题2"</span>);</div><div class="line">        mTitle.add(<span class="string">"czh标题3"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ButterKnife.bind(<span class="keyword">this</span>);</div><div class="line">        addImage();</div><div class="line">        mBanner.setImageLoader(<span class="keyword">new</span> MyGlideImageLoader());<span class="comment">//设置适配器</span></div><div class="line">        mBanner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE);<span class="comment">//样式</span></div><div class="line">        mBanner.setBannerTitles( mTitle);<span class="comment">//标题list</span></div><div class="line">        mBanner.setImages( mImageId );<span class="comment">//图片list</span></div><div class="line">        mBanner.start();<span class="comment">//执行</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>效果<br><img src="/2017/07/31/一些android笔记/ba1.jpg" alt=""></p>
+<h2 id="RxJava2和Retrofit2"><a href="#RxJava2和Retrofit2" class="headerlink" title="RxJava2和Retrofit2"></a>RxJava2和Retrofit2</h2><p>配置</p>
+<pre><code>compile &apos;io.reactivex.rxjava2:rxjava:2.1.2&apos;
+compile &apos;io.reactivex.rxjava2:rxandroid:2.0.1&apos;  //主要用来切换ui线程
+compile &apos;com.squareup.retrofit2:retrofit:2.3.0&apos;
+compile &apos;com.squareup.retrofit2:converter-gson:2.3.0&apos; //解析json
+compile &apos;com.squareup.retrofit2:adapter-rxjava2:2.3.0&apos; //与rxjava2配合
+</code></pre><h3 id="RxJava单独使用"><a href="#RxJava单独使用" class="headerlink" title="RxJava单独使用"></a>RxJava单独使用</h3><p>详细教程 <a href="http://www.jianshu.com/p/0cd258eecf60" target="_blank" rel="external">http://www.jianshu.com/p/0cd258eecf60</a></p>
+<pre><code>io.reactivex.Observable.create//创建被观察者
+new ObservableOnSubscribe&lt;T&gt;()//T指定被观察者发送的数据类型
+subscribe();//绑定观察者
+new Observer&lt;T&gt;()//创建观察者
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">io.reactivex.Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;String&gt;()&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(@NonNull ObservableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">       <span class="comment">//subscribeOn的线程</span></div><div class="line">        e.onNext(<span class="string">"1"</span>);</div><div class="line">        e.onNext(<span class="string">"2"</span>);</div><div class="line">        e.onComplete();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;).observeOn(AndroidSchedulers.mainThread())   <span class="comment">//observerOn 指定的就是订阅者接收事件的线程(观察者)，可以多次指定</span></div><div class="line">        .subscribeOn(Schedulers.io())        <span class="comment">//subscribeOn() 指定的就是发射事件的线程(被观察者)，不能多次指定。</span></div><div class="line">        .subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() &#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Disposable d;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(@NonNull Disposable d)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.d=d;</div><div class="line">        Log.e(<span class="string">"rxjava_onSubscribe:"</span>,<span class="string">"onSubscribe"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(@NonNull String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (s.equals(<span class="string">"3"</span>))&#123;</div><div class="line">            d.dispose();<span class="comment">//切断事件</span></div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            Log.e(<span class="string">"rxjava_onNext:"</span>,s);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(@NonNull Throwable e)</span> </span>&#123;</div><div class="line">        Log.e(<span class="string">"rxjava_onSubscribe:"</span>,<span class="string">"onSubscribe"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</div><div class="line">        Log.e(<span class="string">"rxjava_onComplete:"</span>,<span class="string">"onComplete"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="Retrofit2单独使用"><a href="#Retrofit2单独使用" class="headerlink" title="Retrofit2单独使用"></a>Retrofit2单独使用</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/24/Android-Butter-Knife-框架/" rel="next" title="Android Butter Knife 框架">
+                <i class="fa fa-chevron-left"></i> Android Butter Knife 框架
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+
+
+
+
+
+
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+
+  <div class="comments" id="comments">
+
+
+</script>
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"
+               alt="cczhr" />
+          <p class="site-author-name" itemprop="name">cczhr</p>
+          <p class="site-description motion-element" itemprop="description">或许你真的可以改变世界。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cczhr" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/cczhr" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=3407804&auto=0&height=66"></iframe>
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CardView"><span class="nav-number">1.</span> <span class="nav-text">CardView</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Snackbar"><span class="nav-number">2.</span> <span class="nav-text">Snackbar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RecyclerView"><span class="nav-number">3.</span> <span class="nav-text">RecyclerView</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SwipeRefreshLayout"><span class="nav-number">4.</span> <span class="nav-text">SwipeRefreshLayout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Butter-Knife"><span class="nav-number">5.</span> <span class="nav-text">Butter Knife</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glide"><span class="nav-number">6.</span> <span class="nav-text">Glide</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#轮播图控件Banner"><span class="nav-number">7.</span> <span class="nav-text">轮播图控件Banner</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RxJava2和Retrofit2"><span class="nav-number">8.</span> <span class="nav-text">RxJava2和Retrofit2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RxJava单独使用"><span class="nav-number">8.1.</span> <span class="nav-text">RxJava单独使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Retrofit2单独使用"><span class="nav-number">8.2.</span> <span class="nav-text">Retrofit2单独使用</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cczhr</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+		_hcwp.push({widget:"Bloggerstream", widget_id: 93348, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+		
+		_hcwp.push({widget:"Stream", widget_id: 93348, xid: "2017/07/31/一些android笔记/"});
+		
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/93348/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+	
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+ 
+
+ 
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>
