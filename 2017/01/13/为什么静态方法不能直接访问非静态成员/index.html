@@ -85,18 +85,18 @@
 
 
 <meta name="description" content="最近对单例模型有点理解不能，决定复习一下static关键字的含义~
-网上看到一篇写的不错的当然mark一下啦。static成员是在JVM的CLASSLOADER加载类的时候初始化的，而非static的成员是在创建对象，即new 操作的时候才初始化的；类加载的时候初始化static的成员，此时static 已经分配内存空间，所以可以访问；非static的成员还没有通过new创建对象而进行初始化，所以">
+网上看到一篇写的不错的当然mark一下啦。static成员是在JVM的CLASSLOADER加载类的时候初始化的，而非static的成员是在创建对象，即new 操作的时候才初始化的；类加载的时候初始化static的成员，此时static 已经分配内存空间，所以可以访问；非static的成员还没有通过new创建对象而进行初始化，所">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为什么静态方法不能直接访问非静态成员？(转)">
 <meta property="og:url" content="http://yoursite.com/2017/01/13/为什么静态方法不能直接访问非静态成员/index.html">
 <meta property="og:site_name" content="Not Found Blog">
 <meta property="og:description" content="最近对单例模型有点理解不能，决定复习一下static关键字的含义~
-网上看到一篇写的不错的当然mark一下啦。static成员是在JVM的CLASSLOADER加载类的时候初始化的，而非static的成员是在创建对象，即new 操作的时候才初始化的；类加载的时候初始化static的成员，此时static 已经分配内存空间，所以可以访问；非static的成员还没有通过new创建对象而进行初始化，所以">
+网上看到一篇写的不错的当然mark一下啦。static成员是在JVM的CLASSLOADER加载类的时候初始化的，而非static的成员是在创建对象，即new 操作的时候才初始化的；类加载的时候初始化static的成员，此时static 已经分配内存空间，所以可以访问；非static的成员还没有通过new创建对象而进行初始化，所">
 <meta property="og:updated_time" content="2017-02-21T14:01:26.693Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为什么静态方法不能直接访问非静态成员？(转)">
 <meta name="twitter:description" content="最近对单例模型有点理解不能，决定复习一下static关键字的含义~
-网上看到一篇写的不错的当然mark一下啦。static成员是在JVM的CLASSLOADER加载类的时候初始化的，而非static的成员是在创建对象，即new 操作的时候才初始化的；类加载的时候初始化static的成员，此时static 已经分配内存空间，所以可以访问；非static的成员还没有通过new创建对象而进行初始化，所以">
+网上看到一篇写的不错的当然mark一下啦。static成员是在JVM的CLASSLOADER加载类的时候初始化的，而非static的成员是在创建对象，即new 操作的时候才初始化的；类加载的时候初始化static的成员，此时static 已经分配内存空间，所以可以访问；非static的成员还没有通过new创建对象而进行初始化，所">
 
 
 
@@ -340,7 +340,7 @@
       
 
       
-        <p><code>最近对单例模型有点理解不能，决定复习一下static关键字的含义~
+        <script src="\assets\js\APlayer.min.js"> </script><p><code>最近对单例模型有点理解不能，决定复习一下static关键字的含义~
 网上看到一篇写的不错的当然mark一下啦。</code><br>static成员是在JVM的CLASSLOADER加载类的时候初始化的，而非static的成员是在创建对象，即new 操作的时候才初始化的；类加载的时候初始化static的成员，此时static 已经分配内存空间，所以可以访问；非static的成员还没有通过new创建对象而进行初始化，所以必然不可以访问。<br>简单点说：静态成员属于类,不需要生成对象就存在了.而非静态需要生成对象才产生，所以静态成员不能直接访问.<br>下面说说静态的特点：<br>     1.随着类的加载而加载——静态会随着类的消失而消失，说明静态的生命周期最长<br>     2.优先于对象的存在——静态是先存在的，对象是后存在的<br>     3.被所有对象共享<br>    4.可以直接被类名多调用</p>
 <p>静态的使用注意事项：<br>1.静态方法只能访问静态成员（包括成员变量和成员方法）<br>   非静态方法可以访问静态也可以访问非静态<br>2.静态方法中不可以定义this，super关键字<br>   因为 一个类中，一个static变量只会有一个内存空间，虽然有多个类实例，但这些类实例中的这个static变量会共享同一个内存空间。静态方法在优先于对象存在，所以静态方法中不可以出现this，super关键字。<br>3.主函数是静态的。</p>
 <p>静态的利弊：<br>   利：对 对象的共享数据进行单独空间的存储，节省空间，没有必要每一个对象中都存储一份，可以直接被类名所调用<br>   弊：生命周期过长，访问出现局限性（只能访问静态）</p>

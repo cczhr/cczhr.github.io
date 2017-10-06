@@ -85,13 +85,13 @@
 
 
 <meta name="description" content="LitePal熟悉Android的人都知道Android自带了一个SQLite数据库Android也给了一些api来操作它，不过有一个更好用的API就是LitePal。
-LitePal是一款开源的Android数据库框架，采用了对象关系映射(ORM)的模式，将平时开发时最常用的一些数据库功能进行了封装，使得开发者不用编写一行SQL语句就可以完成各种建表、増删改查的操作。并且LitePal很“轻”，">
+LitePal是一款开源的Android数据库框架，采用了对象关系映射(ORM)的模式，将平时开发时最常用的一些数据库功能进行了封装，使得开发者不用编写一行SQL语句就可以完成各种建表、増删改查的操作。并且LitePal很“轻”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android的数据库">
 <meta property="og:url" content="http://yoursite.com/2017/01/24/Android的数据库/index.html">
 <meta property="og:site_name" content="Not Found Blog">
 <meta property="og:description" content="LitePal熟悉Android的人都知道Android自带了一个SQLite数据库Android也给了一些api来操作它，不过有一个更好用的API就是LitePal。
-LitePal是一款开源的Android数据库框架，采用了对象关系映射(ORM)的模式，将平时开发时最常用的一些数据库功能进行了封装，使得开发者不用编写一行SQL语句就可以完成各种建表、増删改查的操作。并且LitePal很“轻”，">
+LitePal是一款开源的Android数据库框架，采用了对象关系映射(ORM)的模式，将平时开发时最常用的一些数据库功能进行了封装，使得开发者不用编写一行SQL语句就可以完成各种建表、増删改查的操作。并且LitePal很“轻”">
 <meta property="og:image" content="http://yoursite.com/2017/01/24/Android的数据库/l1.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/01/24/Android的数据库/sync.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/01/24/Android的数据库/hj.jpg">
@@ -99,7 +99,7 @@ LitePal是一款开源的Android数据库框架，采用了对象关系映射(OR
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android的数据库">
 <meta name="twitter:description" content="LitePal熟悉Android的人都知道Android自带了一个SQLite数据库Android也给了一些api来操作它，不过有一个更好用的API就是LitePal。
-LitePal是一款开源的Android数据库框架，采用了对象关系映射(ORM)的模式，将平时开发时最常用的一些数据库功能进行了封装，使得开发者不用编写一行SQL语句就可以完成各种建表、増删改查的操作。并且LitePal很“轻”，">
+LitePal是一款开源的Android数据库框架，采用了对象关系映射(ORM)的模式，将平时开发时最常用的一些数据库功能进行了封装，使得开发者不用编写一行SQL语句就可以完成各种建表、増删改查的操作。并且LitePal很“轻”">
 <meta name="twitter:image" content="http://yoursite.com/2017/01/24/Android的数据库/l1.jpg">
 
 
@@ -344,7 +344,7 @@ LitePal是一款开源的Android数据库框架，采用了对象关系映射(OR
       
 
       
-        <h1 id="LitePal"><a href="#LitePal" class="headerlink" title="LitePal"></a>LitePal</h1><p>熟悉Android的人都知道Android自带了一个SQLite数据库Android也给了一些api来操作它，不过有一个更好用的API就是<a href="https://github.com/LitePalFramework/LitePal" target="_blank" rel="external"><em>LitePal</em></a>。</p>
+        <script src="\assets\js\APlayer.min.js"> </script><h1 id="LitePal"><a href="#LitePal" class="headerlink" title="LitePal"></a>LitePal</h1><p>熟悉Android的人都知道Android自带了一个SQLite数据库Android也给了一些api来操作它，不过有一个更好用的API就是<a href="https://github.com/LitePalFramework/LitePal" target="_blank" rel="external"><em>LitePal</em></a>。</p>
 <pre><code>LitePal是一款开源的Android数据库框架，采用了对象关系映射(ORM)的模式，将平时开发时最常用的一些数据库功能进行了封装，使得开发者不用编写一行SQL语句就可以完成各种建表、増删改查的操作。并且LitePal很“轻”，jar包大小不到100k，而且近乎零配置，这一点和Hibernate这类的框架有很大区别。目前LitePal的源码已经托管到了GitHub上。
 </code></pre><h2 id="LitePal的配置"><a href="#LitePal的配置" class="headerlink" title="LitePal的配置"></a>LitePal的配置</h2><p>配置LitePal很简单，打开<a href="https://github.com/LitePalFramework/LitePal" target="_blank" rel="external"><em>LitePal</em></a>找到下图的地方。<br><img src="/2017/01/24/Android的数据库/l1.jpg" alt=""><br>把下面代码复制到Android项目的app/build.gradle的dependencies{}里面即可。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'org.litepal.android:core:1.4.1'</span></div></pre></td></tr></table></figure></p>
 <p>其中1.4.1代表版本号，想要最新的版本号去打开<a href="https://github.com/LitePalFramework/LitePal" target="_blank" rel="external"><em>LitePal</em></a>找即可。<br>然后点击Sync Now，即可成功引入Jar包。<br><img src="/2017/01/24/Android的数据库/sync.jpg" alt=""><br>接下来配置litepal.xml文件，在app/src/main目录下新建assets文件夹，在assets文件夹中新建litepal.xml文件输入以下内容<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- dbname value为数据库名，version value为版本号  &lt;list&gt;主要用来映射模型 --&gt;</span> </div><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">litepal</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dbname</span> <span class="attr">value</span>=<span class="string">"BookStore"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">litepal</span>&gt;</span></div></pre></td></tr></table></figure></p>
