@@ -21,7 +21,7 @@
 				}
 			});
 		</script>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>看懂这个教程首先要对RecyclerView有所认识，可以查看之前写的笔记。<br><a href="http://bignews.me/2017/07/31/%E4%B8%80%E4%BA%9Bandroid%E7%AC%94%E8%AE%B0/#RecyclerView" target="_blank" rel="external">RecyclerView笔记</a></p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>看懂这个教程首先要对RecyclerView有所认识，可以查看之前写的笔记。<br><a href="http://bignews.me/2017/07/31/%E4%B8%80%E4%BA%9Bandroid%E7%AC%94%E8%AE%B0/#RecyclerView">RecyclerView笔记</a></p>
 <h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p><img src="/2017/09/23/RecyclerView动态切换不同布局的方法/r3.gif" alt=""></p>
 <p>静态图<br><img src="/2017/09/23/RecyclerView动态切换不同布局的方法/r1.jpg" alt=""></p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>要实现这种效果，我们可以仔细分析一下界面，从颜色分类可以发现总共可以分成两类，蓝色和粉色的，而粉色的又可以分成两类，一种是一行有四个，而一种是一行占两个，而这种很明显需要网格布局来实现。</p>
@@ -841,7 +841,7 @@ LitePal提供了改默认值的setToDefault方法，如以下代码。
     <entry>
       <title><![CDATA[弄个大新闻]]></title>
       <url>https://bignews.me/2017/01/07/%E5%BC%84%E4%B8%AA%E5%A4%A7%E6%96%B0%E9%97%BB/</url>
-      <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>获得了 <a href="http://bignews.me" target="_blank" rel="external">大新闻</a> </p>
+      <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>获得了 <a href="http://bignews.me">大新闻</a> </p>
 ]]></content>
       
         
