@@ -84,26 +84,26 @@
 
 
 
-<meta name="description" content="注意此文为笔记，并不是教程！！！此文为笔记，并不是教程！！！此文为笔记，并不是教程！！！本文笔记来自于http://www.gcssloop.com/http://hencoder.com/《Android开发艺术探索》  
+<meta name="description" content="注意参考内容http://www.gcssloop.com/http://hencoder.com/《Android开发艺术探索》  
 invalidate(); //重新绘制
-绘图Paint 画笔paint.setAntiAlias(true);//抗锯齿paint.setColor(Color.RED)">
+绘图Paint 画笔paint.setAntiAlias(true);//抗锯齿paint.setColor(Color.RED);//颜色paint.setStyle(Paint.Style.STROKE); // S">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 自定义View的探索">
 <meta property="og:url" content="https://bigbignews.club/2018/03/04/Android-自定义View的探索/index.html">
 <meta property="og:site_name" content="Not Found Blog">
-<meta property="og:description" content="注意此文为笔记，并不是教程！！！此文为笔记，并不是教程！！！此文为笔记，并不是教程！！！本文笔记来自于http://www.gcssloop.com/http://hencoder.com/《Android开发艺术探索》  
+<meta property="og:description" content="注意参考内容http://www.gcssloop.com/http://hencoder.com/《Android开发艺术探索》  
 invalidate(); //重新绘制
-绘图Paint 画笔paint.setAntiAlias(true);//抗锯齿paint.setColor(Color.RED)">
+绘图Paint 画笔paint.setAntiAlias(true);//抗锯齿paint.setColor(Color.RED);//颜色paint.setStyle(Paint.Style.STROKE); // S">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/87c01ec7gy1foxd4rsjr6j20ji0cxjv7.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/87c01ec7gy1foxd5kezsrj20jl0qh7ak.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fj7x3rm1xxj30u50laq6y.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/87c01ec7gy1fox62kfvf0j20hr0i0dk3.jpg">
-<meta property="og:updated_time" content="2018-03-04T14:05:22.431Z">
+<meta property="og:updated_time" content="2018-03-12T03:26:19.783Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 自定义View的探索">
-<meta name="twitter:description" content="注意此文为笔记，并不是教程！！！此文为笔记，并不是教程！！！此文为笔记，并不是教程！！！本文笔记来自于http://www.gcssloop.com/http://hencoder.com/《Android开发艺术探索》  
+<meta name="twitter:description" content="注意参考内容http://www.gcssloop.com/http://hencoder.com/《Android开发艺术探索》  
 invalidate(); //重新绘制
-绘图Paint 画笔paint.setAntiAlias(true);//抗锯齿paint.setColor(Color.RED)">
+绘图Paint 画笔paint.setAntiAlias(true);//抗锯齿paint.setColor(Color.RED);//颜色paint.setStyle(Paint.Style.STROKE); // S">
 <meta name="twitter:image" content="http://ww2.sinaimg.cn/large/87c01ec7gy1foxd4rsjr6j20ji0cxjv7.jpg">
 
 
@@ -317,7 +317,7 @@ invalidate(); //重新绘制
              <i class="fa fa-calendar-o"></i>
            </span>
            <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">6,191(字)</span>
+           <span class="post-count">6,158(字)</span>
            
          </span>
 	  
@@ -348,7 +348,7 @@ invalidate(); //重新绘制
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>此文为笔记，并不是教程！！！<br>此文为笔记，并不是教程！！！<br>此文为笔记，并不是教程！！！<br>本文笔记来自于<br><a href="http://www.gcssloop.com/" target="_blank" rel="external">http://www.gcssloop.com/</a><br><a href="http://hencoder.com/" target="_blank" rel="external">http://hencoder.com/</a><br>《Android开发艺术探索》  </p>
+        <script src="\assets\js\APlayer.min.js"> </script><h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>参考内容<br><a href="http://www.gcssloop.com/" target="_blank" rel="external">http://www.gcssloop.com/</a><br><a href="http://hencoder.com/" target="_blank" rel="external">http://hencoder.com/</a><br>《Android开发艺术探索》  </p>
 <pre><code>invalidate(); //重新绘制
 </code></pre><h1 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h1><h2 id="Paint-画笔"><a href="#Paint-画笔" class="headerlink" title="Paint 画笔"></a>Paint 画笔</h2><p>paint.setAntiAlias(true);//抗锯齿<br>paint.setColor(Color.RED);//颜色<br>paint.setStyle(Paint.Style.STROKE); // Style 修改为画线模式  FILL 是填充模式，STROKE 是画线模式（即勾边模式），FILL_AND_STROKE 是两种模式一并使用：既画线又填充。它的默认值是 FILL，填充模式。<br>paint.setStrokeWidth(20); //STROKE 和 FILL_AND_STROKE 下，还可以使用 paint.setStrokeWidth(float width) 来设置线条的宽度：<br>paint.setTextSize(84);//设置字体大小<br>paint.setTypeface();//设置字体样式<br>paint.setStrokeCap(cap) //设置线冒样式 Cap.BUTT(无线帽)、Cap.SQUARE(方形线帽)、Cap.ROUND(圆形线冒)<br>setShader(Shader shader) </p>
 <p>Shader 注意：在设置了 Shader 的情况下， Paint.setColor/ARGB() 所设置的颜色就不再起作用。<br>LinearGradient 线性渐变<br>Shader shader = new LinearGradient(float x0, float y0, float x1, float y1, int colors[], float positions[], TileMode tile)<br>第一个参数为线性起点的x坐标<br>第二个参数为线性起点的y坐标<br>第三个参数为线性终点的x坐标<br>第四个参数为线性终点的y坐标<br>第五个参数为实现渐变效果的颜色的组合<br>第六个参数为前面的颜色组合中的各颜色在渐变中占据的位置（比重），如果为空，则表示上述颜色的集合在渐变中均匀出现<br>第七个参数为渲染器平铺的模式，一共有三种<br>-CLAMP<br>边缘拉伸<br>-REPEAT<br>在水平和垂直两个方向上重复，相邻图像没有间隙<br>-MIRROR<br>以镜像的方式在水平和垂直两个方向上重复，相邻图像有间隙<br>LinearGradient(float x0, float y0, float x1, float y1, int color0, int color1, TileMode tile)<br>int color0表示渐变起始颜色<br>int color1表示渐变终止颜色</p>
