@@ -87,7 +87,7 @@
 <meta name="description" content="基础知识说到串口，那就有点嵌入式了，说点概念。
 上位机：上位机是指可以直接发出操控命令的设备
 下位机：下位机一般是指被操控的设备（例如单片机）
-比特和字节（bit&amp;amp;byte）计算机就是各种电路的开关，每个开关自然就只有两种状态，开和关，在计算机中1表示的是开，0表示是关。而计算机最小的存储单位是字节，每个字节等于8比特（至于为啥自己查），那8比特用二进制表示当然就是0000 0000-1">
+波特率波特率串行每秒传输数据的速率，例如，波特率是9600那么它传输一位0或1的时间就是1/9600秒，也就是每秒能传9600bit。波特率越高，代表传输信号频率越高。相同的电缆，信号频率越高时，感抗越大，信号在传输线上的损耗也就越大。因此，波特率越高，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android串口开发的一些事">
 <meta property="og:url" content="https://bigbignews.club/2018/06/10/Android串口开发的一些事/index.html">
@@ -95,14 +95,16 @@
 <meta property="og:description" content="基础知识说到串口，那就有点嵌入式了，说点概念。
 上位机：上位机是指可以直接发出操控命令的设备
 下位机：下位机一般是指被操控的设备（例如单片机）
-比特和字节（bit&amp;amp;byte）计算机就是各种电路的开关，每个开关自然就只有两种状态，开和关，在计算机中1表示的是开，0表示是关。而计算机最小的存储单位是字节，每个字节等于8比特（至于为啥自己查），那8比特用二进制表示当然就是0000 0000-1">
-<meta property="og:updated_time" content="2018-06-10T14:52:17.846Z">
+波特率波特率串行每秒传输数据的速率，例如，波特率是9600那么它传输一位0或1的时间就是1/9600秒，也就是每秒能传9600bit。波特率越高，代表传输信号频率越高。相同的电缆，信号频率越高时，感抗越大，信号在传输线上的损耗也就越大。因此，波特率越高，">
+<meta property="og:image" content="https://bigbignews.club/2018/06/10/Android串口开发的一些事/p.png">
+<meta property="og:updated_time" content="2018-06-17T10:06:36.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android串口开发的一些事">
 <meta name="twitter:description" content="基础知识说到串口，那就有点嵌入式了，说点概念。
 上位机：上位机是指可以直接发出操控命令的设备
 下位机：下位机一般是指被操控的设备（例如单片机）
-比特和字节（bit&amp;amp;byte）计算机就是各种电路的开关，每个开关自然就只有两种状态，开和关，在计算机中1表示的是开，0表示是关。而计算机最小的存储单位是字节，每个字节等于8比特（至于为啥自己查），那8比特用二进制表示当然就是0000 0000-1">
+波特率波特率串行每秒传输数据的速率，例如，波特率是9600那么它传输一位0或1的时间就是1/9600秒，也就是每秒能传9600bit。波特率越高，代表传输信号频率越高。相同的电缆，信号频率越高时，感抗越大，信号在传输线上的损耗也就越大。因此，波特率越高，">
+<meta name="twitter:image" content="https://bigbignews.club/2018/06/10/Android串口开发的一些事/p.png">
 
 
 
@@ -315,7 +317,7 @@
              <i class="fa fa-calendar-o"></i>
            </span>
            <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">685(字)</span>
+           <span class="post-count">1,398(字)</span>
            
          </span>
 	  
@@ -325,7 +327,7 @@
              <i class="fa fa-calendar-o"></i>
            </span>
            <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">2(分)</span>
+           <span class="post-count">5(分)</span>
            
          </span>
 
@@ -349,6 +351,7 @@
         <script src="\assets\js\APlayer.min.js"> </script><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>说到串口，那就有点嵌入式了，说点概念。</p>
 <h3 id="上位机："><a href="#上位机：" class="headerlink" title="上位机："></a>上位机：</h3><p>上位机是指可以直接发出操控命令的设备</p>
 <h3 id="下位机："><a href="#下位机：" class="headerlink" title="下位机："></a>下位机：</h3><p>下位机一般是指被操控的设备（例如单片机）</p>
+<h3 id="波特率"><a href="#波特率" class="headerlink" title="波特率"></a>波特率</h3><p>波特率串行每秒传输数据的速率，例如，波特率是9600那么它传输一位0或1的时间就是1/9600秒，也就是每秒能传9600bit。波特率越高，代表传输信号频率越高。相同的电缆，信号频率越高时，感抗越大，信号在传输线上的损耗也就越大。因此，波特率越高，传输距离越短。</p>
 <h3 id="比特和字节（bit-amp-byte）"><a href="#比特和字节（bit-amp-byte）" class="headerlink" title="比特和字节（bit&amp;byte）"></a>比特和字节（bit&amp;byte）</h3><p>计算机就是各种电路的开关，每个开关自然就只有两种状态，开和关，在计算机中1表示的是开，0表示是关。而计算机最小的存储单位是字节，每个字节等于8比特（至于为啥自己查），那8比特用二进制表示当然就是0000 0000-1111 1111，那是不表达为十进制就是0-255呢？（ps 255 是由2的5次方减1来的 公式你懂的），当然不是，负数给狗吃了么☻。</p>
 <h3 id="原码、反码、补码"><a href="#原码、反码、补码" class="headerlink" title="原码、反码、补码"></a>原码、反码、补码</h3><p>定律：<br>原码就是二进制本身 例如十进制的1等于0000 0001<br>对于正数来说 ：<br>原码 = 反码 = 补码<br>对于负数来说 ：<br>反码 = 原码的非符号位取反（取反就是把1变成0 把0变成1）<br>补码 = 反码+1<br>反码转原码：非符号位取反<br>补码转原码：非符号位取反,末位再加1<br>补码转反码：先转原码，再取反（然并卵）  </p>
 <pre><code>一些小知识 两个16进制代表一个字节
@@ -356,6 +359,11 @@
 如a=a^b=1011^1001=0010
 </code></pre><p>对于计算机来说，一个二进制的它的最高位是它的符号位，0代表正数，1代表负数，所以8比特范围区间应该是 1111 1111 - 0111 1111 也就是-127到127，你以为这就是对的么，其实也不是（我真的不是特意耍你）答案是-128到127，为什么呢，这就涉及到了计算机二进制的运算了。<br>对于计算机来说，假如要识别符号位来做加还是减，很麻烦，所以计算机只能做加法，例如1-1=1+(-1)。</p>
 <p>计算机内部是用补码来存储一个数的，为什么呢，因为二进制的计算就是补码的加法，至于为啥用补码，举个例子1-1它的原码直接相加会等于 1000 0010 等于-2，肯定不科学，那反码呢，反码的1-1等于 1111 1111 转为原码 1000 0000 也就是 -0也不科学，补码就不一样了 补码的 1-1 等于1 0000 0000 超过8位的会被截掉，那结果就是0000 0000 转回原码还是0000 0000 那就正确了。而127加1二进制就会表示 1000 0000 负数么显然不科学，于是中央就决定1000 0000 就是-128了。所以128转字节会变成-128，也就是溢出了。</p>
+<h2 id="安卓的串口通讯"><a href="#安卓的串口通讯" class="headerlink" title="安卓的串口通讯"></a>安卓的串口通讯</h2><p>串口通讯顾名思义就是给串口发送或者接收数据，而串口的数据格式一般来说有<br>包头+数据+校验+包尾<br>或者<br>包头+数据长度+数据+校验值<br>等不同的格式，不同的设备有可能不同，当然安卓的串口通讯涉及了jni，也就是java调用c/c++的操作，不过不用担心，谷歌n年前已经帮我们封装好了，<a href="https://github.com/cepr/android-serialport-api" target="_blank" rel="external">https://github.com/cepr/android-serialport-api</a> ，至于怎么导入，自己搜素。当然，如果你像我一样那么懒，直接用别人弄好的arr包吧。</p>
+<h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//根build.gradle添加</span></div><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        ...</div><div class="line">        maven &#123; url <span class="string">'https://jitpack.io'</span> &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//模块build.gradle添加</span></div><div class="line">dependencies &#123;</div><div class="line">        compile <span class="string">'com.github.licheedev.Android-SerialPort-API:serialport:1.0.1'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h3><p>我这里就提个大概吧，首先给谷歌提供的串口工具类提供串口地址，波特率。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取所有串口地址 返回字符串数组，你设备插了那个口你需要自己尝试。</span></div><div class="line">String[]  mDevices=<span class="keyword">new</span> SerialPortFinder().getAllDevicesPath()</div><div class="line"> SerialPort mSerialPort = <span class="keyword">new</span> SerialPort(device, baurate, <span class="number">0</span>);<span class="comment">//设备地址，波特率，标志位</span></div><div class="line"> </div><div class="line">BufferedInputStream mInputStream=<span class="keyword">new</span> BufferedInputStream(mSerialPort.getInputStream()); <span class="comment">//读取数据的流，需要开个线程不停的读，怎么读相信知道java io流的人都懂的</span></div><div class="line">OutputStream mOutputStream=mSerialPort.getOutputStream();<span class="comment">//写入数据的流</span></div><div class="line">mOutputStream.write(datas);<span class="comment">//发送数据</span></div><div class="line"></div><div class="line"><span class="comment">//最后当然有关闭各种流的操作，这里就不写了</span></div></pre></td></tr></table></figure></p>
+<p>是不是很简单哈哈，更详细参考这个开源项目吧 <a href="https://github.com/licheedev/Android-SerialPort-Tool" target="_blank" rel="external">https://github.com/licheedev/Android-SerialPort-Tool</a><br>当然串口通讯也是有坑的（编程怎么可能没坑）<br>会有分包 粘包的坑，至于分包 粘包是啥，下面的图画的很清楚。<br><img src="/2018/06/10/Android串口开发的一些事/p.png" alt=""><br>具体可看<a href="https://blog.csdn.net/qq513036862/article/details/53640317" target="_blank" rel="external">https://blog.csdn.net/qq513036862/article/details/53640317</a><br>对于串口分包，我的思路就是根据头和数据长度来拼接，具体思路为，开两个StringBuffer若出现数据长度不足，有以下情况：<br>1.有包头且在数据起始位的<br>2.有包头且不在数据起始位的<br>3.没包头的<br>StringBuffer1就负责把 1，（2的包头前部分或者3拼接起来，因为2 3在一条完整数据不可能同时存在，所以用或）<br>StringBuffer2 就负责把 2的包头后部分（含包头存起来）<br>当StringBuffer1长度够后，检验数据，正确后取出，然后StringBuffer1清空，把StringBuffer2 的数据导入StringBuffer1，StringBuffer2数据清空即可。</p>
+<p>讲完啦~</p>
 
       
     </div>
@@ -533,7 +541,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上位机："><span class="nav-number">1.1.</span> <span class="nav-text">上位机：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下位机："><span class="nav-number">1.2.</span> <span class="nav-text">下位机：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比特和字节（bit-amp-byte）"><span class="nav-number">1.3.</span> <span class="nav-text">比特和字节（bit&byte）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原码、反码、补码"><span class="nav-number">1.4.</span> <span class="nav-text">原码、反码、补码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上位机："><span class="nav-number">1.1.</span> <span class="nav-text">上位机：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下位机："><span class="nav-number">1.2.</span> <span class="nav-text">下位机：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#波特率"><span class="nav-number">1.3.</span> <span class="nav-text">波特率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比特和字节（bit-amp-byte）"><span class="nav-number">1.4.</span> <span class="nav-text">比特和字节（bit&byte）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原码、反码、补码"><span class="nav-number">1.5.</span> <span class="nav-text">原码、反码、补码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安卓的串口通讯"><span class="nav-number">2.</span> <span class="nav-text">安卓的串口通讯</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导入"><span class="nav-number">2.1.</span> <span class="nav-text">导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体使用"><span class="nav-number">2.2.</span> <span class="nav-text">具体使用</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
