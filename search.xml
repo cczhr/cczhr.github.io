@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title><![CDATA[树莓派使用日志]]></title>
+      <url>https://bigbignews.club/2018/07/15/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8%E6%97%A5%E5%BF%97/</url>
+      <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>买了个树莓派3b+ 记录一下把♂玩♀它的时刻。</p>
+<h2 id="烧录系统"><a href="#烧录系统" class="headerlink" title="烧录系统"></a>烧录系统</h2><p>官方推荐系统： Raspbian <a href="http://downloads.raspberrypi.org/raspbian_latest" target="_blank" rel="external">下载</a><br>默认帐号密码：Username: pi  Password: raspberry<br>烧录工具：USB Image Tool <a href="usbit-162.zip">下载</a><br>准备一张tf卡 一个读卡器 tf卡推荐16g以上<br>解压USB Image Tool打开USB Image Tool.exe，选择你的tf卡设备，点击Restore选择下载的系统即可<br><img src="/2018/07/15/树莓派使用日志/usb1.jpg" alt=""></p>
+<h2 id="远程控制"><a href="#远程控制" class="headerlink" title="远程控制"></a>远程控制</h2><p>树莓派 当然要远程控制啦</p>
+<h3 id="vnc-可视化界面"><a href="#vnc-可视化界面" class="headerlink" title="vnc 可视化界面"></a>vnc 可视化界面</h3><p>系统自带，手动开启即可。<br><img src="/2018/07/15/树莓派使用日志/vnc.jpg" alt=""><br><img src="/2018/07/15/树莓派使用日志/vnc2.jpg" alt=""><br>电脑上安装vnc  <a href="VNC.zip">下载</a><br>连接使用即可</p>
+<h3 id="xrdp-可视化界面"><a href="#xrdp-可视化界面" class="headerlink" title="xrdp 可视化界面"></a>xrdp 可视化界面</h3><p>实际体验下来 vnc操作画面还是比较卡顿，用xrdp会更加流畅一些<br>操作也很简单 打开终端 输入<br>sudo apt-get install xrdp<br>安装完成就可以用电脑的远程连接连上了<br>重启xrdp命令 sudo /etc/init.d/xrdp restart</p>
+<h3 id="ssh-命令行界面"><a href="#ssh-命令行界面" class="headerlink" title="ssh 命令行界面"></a>ssh 命令行界面</h3><p>ssh和vnc一样打开即可使用<br>电脑连接ssh可以使用xshell </p>
+<h2 id="修改软件源"><a href="#修改软件源" class="headerlink" title="修改软件源"></a>修改软件源</h2><p>国内连树莓派的软件源还是比较卡 所以换成国内的镜像体验比较好我这里使用的是清华大学的镜像<br>首先终端执行 sudo nano /etc/apt/sources.list<br>把里面的内容改为如下 链接前面加#是注释的意思</p>
+<p>#deb <a href="http://mirrordirector.raspbian.org/raspbian/" target="_blank" rel="external">http://mirrordirector.raspbian.org/raspbian/</a> jessie main contrib non-free rpi</p>
+<p>#Uncomment line below then ‘apt-get update’ to enable ‘apt-get source’</p>
+<p>#deb-src <a href="http://archive.raspbian.org/raspbian/" target="_blank" rel="external">http://archive.raspbian.org/raspbian/</a> jessie main contrib non-free rpi</p>
+<p>deb <a href="http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/" target="_blank" rel="external">http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/</a> stretch main contrib non-free rpi<br>deb-src <a href="http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/" target="_blank" rel="external">http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/</a> stretch main contrib non-free rpi</p>
+<p>然后ctrl+x保存退出，接着执行<br>sudo nano /etc/apt/sources.list.d/raspi.list<br>把里面的内容改为</p>
+<p>#deb <a href="http://archive.raspberrypi.org/debian/" target="_blank" rel="external">http://archive.raspberrypi.org/debian/</a> jessie main ui</p>
+<p>#Uncomment line below then ‘apt-get update’ to enable ‘apt-get source’</p>
+<p>#deb-src <a href="http://archive.raspberrypi.org/debian/" target="_blank" rel="external">http://archive.raspberrypi.org/debian/</a> jessie main ui</p>
+<p>deb <a href="http://mirror.tuna.tsinghua.edu.cn/raspberrypi/" target="_blank" rel="external">http://mirror.tuna.tsinghua.edu.cn/raspberrypi/</a> stretch main ui<br>deb-src <a href="http://mirror.tuna.tsinghua.edu.cn/raspberrypi/" target="_blank" rel="external">http://mirror.tuna.tsinghua.edu.cn/raspberrypi/</a> stretch main ui</p>
+<p>保存后执行sudo apt-get update 更新一下数据源即可</p>
+<h2 id="制作nas"><a href="#制作nas" class="headerlink" title="制作nas"></a>制作nas</h2><p>首先看看你的移动硬盘插进树莓派能否识别如可以请忽略安装ntfs-3g的步骤<br>安装能让树莓派读取NTFS格式的软件包<br>sudo apt-get install fuse-utils ntfs-3g</p>
+<p>安装samba<br>sudo apt-get install samba samba-common-bin<br>安装后编辑配置文件<br>sudo nano /etc/samba/smb.conf<br>在最下面一行加上 path填上你移动硬盘的路径 share是命名可以随便命，连接的时候用到valid users 为登录用户。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[share]</div><div class="line">path = /media/pi/cczhr</div><div class="line">valid users = pi</div><div class="line">browseable = yes</div><div class="line">public = yes</div><div class="line">writable = yes</div><div class="line">create mask = 0777</div><div class="line">directory mask = 0777</div></pre></td></tr></table></figure></p>
+<p>配置好后重启一下<br>service samba restart<br>添加上面填写的用户<br>useradd pi -m -G pi<br>设置密码<br>passwd pi</p>
+<p>电脑上添加一个网络位置 \192.168.x.x\share 即可使用<br>android手机可以使用es文件管理器</p>
+<h2 id="制作下载机"><a href="#制作下载机" class="headerlink" title="制作下载机"></a>制作下载机</h2><p>安装aria2<br>sudo apt-get install aria2 </p>
+<h2 id="支持百度云盘"><a href="#支持百度云盘" class="headerlink" title="支持百度云盘"></a>支持百度云盘</h2>]]></content>
+      
+        
+        <tags>
+            
+            <tag> 树莓派 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android的GreenDao笔记]]></title>
+      <url>https://bigbignews.club/2018/07/04/Android%E7%9A%84GreenDao%E7%AC%94%E8%AE%B0/</url>
+      <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><h2 id="ORM概念"><a href="#ORM概念" class="headerlink" title="ORM概念"></a>ORM概念</h2><p>对象关系映射（英语：Object Relational Mapping，简称ORM，或O/RM，或O/R mapping），是一种程序设计技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。<br>——维基百科<br>俗称把数据库查询的结果转为对象（就是这么简单 </p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><a href="https://github.com/greenrobot/greenDAO" target="_blank" rel="external">https://github.com/greenrobot/greenDAO</a><br>官网写的很清楚了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// In your root build.gradle file:</span></div><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">        mavenCentral() <span class="comment">// add repository</span></div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath <span class="string">'com.android.tools.build:gradle:3.1.1'</span></div><div class="line">        classpath <span class="string">'org.greenrobot:greendao-gradle-plugin:3.2.2'</span> <span class="comment">// add plugin</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">// In your app projects build.gradle file:</span></div><div class="line">apply plugin: <span class="string">'com.android.application'</span></div><div class="line">apply plugin: <span class="string">'org.greenrobot.greendao'</span> <span class="comment">// apply plugin</span></div><div class="line">android &#123;</div><div class="line">    ...</div><div class="line">	....</div><div class="line">    greendao&#123;</div><div class="line">        schemaVersion <span class="number">1</span> <span class="comment">//数据库版本号 每次改动数据库结构要更改</span></div><div class="line">        targetGenDir <span class="string">'src/main/java'</span><span class="comment">///设置DaoMaster 、DaoSession、Dao目录</span></div><div class="line">		</div><div class="line">     <span class="comment">//设置DaoMaster 、DaoSession、Dao包名 非必填</span></div><div class="line">     <span class="comment">// daoPackage 'com.qhn.bhne.footprinting.db'</span></div><div class="line">      <span class="comment">//设置生成单元测试目录</span></div><div class="line"><span class="comment">//    targetGenDirTest</span></div><div class="line">      <span class="comment">//设置自动生成单元测试用例</span></div><div class="line"><span class="comment">//    generateTests	</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">dependencies &#123;</div><div class="line">    implementation <span class="string">'org.greenrobot:greendao:3.2.2'</span> <span class="comment">// add library</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Android 数据库 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android的RxJava笔记]]></title>
       <url>https://bigbignews.club/2018/06/23/Android%E7%9A%84RxJava%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>rvjava 一个令人欲罢不能的东西呐~说明一下rxjava是基于观察者模式做的东西，至于观察着模式是啥，可以上网搜，下面回顾的第一张图就是标准的观察者模式。<br>另外其实这个文章是在rxjava1的时候就写了一点点，现在都用rxjava2了那就基于rxjava2吧~</p>
@@ -476,12 +528,14 @@ android.support.v7.widget.RecyclerView
 <h2 id="ConstraintLayout-约束布局"><a href="#ConstraintLayout-约束布局" class="headerlink" title="ConstraintLayout(约束布局)"></a>ConstraintLayout(约束布局)</h2><p>配置</p>
 <pre><code>compile &apos;com.android.support.constraint:constraint-layout:1.0.0-beta4&apos;
 </code></pre><p>主要用鼠标拖动的布局<br><a href="http://www.jianshu.com/p/a8b49ff64cd3" target="_blank" rel="external">http://www.jianshu.com/p/a8b49ff64cd3</a><br>简单演示下<br><img src="/2017/08/09/Android-布局复习/c.gif" alt=""></p>
-<h2 id="自定义布局"><a href="#自定义布局" class="headerlink" title="自定义布局"></a>自定义布局</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line"><span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span> &gt;</div><div class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">layout</span>=<span class="string">"@layout/title"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>]]></content>
+<h2 id="FlexboxLayout"><a href="#FlexboxLayout" class="headerlink" title="FlexboxLayout"></a>FlexboxLayout</h2><p><a href="https://github.com/google/flexbox-layout" target="_blank" rel="external">https://github.com/google/flexbox-layout</a><br>配置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    implementation <span class="string">'com.google.android:flexbox:1.0.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="自定义布局"><a href="#自定义布局" class="headerlink" title="自定义布局"></a>自定义布局</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line"><span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span> &gt;</div><div class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">layout</span>=<span class="string">"@layout/title"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+]]></content>
       
         
         <tags>
             
-            <tag> Android </tag>
+            <tag> Android布局 </tag>
             
         </tags>
         
