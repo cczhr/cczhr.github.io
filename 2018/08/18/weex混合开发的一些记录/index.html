@@ -94,7 +94,7 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
 <meta property="og:description" content="前言最近在研究weex，据我了解weex基本两种玩法，一种是混合开发（可热更新）生成app的h5页面和生成让原生渲染控件的js(需要有一定了解android/ios开发，需要接入sdk和一些处理)，另一种为直接打包为一个android/ios项目（不具备热更新）。这里记录的主要是前者。
 接入前需要了解的坑点
 h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统称原生js）并不完全兼容，例">
-<meta property="og:updated_time" content="2018-08-18T14:38:23.035Z">
+<meta property="og:updated_time" content="2018-09-24T09:24:01.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="weex混合开发的一些记录">
 <meta name="twitter:description" content="前言最近在研究weex，据我了解weex基本两种玩法，一种是混合开发（可热更新）生成app的h5页面和生成让原生渲染控件的js(需要有一定了解android/ios开发，需要接入sdk和一些处理)，另一种为直接打包为一个android/ios项目（不具备热更新）。这里记录的主要是前者。
@@ -312,7 +312,7 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
              <i class="fa fa-calendar-o"></i>
            </span>
            <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">292(字)</span>
+           <span class="post-count">509(字)</span>
            
          </span>
 	  
@@ -322,7 +322,7 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
              <i class="fa fa-calendar-o"></i>
            </span>
            <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">1(分)</span>
+           <span class="post-count">2(分)</span>
            
          </span>
 
@@ -343,13 +343,19 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在研究weex，据我了解weex基本两种玩法，一种是混合开发（可热更新）生成app的h5页面和生成让原生渲染控件的js(需要有一定了解android/ios开发，需要接入sdk和一些处理)，另一种为直接打包为一个android/ios项目（不具备热更新）。<br>这里记录的主要是前者。</p>
-<h2 id="接入前需要了解的坑点"><a href="#接入前需要了解的坑点" class="headerlink" title="接入前需要了解的坑点"></a>接入前需要了解的坑点</h2><ol>
+        <script src="\assets\js\APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在研究weex，据我了解weex基本两种玩法，一种是混合开发（可热更新）生成app的h5页面和生成让原生渲染控件的js(需要有一定了解android/ios开发，需要接入sdk和一些处理)，另一种为直接打包为一个android/ios项目（不具备热更新）。<br>这里记录的主要是前者。</p>
+<h1 id="接入前需要了解的坑点"><a href="#接入前需要了解的坑点" class="headerlink" title="接入前需要了解的坑点"></a>接入前需要了解的坑点</h1><ol>
 <li>h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统称原生js）并不完全兼容，例如原生js可以调android自己定义的方法，在生成的h5是失效的，。</li>
 <li>post请求据我接触，h5页面只能不支持post表单，只能post json，原生js两种都可以。</li>
 <li>原生js有一定几率对一些机型系统不兼容，接入原生js最好得重写自己的网络请求适配，目前自带的网络请求超时只设了3s，目前文档中找不到修改的方法。</li>
-<li>官方文档不够齐全，资料也比较少，一些细节和坑资料查找不方便。</li>
+<li>官方文档不够齐全，资料也比较少，一些细节和坑资料查找不方便。\</li>
 </ol>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">getNews(url, callback) &#123;</div><div class="line">	 			<span class="keyword">return</span> stream.fetch(&#123;</div><div class="line">					<span class="attr">method</span>: <span class="string">'GET'</span>,</div><div class="line">					<span class="attr">dataType</span>: <span class="string">'json'</span>,</div><div class="line">					<span class="attr">url</span>: url</div><div class="line">				&#125;, callback);</div><div class="line"></div><div class="line">					<span class="keyword">return</span> stream.fetch(&#123;</div><div class="line">								<span class="attr">method</span>: <span class="string">'POST'</span>,</div><div class="line">								<span class="attr">dataType</span>: <span class="string">'json'</span>,</div><div class="line">								<span class="attr">type</span>: <span class="string">'application/x-www-form-urlencoded'</span>,</div><div class="line">								<span class="attr">body</span>: <span class="string">'username=1&amp;token=1&amp;startTime=2018-1-1&amp;endTime=2019-1-1'</span>,</div><div class="line">								<span class="attr">url</span>: url</div><div class="line">							&#125;, callback);</div><div class="line"></div><div class="line">			&#125;</div></pre></td></tr></table></figure>
+<h2 id="跳转页面-带传值"><a href="#跳转页面-带传值" class="headerlink" title="跳转页面 带传值"></a>跳转页面 带传值</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> navigator = weex.requireModule(<span class="string">'navigator'</span>); <span class="comment">//跳转</span></div><div class="line">			<span class="comment">//跳转下个界面</span></div><div class="line">			navigator.push(&#123;</div><div class="line">				<span class="attr">url</span>: <span class="string">'./otherpage.js'</span>+ <span class="string">'?p1=hahaha&amp;p2=6666'</span></div><div class="line">			</div><div class="line">			&#125;);</div><div class="line">			<span class="comment">//返回上个界面</span></div><div class="line">			  navigator.pop()</div><div class="line">			  </div><div class="line">			  <span class="comment">//下个页面获取值</span></div><div class="line">			  <span class="keyword">this</span>.$getConfig().p1</div><div class="line">			  <span class="keyword">this</span>.$getConfig().p2</div></pre></td></tr></table></figure>
+<h2 id="全局保存数据"><a href="#全局保存数据" class="headerlink" title="全局保存数据"></a>全局保存数据</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> storage = weex.requireModule(<span class="string">'storage'</span>);</div><div class="line">storage.setItem(<span class="string">'name'</span>, <span class="string">'Hanks'</span>, event =&gt; &#123;</div><div class="line"></div><div class="line">			&#125;);</div><div class="line"> storage.getItem(<span class="string">'name'</span>, event =&gt; &#123;</div><div class="line">          modal.toast(&#123; <span class="attr">message</span>:event.data &#125;);</div><div class="line">        </div><div class="line">      &#125;);</div></pre></td></tr></table></figure>
+<h2 id="调用android方法"><a href="#调用android方法" class="headerlink" title="调用android方法"></a>调用android方法</h2><h3 id="weex"><a href="#weex" class="headerlink" title="weex"></a>weex</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">weex.requireModule(<span class="string">'MyModule'</span>).printLog(<span class="string">"发送数据"</span>);</div><div class="line">weex.requireModule(<span class="string">'MyModule'</span>).gmessage(<span class="string">"dddddddddd"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;</div><div class="line">						<span class="comment">//v.token</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="android"><a href="#android" class="headerlink" title="android"></a>android</h3><p>在Application注册<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">WXSDKEngine.registerModule(<span class="string">"MyModule"</span>, MyModule.class);</div></pre></td></tr></table></figure></p>
+<p>定义模块<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyModule</span> <span class="keyword">extends</span> <span class="title">WXModule</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@JSMethod</span>(uiThread = <span class="keyword">true</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printLog</span><span class="params">(String msg)</span> </span>&#123;</div><div class="line">          showToast(msg);</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">	</div><div class="line">	<span class="meta">@JSMethod</span>(uiThread = <span class="keyword">true</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gmessage</span><span class="params">(String msg,JSCallback callback)</span> </span>&#123;</div><div class="line">        Map&lt;String,String&gt; data=<span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        data.put(<span class="string">"token"</span>,<span class="string">"这是手机回传的数据"</span>+msg);</div><div class="line">        data.put(<span class="string">"smart"</span>,<span class="string">"2222"</span>);</div><div class="line">        callback.invokeAndKeepAlive(data);</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -473,7 +479,7 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-count">55</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -483,7 +489,7 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -531,7 +537,7 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接入前需要了解的坑点"><span class="nav-number">2.</span> <span class="nav-text">接入前需要了解的坑点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接入前需要了解的坑点"><span class="nav-number">2.</span> <span class="nav-text">接入前需要了解的坑点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#发送请求"><span class="nav-number">3.1.</span> <span class="nav-text">发送请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跳转页面-带传值"><span class="nav-number">3.2.</span> <span class="nav-text">跳转页面 带传值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局保存数据"><span class="nav-number">3.3.</span> <span class="nav-text">全局保存数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用android方法"><span class="nav-number">3.4.</span> <span class="nav-text">调用android方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#weex"><span class="nav-number">3.4.1.</span> <span class="nav-text">weex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#android"><span class="nav-number">3.4.2.</span> <span class="nav-text">android</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
