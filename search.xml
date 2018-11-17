@@ -4,6 +4,240 @@
   
     
     <entry>
+      <title><![CDATA[ConstraintLayout和FlexboxLayout]]></title>
+      <url>https://bigbignews.club/2018/11/17/ConstraintLayout%E5%92%8CFlexboxLayout/</url>
+      <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><h1 id="ConstraintLayout"><a href="#ConstraintLayout" class="headerlink" title="ConstraintLayout"></a>ConstraintLayout</h1><h2 id="一些说明"><a href="#一些说明" class="headerlink" title="一些说明"></a>一些说明</h2><p>有人可能好奇 android 定位 除了 left right top bottom 外还有 start end<br>而 start end 和 left right 在布局里看感觉一模一样，其实是有一些区别的，引入start end 就是为了适配google的RTL模式（适配一些国家看文字是从右往左读的），开发者选项中 选中 强制使用从右到左的布局方向 就能看到效果，想要支持RTL除了 start end 外 还要在manifest 加上android:supportsRtl=”true” 新项目已经默认打开。</p>
+<h2 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h2><p>其实新版本的android studio 已经默认导入了<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">implementation 'com.android.support.constraint:constraint-layout:1.1.2'</div></pre></td></tr></table></figure></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>注意 constraint-layout 中文翻译是约束布局 这代表定位只是相对约束而已 例如控件A的右边约束在控件B的左边 加入控件B的宽度大于可用控件则是会覆盖住控件A的 </p>
+<h3 id="定位方式"><a href="#定位方式" class="headerlink" title="定位方式"></a>定位方式</h3><table>
+<thead>
+<tr>
+<th>定位</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>layout_constraintLeft_toLeftOf</td>
+<td>控件的左侧在另一个控件的左侧</td>
+</tr>
+<tr>
+<td>layout_constraintLeft_toRightOf</td>
+<td>控件的左侧在另一个控件的右侧</td>
+</tr>
+<tr>
+<td>layout_constraintRight_toLeftOf</td>
+<td>控件的右侧在另一个控件的左侧</td>
+</tr>
+<tr>
+<td>layout_constraintRight_toRightOf</td>
+<td>控件的右侧在另一个控件的右侧</td>
+</tr>
+<tr>
+<td>layout_constraintTop_toTopOf</td>
+<td>控件的顶部在另一个控件的顶部</td>
+</tr>
+<tr>
+<td>layout_constraintTop_toBottomOf</td>
+<td>控件的顶部在另一个控件的底部</td>
+</tr>
+<tr>
+<td>layout_constraintBottom_toTopOf</td>
+<td>控件的底部在另一个控件的顶部</td>
+</tr>
+<tr>
+<td>layout_constraintBottom_toBottomOf</td>
+<td>控件的底部在另一个控件的底部</td>
+</tr>
+<tr>
+<td>layout_constraintBaseline_toBaselineOf</td>
+<td>控件文字的基线对齐另一个控件文字的基线</td>
+</tr>
+<tr>
+<td>layout_constraintStart_toEndOf</td>
+<td>控件的开始在另一个控件的结尾</td>
+</tr>
+<tr>
+<td>layout_constraintStart_toStartOf</td>
+<td>控件的开始在另一个控件的开始</td>
+</tr>
+<tr>
+<td>layout_constraintEnd_toStartOf</td>
+<td>控件的结尾在另一个控件的开始</td>
+</tr>
+<tr>
+<td>layout_constraintEnd_toEndOf</td>
+<td>控件的结尾在另一个控件的结尾</td>
+</tr>
+</tbody>
+</table>
+<h3 id="GONE-MARGIN"><a href="#GONE-MARGIN" class="headerlink" title="GONE MARGIN"></a>GONE MARGIN</h3><p>被绑定的控件的visibility为gone的时候使用的外边距<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">layout_goneMarginStart</div><div class="line">layout_goneMarginEnd</div><div class="line">layout_goneMarginLeft</div><div class="line">layout_goneMarginTop</div><div class="line">layout_goneMarginRight</div><div class="line">layout_goneMarginBottom</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/17/ConstraintLayout和FlexboxLayout/c2.jpg" alt=""></p>
+<h3 id="水平和垂直的偏移"><a href="#水平和垂直的偏移" class="headerlink" title="水平和垂直的偏移"></a>水平和垂直的偏移</h3><p>当一个控件设为 左右or上下绑定的时候很多情况下在两个就是居中的（想象成橡皮筋）而<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">layout_constraintHorizontal_bias</div><div class="line">layout_constraintVertical_bias</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/17/ConstraintLayout和FlexboxLayout/c0.jpg" alt=""><br>就是用来控制水平or垂直的偏向的 0为完全偏左or上 1为完全偏右or下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">app:layout_constraintBottom_toBottomOf="parent"</div><div class="line">app:layout_constraintTop_toTopOf="parent"</div><div class="line">app:layout_constraintEnd_toEndOf="parent"</div><div class="line">app:layout_constraintStart_toStartOf="parent"</div></pre></td></tr></table></figure></p>
+<h3 id="圆形定位（1-1以上版本才有）"><a href="#圆形定位（1-1以上版本才有）" class="headerlink" title="圆形定位（1.1以上版本才有）"></a>圆形定位（1.1以上版本才有）</h3><p><a href="https://developer.android.com/reference/android/support/constraint/ConstraintLayout" target="_blank" rel="external">https://developer.android.com/reference/android/support/constraint/ConstraintLayout</a> 图片</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>layout_constraintCircle</td>
+<td>被绑定圆形定位的控件</td>
+</tr>
+<tr>
+<td>layout_constraintCircleRadius</td>
+<td>离被绑定圆形定位的控件的中心的距离</td>
+</tr>
+<tr>
+<td>layout_constraintCircleAngle</td>
+<td>放置在被绑定圆形定位的控件的角度0-360 0是最上方</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2018/11/17/ConstraintLayout和FlexboxLayout/c1.jpg" alt=""></p>
+<h3 id="尺寸限制"><a href="#尺寸限制" class="headerlink" title="尺寸限制"></a>尺寸限制</h3><p>宽高使用0dp，相当于 MATCH_CONSTRAINT 控件设为自己所能达到的最高最宽<br>当宽or高为wrap_content可用<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">android:minWidth 设置布局的最小宽度</div><div class="line">android:minHeight 设置布局的最小高度</div><div class="line">android:maxWidth 设置布局的最大宽度</div><div class="line">android:maxHeight 设置布局的最大高度</div></pre></td></tr></table></figure></p>
+<h4 id="强制约束"><a href="#强制约束" class="headerlink" title="强制约束"></a>强制约束</h4><p>当控件的包裹内容过多的时候会超出约束的位置时可以使用<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">app:layout_constrainedWidth="true|false"</div><div class="line">app:layout_constrainedHeight="true|false"</div></pre></td></tr></table></figure></p>
+<h4 id="MATCH-CONSTRAINT-限制尺寸（1-1以上版本才有）"><a href="#MATCH-CONSTRAINT-限制尺寸（1-1以上版本才有）" class="headerlink" title="MATCH_CONSTRAINT 限制尺寸（1.1以上版本才有）"></a>MATCH_CONSTRAINT 限制尺寸（1.1以上版本才有）</h4><p>当尺寸设为MATCH_CONSTRAINT时<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">layout_constraintWidth_min和layout_constraintHeight_min：</div><div class="line">将设置此维度的最小大小</div><div class="line">layout_constraintWidth_max和layout_constraintHeight_max：</div><div class="line">将设置此维度的最大大小</div><div class="line">layout_constraintWidth_percent和layout_constraintHeight_percent：0-1</div><div class="line">将此维度的大小设置为百分比</div></pre></td></tr></table></figure></p>
+<h4 id="宽高比"><a href="#宽高比" class="headerlink" title="宽高比"></a>宽高比</h4><p>当宽高至少一个尺寸设为MATCH_CONSTRAINT可用<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">layout_constraintDimensionRatio 默认 宽/高</div><div class="line"></div><div class="line">layout_constraintDimensionRatio="W,2:1"  宽为分母  </div><div class="line">layout_constraintDimensionRatio="H,2:1" 高为分母</div></pre></td></tr></table></figure></p>
+<h4 id="链"><a href="#链" class="headerlink" title="链"></a>链</h4><p><img src="/2018/11/17/ConstraintLayout和FlexboxLayout/c3.jpg" alt=""><br>有一种情况 几个控件宽or高都不确定 又相互连接在一起，这就叫链。<br>在链中的元素上使用边距时，边距是附加的。<br>例如，在水平链上，如果一个元素定义了10dp的右边距而下一个元素定义了5dp的左边距，则这两个元素之间产生的边距为15dp。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">设置比例</div><div class="line">layout_constraintHorizontal_weight </div><div class="line">layout_constraintVertical_weight</div><div class="line"></div><div class="line">设置链类型</div><div class="line">layout_constraintHorizontal_chainStyle </div><div class="line">layout_constraintVertical_chainStyle</div></pre></td></tr></table></figure></p>
+<p>链类型<br><img src="/2018/11/17/ConstraintLayout和FlexboxLayout/c4.jpg" alt=""></p>
+<h4 id="优化器-（1-1以上版本才有）"><a href="#优化器-（1-1以上版本才有）" class="headerlink" title="优化器 （1.1以上版本才有）"></a>优化器 （1.1以上版本才有）</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">app：layout_optimizationLevel ="direct | barrier | chain"</div><div class="line"></div><div class="line">none : 未应用任何优化</div><div class="line">standard : 默认。仅优化直接和障碍约束</div><div class="line">direct : 优化直接约束</div><div class="line">barrier : 优化障碍限制</div><div class="line">chain : 优化链约束（实验）</div><div class="line">dimensions :优化维度度量（实验），减少匹配约束元素的度量数量</div></pre></td></tr></table></figure>
+<h1 id="FlexboxLayout"><a href="#FlexboxLayout" class="headerlink" title="FlexboxLayout"></a>FlexboxLayout</h1><p>google 开源地址<br><a href="https://github.com/google/flexbox-layout" target="_blank" rel="external">https://github.com/google/flexbox-layout</a></p>
+<p>所用图片来源于<br><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="external">https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></p>
+<h2 id="相对于布局"><a href="#相对于布局" class="headerlink" title="相对于布局"></a>相对于布局</h2><h3 id="主轴方向（flexDirection）"><a href="#主轴方向（flexDirection）" class="headerlink" title="主轴方向（flexDirection）"></a>主轴方向（flexDirection）</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>row (默认)</td>
+<td>水平主轴，从左到右</td>
+</tr>
+<tr>
+<td>row-reverse</td>
+<td>水平主轴，从右到左</td>
+</tr>
+<tr>
+<td>column</td>
+<td>垂直主轴，从上到下</td>
+</tr>
+<tr>
+<td>column-reverse</td>
+<td>垂直主轴，从下到上</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2018/11/17/ConstraintLayout和FlexboxLayout/f0.jpg" alt=""></p>
+<h3 id="主轴对齐（justifyContent）"><a href="#主轴对齐（justifyContent）" class="headerlink" title="主轴对齐（justifyContent）"></a>主轴对齐（justifyContent）</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flex_start(默认)</td>
+<td>左对齐</td>
+</tr>
+<tr>
+<td>flex_end</td>
+<td>右对齐</td>
+</tr>
+<tr>
+<td>center</td>
+<td>居中</td>
+</tr>
+<tr>
+<td>space_between</td>
+<td>两端对齐</td>
+</tr>
+<tr>
+<td>space_around</td>
+<td>每个控件两侧的间隔相等</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2018/11/17/ConstraintLayout和FlexboxLayout/f2.jpg" alt=""></p>
+<h3 id="换行（flexWrap）"><a href="#换行（flexWrap）" class="headerlink" title="换行（flexWrap）"></a>换行（flexWrap）</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nowrap(默认)</td>
+<td>不换行</td>
+</tr>
+<tr>
+<td>wrap</td>
+<td>换行，第一行在最上面</td>
+</tr>
+<tr>
+<td>wrap_reverse</td>
+<td>换行，第一行在最下面(不支持RecyclerView)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2018/11/17/ConstraintLayout和FlexboxLayout/f1.jpg" alt=""></p>
+<h3 id="交叉轴对齐-对于内部控件（alignItems）"><a href="#交叉轴对齐-对于内部控件（alignItems）" class="headerlink" title="交叉轴对齐-对于内部控件（alignItems）"></a>交叉轴对齐-对于内部控件（alignItems）</h3><p>每换一次行就会平分一条交叉轴线<br>|参数|说明|<br>|-|-|<br>|stretch(默认)|如果控件高度为wrap_content 则占满布局高度|<br>|flex-start|交叉轴起点对齐|<br>|flex-end|交叉轴终点对齐|<br>|center|交叉轴中间对齐|<br>|baseline|与每条交叉轴的第一个控件的文字基线对齐|<br><img src="/2018/11/17/ConstraintLayout和FlexboxLayout/f3.jpg" alt=""></p>
+<h3 id="多条交叉轴线的对齐-对于交叉轴-不支持RecyclerView-（alignContent）"><a href="#多条交叉轴线的对齐-对于交叉轴-不支持RecyclerView-（alignContent）" class="headerlink" title="多条交叉轴线的对齐-对于交叉轴(不支持RecyclerView)（alignContent）"></a>多条交叉轴线的对齐-对于交叉轴(不支持RecyclerView)（alignContent）</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stretch(默认)</td>
+<td>每条轴线占满</td>
+</tr>
+<tr>
+<td>flex-start</td>
+<td>轴线起点对齐</td>
+</tr>
+<tr>
+<td>flex-end</td>
+<td>轴线终点对齐</td>
+</tr>
+<tr>
+<td>center</td>
+<td>轴线中间对齐</td>
+</tr>
+<tr>
+<td>space_between</td>
+<td>轴线两端对齐</td>
+</tr>
+<tr>
+<td>space_around</td>
+<td>每根轴线两侧的间隔都相等</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2018/11/17/ConstraintLayout和FlexboxLayout/f4.jpg" alt=""></p>
+<h3 id="显示分割线"><a href="#显示分割线" class="headerlink" title="显示分割线"></a>显示分割线</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">showDividerVertical</div><div class="line">showDividerHorizontal</div><div class="line">app:showDivider="middle|beginning|end"</div><div class="line"></div><div class="line">dividerDrawableHorizontal</div><div class="line">dividerDrawableVertical</div><div class="line">app:dividerDrawable="@drawable/divider"</div><div class="line"></div><div class="line"></div><div class="line">divider.xml</div><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">shape</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">size</span></span></div><div class="line">        <span class="attr">android:width</span>=<span class="string">"8dp"</span></div><div class="line">        <span class="attr">android:height</span>=<span class="string">"12dp"</span> /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">"#44A444"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">shape</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="相对于内部控件"><a href="#相对于内部控件" class="headerlink" title="相对于内部控件"></a>相对于内部控件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">layout_flexGrow 控件所占控件的比重 1 2 3 ...</div><div class="line">layout_order 手动控件排序 1  2 3.....(不支持RecyclerView)</div><div class="line">layout_flexShrink 空间不足时控件被压缩的比重 0为不能压缩</div><div class="line">layout_alignSelf  控件自身的对齐 参考align-item 设为auto默认继承父布局</div><div class="line">layout_flexBasisPercent  占父容器长度的百分比</div></pre></td></tr></table></figure>]]></content>
+      
+        
+        <tags>
+            
+            <tag> Android布局 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[kotlin的笔记]]></title>
       <url>https://bigbignews.club/2018/10/06/kotlin%E7%9A%84%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><h1 id="Android-Studio创建kotlin项目"><a href="#Android-Studio创建kotlin项目" class="headerlink" title="Android Studio创建kotlin项目"></a>Android Studio创建kotlin项目</h1><p>File-&gt;New-&gt;New Project-&gt;Include kotlin support</p>
@@ -58,6 +292,7 @@
 </tbody>
 </table>
 <p>例子 定义变量<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i:<span class="built_in">Int</span> = <span class="number">0</span></div><div class="line"><span class="keyword">var</span> j:<span class="built_in">Int</span></div><div class="line">j=<span class="number">9</span></div></pre></td></tr></table></figure></p>
+<h2 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//kotlin没有三元运算符用if else 代替 如</span></div><div class="line"><span class="keyword">var</span> type:<span class="built_in">Int</span>=<span class="number">1</span></div><div class="line"><span class="keyword">var</span> result:String=<span class="keyword">if</span> (type==<span class="number">1</span>) <span class="string">"类型1"</span> <span class="keyword">else</span> <span class="string">"类型2"</span></div><div class="line"><span class="comment">//switch/case 用 when/else 代替 自带break </span></div><div class="line"><span class="keyword">var</span> result:String=<span class="string">"1"</span></div><div class="line"><span class="keyword">when</span>(string)&#123;</div><div class="line">	<span class="string">"1"</span>-&gt;<span class="string">"类型1"</span></div><div class="line">	 <span class="string">"2"</span>,<span class="string">"3"</span>-&gt;<span class="string">"类型2"</span></div><div class="line">	 <span class="keyword">else</span>-&gt; <span class="string">"类型3"</span>         </div><div class="line">&#125;</div><div class="line"><span class="comment">//如果是数字还能这样玩 </span></div><div class="line"><span class="keyword">var</span> num:<span class="built_in">Int</span>=<span class="number">3</span></div><div class="line"><span class="keyword">when</span>(num)&#123;</div><div class="line">            <span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>-&gt;<span class="string">"类型1"</span></div><div class="line">            <span class="keyword">in</span> <span class="number">1.</span><span class="number">.3</span>-&gt;<span class="string">"类型2"</span><span class="comment">//1-3</span></div><div class="line">            !<span class="keyword">in</span> <span class="number">1.</span><span class="number">.3</span>-&gt;<span class="string">"类型3"</span></div><div class="line">            <span class="keyword">else</span>-&gt; <span class="string">"类型4"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="基本数据类型转换"><a href="#基本数据类型转换" class="headerlink" title="基本数据类型转换"></a>基本数据类型转换</h2><table>
 <thead>
 <tr>
@@ -135,9 +370,9 @@
 </tr>
 </tbody>
 </table>
-<p>例子 数组操作<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i:Array&lt; String&gt;=arrayOf(<span class="string">"2"</span>,<span class="string">"2"</span>,<span class="string">"2"</span>)</div><div class="line"><span class="keyword">var</span> size:<span class="built_in">Int</span>= i.size()</div><div class="line"><span class="comment">//访问数组的两种方式</span></div><div class="line">i[<span class="number">0</span>]</div><div class="line">i.<span class="keyword">get</span>(<span class="number">0</span>)</div><div class="line"></div><div class="line"></div><div class="line"> <span class="keyword">val</span> s:Array&lt;String&gt; = arrayOf(<span class="string">"ha"</span>,<span class="string">"yo"</span>,<span class="string">"qq"</span>)</div><div class="line">        <span class="keyword">for</span> (item <span class="keyword">in</span> s)&#123;</div><div class="line">            Log.e(<span class="string">"遍历1"</span>,item)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> s.indices)&#123;</div><div class="line">            Log.e(<span class="string">"遍历2"</span>,s[i])</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0</span> until <span class="number">3</span>)&#123;<span class="comment">//0 1 2</span></div><div class="line">            Log.e(<span class="string">"遍历3"</span>,s[i])</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0.</span><span class="number">.2</span> step <span class="number">1</span>)&#123;<span class="comment">//从0开始到2 每次加1</span></div><div class="line">            Log.e(<span class="string">"遍历4"</span>,s[i])</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="数组循环操作"><a href="#数组循环操作" class="headerlink" title="数组循环操作"></a>数组循环操作</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i:Array&lt; String&gt;=arrayOf(<span class="string">"2"</span>,<span class="string">"2"</span>,<span class="string">"2"</span>)</div><div class="line"><span class="keyword">var</span> size:<span class="built_in">Int</span>= i.size()</div><div class="line"><span class="comment">//访问数组的两种方式</span></div><div class="line">i[<span class="number">0</span>]</div><div class="line">i.<span class="keyword">get</span>(<span class="number">0</span>)</div><div class="line"></div><div class="line"></div><div class="line"> <span class="keyword">val</span> s:Array&lt;String&gt; = arrayOf(<span class="string">"ha"</span>,<span class="string">"yo"</span>,<span class="string">"qq"</span>)</div><div class="line">        <span class="keyword">for</span> (item <span class="keyword">in</span> s)&#123;</div><div class="line">            Log.e(<span class="string">"遍历1"</span>,item)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> s.indices)&#123;</div><div class="line">            Log.e(<span class="string">"遍历2"</span>,s[i])</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0</span> until <span class="number">3</span>)&#123;<span class="comment">//0 1 2</span></div><div class="line">            Log.e(<span class="string">"遍历3"</span>,s[i])</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0.</span><span class="number">.2</span> step <span class="number">1</span>)&#123;<span class="comment">//从0开始到2 每次加1</span></div><div class="line">            Log.e(<span class="string">"遍历4"</span>,s[i])</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
 <h1 id="函数运用"><a href="#函数运用" class="headerlink" title="函数运用"></a>函数运用</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在有默认参数值的方法中使用@JvmOverloads注解，则Kotlin就会暴露多个重载方法 方便java调用   </span></div><div class="line"> <span class="meta">@JvmOverloads</span> <span class="function"><span class="keyword">fun</span> <span class="title">change</span><span class="params">(a:<span class="type">String</span>,b:<span class="type">String</span>=<span class="string">"默认参数可以不传"</span>,c:<span class="type">String</span>)</span></span>:<span class="built_in">Int</span>&#123;</div><div class="line">        <span class="keyword">return</span> a.toInt()</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">change1</span><span class="params">(<span class="keyword">vararg</span> d:<span class="type">String</span>?)</span></span>&#123;<span class="comment">//可变参数</span></div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">change3</span><span class="params">(c:<span class="type">Int</span>)</span></span>:<span class="built_in">Int</span>=<span class="keyword">if</span> (c&gt;<span class="number">1</span>) c <span class="keyword">else</span> <span class="number">3</span>*change3(<span class="number">3</span>)<span class="comment">//递归</span></div></pre></td></tr></table></figure>
-<h1 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h1><h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span>   <span class="keyword">constructor</span></span>(<span class="keyword">var</span> name:String) &#123;<span class="comment">//主构造函数还可以直接定义变量</span></div><div class="line">    <span class="keyword">var</span> age:<span class="built_in">Int</span>=<span class="number">0</span></div><div class="line">    init&#123;</div><div class="line">        println(<span class="string">"主构造函数<span class="subst">$name</span>"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">constructor</span>(age:<span class="built_in">Int</span>) : <span class="keyword">this</span>(<span class="string">""</span>) &#123;</div><div class="line">        <span class="keyword">this</span>.age=age</div><div class="line">        println(<span class="string">"次构造函数<span class="subst">$age</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal1</span>   </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(name:String)&#123;</div><div class="line">        println(<span class="string">"不分主次<span class="subst">$name</span>"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">constructor</span>(age:<span class="built_in">Int</span>)&#123;</div><div class="line">        println(<span class="string">"不分主次<span class="subst">$age</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h1><h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span>   <span class="keyword">constructor</span></span>(<span class="keyword">var</span> name:String) &#123;<span class="comment">//主构造方法还可以直接定义变量</span></div><div class="line">    <span class="keyword">var</span> age:<span class="built_in">Int</span>=<span class="number">0</span></div><div class="line">    init&#123;</div><div class="line">        println(<span class="string">"主构造方法<span class="subst">$name</span>"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">constructor</span>(age:<span class="built_in">Int</span>) : <span class="keyword">this</span>(<span class="string">""</span>) &#123;</div><div class="line">        <span class="keyword">this</span>.age=age</div><div class="line">        println(<span class="string">"次构造方法<span class="subst">$age</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal1</span>   </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(name:String)&#123;</div><div class="line">        println(<span class="string">"不分主次<span class="subst">$name</span>"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">constructor</span>(age:<span class="built_in">Int</span>)&#123;</div><div class="line">        println(<span class="string">"不分主次<span class="subst">$age</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="伴生对象（静态方法静态成员）"><a href="#伴生对象（静态方法静态成员）" class="headerlink" title="伴生对象（静态方法静态成员）"></a>伴生对象（静态方法静态成员）</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal1</span>   </span>&#123;</div><div class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;<span class="comment">// companion声明伴生对象</span></div><div class="line">        <span class="keyword">val</span> NAME=<span class="string">"HAHA"</span></div><div class="line">        <span class="keyword">var</span> name:String?=<span class="literal">null</span></div><div class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">myFun</span><span class="params">()</span></span>&#123;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><table>
 <thead>
@@ -156,20 +391,27 @@
 <td>子类可见</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td>internal</td>
+<td>在同一个模块(module)内可以访问</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
+<td>public</td>
+<td>任何地方可见</td>
 </tr>
 </tbody>
 </table>
-]]></content>
+<p>变量、方法、类默认都是public，所以可以把public省略，Kotlin的类默认是不能继承的（即final类型），如果需要继承某类，该父类就应当声明为open类型。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>(name: String)&#123;</div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">a1</span><span class="params">()</span></span>&#123;<span class="comment">// 加open才能重写  </span></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>(mname: String):A(mname)&#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">a1</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.a1()</div><div class="line">    &#125;</div><div class="line">   </div><div class="line">&#125;</div><div class="line"><span class="comment">//////////////////////////////////////////////////////////////////////////////</span></div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>()&#123;</div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">a1</span><span class="params">()</span></span>&#123;<span class="comment">// 加open才能重写</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> :<span class="type">A</span></span>()&#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">a1</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.a1()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal1</span></span>(<span class="keyword">override</span> <span class="keyword">var</span> str: String?,<span class="keyword">var</span> str1:String) : AbstractAnimal1(str1) &#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">a1</span><span class="params">()</span></span> &#123;</div><div class="line">      </div><div class="line">    &#125;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">a2</span><span class="params">(int: <span class="type">Int</span>)</span></span>: String &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">""</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal3</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(a3:String)&#123;</div><div class="line">        println(<span class="string">"不分主次<span class="subst">$a3</span>"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">constructor</span>(a4:<span class="built_in">Int</span>)&#123;</div><div class="line">        println(<span class="string">"不分主次<span class="subst">$&#123;a4.toString()&#125;</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractAnimal1</span></span>(a3: String) : Animal3(a3) &#123;</div><div class="line">    <span class="keyword">var</span> yyy:String=<span class="string">"dd"</span><span class="comment">//非抽象属性</span></div><div class="line">    <span class="keyword">abstract</span> <span class="keyword">var</span> str:String?<span class="comment">//抽象属性</span></div><div class="line">    <span class="comment">//抽象方法</span></div><div class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">a1</span><span class="params">()</span></span><span class="comment">//bstract方法默认就是open类型</span></div><div class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">a2</span><span class="params">(int: <span class="type">Int</span>)</span></span>:String</div><div class="line">    <span class="comment">//非抽象方法</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">a3</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>():B &#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">update</span><span class="params">()</span></span>: <span class="built_in">Boolean</span> &#123;</div><div class="line">        <span class="keyword">return</span>  <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">push</span><span class="params">(s: <span class="type">String</span>)</span></span> &#123;</div><div class="line">        printLog()</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">B</span></span>&#123;</div><div class="line">    <span class="comment">//接口内部的方法和属性默认就是抽象的可以不加abstract和open</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">push</span><span class="params">(s:<span class="type">String</span>)</span></span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">update</span><span class="params">()</span></span>:<span class="built_in">Boolean</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">printLog</span><span class="params">()</span></span>&#123;<span class="comment">//可以定义已实现的方法</span></div><div class="line">        print(<span class="string">"print"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//////////////////////////////////接口回调写法////////////////////////////////////////////</span></div><div class="line"><span class="comment">//1.java思维</span></div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> b:B?=<span class="literal">null</span></div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">setListener</span><span class="params">(b:<span class="type">B</span>)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.b=b</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">B</span></span>&#123;</div><div class="line">    <span class="comment">//接口内部的方法和属性默认就是抽象的可以不加abstract和open</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">push</span><span class="params">(s:<span class="type">String</span>)</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">var</span> a=A()</div><div class="line">        a.setListener(<span class="keyword">object</span>:B&#123;</div><div class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">push</span><span class="params">(s: <span class="type">String</span>)</span></span> &#123;</div><div class="line">               </div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//2.kotlin思维 匿名函数</span></div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</div><div class="line">    lateinit <span class="keyword">var</span> mListen: (String)-&gt; <span class="built_in">Unit</span></div><div class="line">    lateinit <span class="keyword">var</span> mListen1: (String,<span class="built_in">Int</span>)-&gt; <span class="built_in">Unit</span></div><div class="line">    lateinit <span class="keyword">var</span> mListen2: (String,<span class="built_in">Int</span>)-&gt; String</div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">setListener</span><span class="params">(mListen: (<span class="type">String</span>)</span></span>-&gt; <span class="built_in">Unit</span>)&#123;</div><div class="line">       <span class="keyword">this</span>.mListen=mListen</div><div class="line">       <span class="keyword">this</span>.mListen.invoke(<span class="string">"mListen"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">setListener1</span><span class="params">(mListen1: (<span class="type">String</span>,<span class="built_in">Int</span>)</span></span>-&gt; <span class="built_in">Unit</span>)&#123;</div><div class="line">        <span class="keyword">this</span>.mListen1=mListen1</div><div class="line">        <span class="keyword">this</span>.mListen1.invoke(<span class="string">"mListen1"</span>,<span class="number">1</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">setListener2</span><span class="params">(mListen2: (<span class="type">String</span>,<span class="built_in">Int</span>)</span></span>-&gt; String)&#123;</div><div class="line">        <span class="keyword">this</span>.mListen2=mListen2</div><div class="line">        <span class="keyword">this</span>.mListen2.invoke(<span class="string">"mListen1"</span>,<span class="number">1</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span>&#123;</div><div class="line">   <span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">       <span class="keyword">var</span> a=A()</div><div class="line">       a.setListener &#123; println(it) &#125;</div><div class="line">       a.setListener1&#123;a,b-&gt;</div><div class="line">       &#125;</div><div class="line">       a.setListener2 &#123; s, i -&gt;<span class="keyword">if</span> (s==<span class="string">""</span>)</div><div class="line">          <span class="string">""</span> <span class="keyword">else</span> <span class="string">"haha"</span></div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="接口代理"><a href="#接口代理" class="headerlink" title="接口代理"></a>接口代理</h2><h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;<span class="comment">//用inner修饰内部类的时候新建的是非静态内部类</span></div><div class="line">    <span class="keyword">var</span> name:String?=<span class="literal">null</span></div><div class="line">    inner <span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</div><div class="line">         <span class="function"><span class="keyword">fun</span> <span class="title">setName</span><span class="params">()</span></span>&#123;</div><div class="line">             name=<span class="string">"hah"</span></div><div class="line">         &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">C</span></span>&#123;<span class="comment">//默认状态新建的内部类是静态内部类</span></div><div class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</div><div class="line">        <span class="keyword">var</span> name:String?=<span class="literal">null</span></div><div class="line">    &#125;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">D</span></span>&#123;</div><div class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">setName</span><span class="params">()</span></span>&#123;</div><div class="line">            name=<span class="string">"hah"</span>     </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">F</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span>&#123; </div><div class="line">        <span class="keyword">var</span> b=A().B().setName()</div><div class="line">        <span class="keyword">var</span> c=C.D().setName()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2>]]></content>
       
+        
+        <tags>
+            
+            <tag> Kotlin </tag>
+            
+        </tags>
         
     </entry>
     
