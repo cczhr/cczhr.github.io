@@ -1,0 +1,786 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,蓝牙," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="低功耗蓝牙又叫ble蓝牙，本文会用ble代替低功耗蓝牙（偷懒）
+通用配置要申请的权限12345&amp;lt;uses-permission android:name=&quot;android.permission.BLUETOOTH&quot;/&amp;gt;&amp;lt;uses-permission android:name=&quot;android.permission.BLUETOOTH_ADMIN&quot;/&amp;gt;    &amp;lt;!-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android传统蓝牙与低功耗蓝牙">
+<meta property="og:url" content="https://bigbignews.club/2019/02/01/Android传统蓝牙与低功耗蓝牙/index.html">
+<meta property="og:site_name" content="Not Found Blog">
+<meta property="og:description" content="低功耗蓝牙又叫ble蓝牙，本文会用ble代替低功耗蓝牙（偷懒）
+通用配置要申请的权限12345&amp;lt;uses-permission android:name=&quot;android.permission.BLUETOOTH&quot;/&amp;gt;&amp;lt;uses-permission android:name=&quot;android.permission.BLUETOOTH_ADMIN&quot;/&amp;gt;    &amp;lt;!-">
+<meta property="og:updated_time" content="2019-02-02T07:12:29.608Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android传统蓝牙与低功耗蓝牙">
+<meta name="twitter:description" content="低功耗蓝牙又叫ble蓝牙，本文会用ble代替低功耗蓝牙（偷懒）
+通用配置要申请的权限12345&amp;lt;uses-permission android:name=&quot;android.permission.BLUETOOTH&quot;/&amp;gt;&amp;lt;uses-permission android:name=&quot;android.permission.BLUETOOTH_ADMIN&quot;/&amp;gt;    &amp;lt;!-">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://bigbignews.club/2019/02/01/Android传统蓝牙与低功耗蓝牙/"/>
+
+
+  <title> Android传统蓝牙与低功耗蓝牙 | Not Found Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Not Found Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android传统蓝牙与低功耗蓝牙
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-02-01T18:46:13+08:00" content="2019-02-01">
+              2019-02-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+
+
+         <span class="post-time">
+	   &nbsp; | &nbsp;
+           <span class="post-meta-item-icon">
+             <i class="fa fa-calendar-o"></i>
+           </span>
+           <span class="post-meta-item-text">字数统计:</span>
+           <span class="post-count">1,862(字)</span>
+           
+         </span>
+	  
+      <span class="post-time">
+	   &nbsp; | &nbsp;
+           <span class="post-meta-item-icon">
+             <i class="fa fa-calendar-o"></i>
+           </span>
+           <span class="post-meta-item-text">阅读时长:</span>
+           <span class="post-count">8(分)</span>
+           
+         </span>
+
+
+
+
+
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="\assets\js\APlayer.min.js"> </script><p>低功耗蓝牙又叫ble蓝牙，本文会用ble代替低功耗蓝牙（偷懒）</p>
+<h1 id="通用配置"><a href="#通用配置" class="headerlink" title="通用配置"></a>通用配置</h1><p>要申请的权限<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.BLUETOOTH"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.BLUETOOTH_ADMIN"</span>/&gt;</span></div><div class="line">    <span class="comment">&lt;!--6.0以上要加定位权限--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_COARSE_LOCATION"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_FINE_LOCATION"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>初始代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BLUETOOTH_CLIENT_REQUEST = <span class="number">12</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BLUETOOTH_SERVER_REQUEST = <span class="number">11</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//---------------------------获取BluetoothAdapte和打开蓝牙部分--------------------------------</span></div><div class="line">BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();  </div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">//API等级18以上：Android 4.3以上可以用这种</div><div class="line">BluetoothManager bluetoothManager =(BluetoothManager)getSystemService(Context.BLUETOOTH_SERVICE);</div><div class="line">BluetoothAdapter mBluetoothAdapter = bluetoothManager.getAdapter();</div><div class="line">*/</div><div class="line"> <span class="keyword">if</span> (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) &#123;</div><div class="line">         <span class="comment">//判断是否支持低功耗蓝牙 返回true为不支持</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (mBluetoothAdapter == <span class="keyword">null</span>) &#123;</div><div class="line">    <span class="comment">//返回null表示不支持蓝牙</span></div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (mBluetoothAdapter.isEnabled()) &#123;</div><div class="line">    <span class="comment">//判断蓝牙是否开启</span></div><div class="line">     <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line">mBluetoothAdapter.enable();<span class="comment">//静默开启蓝牙</span></div><div class="line">   </div><div class="line"> <span class="comment">//弹框开启蓝牙</span></div><div class="line">Intent enableBtIntent = <span class="keyword">new</span> Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);</div><div class="line">startActivityForResult(enableBtIntent, BLUETOOTH_CLIENT_REQUEST);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//弹框开启蓝牙回调</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(<span class="keyword">int</span> requestCode, @NonNull String[] permissions, @NonNull <span class="keyword">int</span>[] grantResults)</span> </span>&#123;</div><div class="line">     <span class="keyword">if</span> (requestCode == BLUETOOTH_CLIENT_REQUEST) &#123;</div><div class="line">            <span class="keyword">if</span> (resultCode == RESULT_OK) &#123;</div><div class="line">               <span class="comment">//打开蓝牙成功</span></div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (resultCode == RESULT_CANCELED) &#123;</div><div class="line">                 <span class="comment">//打开蓝牙失败</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="传统蓝牙"><a href="#传统蓝牙" class="headerlink" title="传统蓝牙"></a>传统蓝牙</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>传统蓝牙的操作很像平时用的Socket通讯。连接需要验证uuid和设备配对（可选），当服务端和客户端在同一 RFCOMM 通道上分别拥有已连接的 BluetoothSocket 时，二者将被视为彼此连接。 这种情况下，每台设备都能获得输入和输出流式传输，并且可以开始传输数据，传输数据主要就是读写BluetoothSocket的输入输出流。如果两台设备之前尚未配对，则在连接过程中，Android 框架会自动向用户显示配对请求通知或对话框。因此，在尝试连接设备时，您的应用无需担心设备是否已配对。 您的 RFCOMM 连接尝试将被阻塞，直至用户成功完成配对或配对失败。<br>——参考<a href="https://developer.android.com/guide/topics/connectivity/bluetooth" target="_blank" rel="external">Android开发文档</a></p>
+<h2 id="作为客户端"><a href="#作为客户端" class="headerlink" title="作为客户端"></a>作为客户端</h2><h3 id="扫描设备"><a href="#扫描设备" class="headerlink" title="扫描设备"></a>扫描设备</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//广播接收器</span></div><div class="line">BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();  </div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> BroadcastReceiver bluetoothReceiver = <span class="keyword">new</span> BroadcastReceiver() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line"></div><div class="line">            String action = intent.getAction();</div><div class="line">            <span class="keyword">if</span>(BluetoothDevice.ACTION_FOUND.equals(action))&#123;</div><div class="line">			    <span class="comment">//扫描出来的蓝牙设备</span></div><div class="line">                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);</div><div class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action))&#123;</div><div class="line">               <span class="comment">//搜索结束</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//注册蓝牙搜索回调广播  </span></div><div class="line">IntentFilter filter = <span class="keyword">new</span> IntentFilter();</div><div class="line">filter.addAction(BluetoothDevice.ACTION_FOUND);<span class="comment">//每搜索到一个设备就会发送一个该广播</span></div><div class="line">filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);<span class="comment">//当全部搜索完后发送该广播</span></div><div class="line">filter.setPriority(Integer.MAX_VALUE);<span class="comment">//设置优先级</span></div><div class="line"></div><div class="line">registerReceiver(bluetoothReceiver, filter);<span class="comment">//注册广播</span></div><div class="line"></div><div class="line">unregisterReceiver(bluetoothReceiver);<span class="comment">//销毁时取消注册广播</span></div><div class="line"> </div><div class="line">mBluetoothAdapter.startDiscovery();<span class="comment">//开始搜索 一般12秒后自动停止</span></div><div class="line">mBluetoothAdapter.cancelDiscovery();<span class="comment">//取消搜索</span></div></pre></td></tr></table></figure>
+<h3 id="客户端获取BluetoothSocket"><a href="#客户端获取BluetoothSocket" class="headerlink" title="客户端获取BluetoothSocket"></a>客户端获取BluetoothSocket</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">private static final MUUID= UUID.fromString(78e7b909-717b-4f83-a504-7c1798ffa5cb");</div><div class="line">//根据mac获取BluetoothDevice </div><div class="line">BluetoothDevice device = mBluetoothAdapter.getRemoteDevice("12:34:56:78:E2:42");</div><div class="line"></div><div class="line">ConnectThread(mConnectThread = new ConnectThread(device);</div><div class="line">mConnectThread.start();//开始获取BluetoothSocket</div><div class="line">//关闭线程</div><div class="line">if (mConnectThread != null) &#123;</div><div class="line">        mConnectThread.cancel();</div><div class="line">        mConnectThread = null;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line">  * 客户端获取 BluetoothSocke线程</div><div class="line"> */</div><div class="line">private class ConnectThread extends Thread &#123;</div><div class="line">    private final BluetoothSocket mmSocket;</div><div class="line">    private final BluetoothDevice mmDevice;</div><div class="line">    public ConnectThread(BluetoothDevice device) &#123;</div><div class="line">         mmDevice = device;</div><div class="line">         BluetoothSocket tmp = null;</div><div class="line">         // 从BluetoothDevice获取 BluetoothSocket   </div><div class="line">         try &#123;</div><div class="line">		    //不安全连接 不需要配对</div><div class="line">            tmp = device.createInsecureRfcommSocketToServiceRecord(MUUID);</div><div class="line">			//安全连接 需要配对</div><div class="line">           // tmp = device.createRfcommSocketToServiceRecord(MUUID);</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">                Log.e(TAG, "Socket create() failed"+ e.getMessage());</div><div class="line">        &#125;</div><div class="line">            mmSocket = tmp;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">    public void run() &#123;</div><div class="line">        // 取消发现设备</div><div class="line">        mBluetoothAdapter.cancelDiscovery();</div><div class="line">        // 创建蓝牙连接</div><div class="line">        try &#123;</div><div class="line">            mmSocket.connect();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            try &#123;</div><div class="line">                mmSocket.close();</div><div class="line">            &#125; catch (IOException e2) &#123;</div><div class="line">                Log.e(TAG, "unable to close() socket during connection failure", e2);</div><div class="line">            &#125;</div><div class="line">              //这里可以回调连接失败的情况</div><div class="line">                return;</div><div class="line">        &#125;</div><div class="line">       </div><div class="line">        startDataThread(mmSocket);//打开通讯线程</div><div class="line">         //这里可以回调连接成功的情况</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void cancel() &#123;</div><div class="line">        try &#123;</div><div class="line">            mmSocket.close();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            Log.e(TAG, "close() of connect socket failed", e);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><h3 id="打开可被发现"><a href="#打开可被发现" class="headerlink" title="打开可被发现"></a>打开可被发现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//弹框打开可被发现</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BLUETOOTH_SERVER_REQUEST = <span class="number">11</span>;</div><div class="line"></div><div class="line">Intent discoverableIntent = <span class="keyword">new</span> Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);</div><div class="line"></div><div class="line"><span class="comment">//应用可以设置的最大持续时间为 3600 秒，值为 0 则表示设备始终可检测到。任何小于 0 或大于 3600 的值都会自动设为 120 秒</span></div><div class="line">discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, <span class="number">0</span>);<span class="comment">//设备始终可检测到</span></div><div class="line">startActivityForResult(discoverableIntent, BLUETOOTH_SERVER_REQUEST);</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(<span class="keyword">int</span> requestCode, @NonNull String[] permissions, @NonNull <span class="keyword">int</span>[] grantResults)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (requestCode == BluetoothUtils.BLUETOOTH_SERVER_REQUEST) &#123;</div><div class="line">            <span class="keyword">if</span> (resultCode == RESULT_CANCELED) &#123;</div><div class="line">                <span class="comment">//打开被发现失败</span></div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="comment">//打开被发现成功</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//静默开启 利用java的反射</span></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    Method setDiscoverableTimeout = BluetoothAdapter.class.getDeclaredMethod(<span class="string">"setDiscoverableTimeout"</span>, <span class="keyword">int</span>.class);</div><div class="line">    setDiscoverableTimeout.setAccessible(<span class="keyword">true</span>);</div><div class="line">    Method setScanMode =BluetoothAdapter.class.getDeclaredMethod(<span class="string">"setScanMode"</span>, <span class="keyword">int</span>.class,<span class="keyword">int</span>.class);</div><div class="line">    setScanMode.setAccessible(<span class="keyword">true</span>);</div><div class="line">    setDiscoverableTimeout.invoke(mBluetoothAdapter, <span class="number">0</span>);<span class="comment">//设置可被扫描时间</span></div><div class="line">	setScanMode.invoke(mBluetoothAdapter,BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE,<span class="number">0</span>);<span class="comment">//第一个参数是选择被发现模式 第二个参数是时间</span></div><div class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="监听连接状态获取BluetoothSocket"><a href="#监听连接状态获取BluetoothSocket" class="headerlink" title="监听连接状态获取BluetoothSocket"></a>监听连接状态获取BluetoothSocket</h3><p>通过调用accept()开始监听连接请求。<br>这一个阻塞调用。在一个连接被接受或一个异常出现时，它将会返回。只有当一个远程设备使用一个UUID发送了一个连接请求，并且该UUID和正在监听的服务器socket注册的UUID相匹配时，一个连接才会被接受。成功后，accept() 将会返回一个已连接的 BluetoothSocket。<br>调用close()，除非你想要接受更多的连接。</p>
+<p>这将释放服务器socket和它所有的资源，但是不会关闭 accept()返回的已连接的 BluetoothSocket。不同于TCP/IP，RFCOMM仅仅允许每一个通道上在某一时刻只有一个已连接的客户端，因此在大多数情况下在接受一个已连接的socket后，在BluetoothServerSocket上调用 close() 是非常必要的。</p>
+<p>accept() 不应该再主活动UI线程上执行，因为它是一个阻塞调用，并且将会阻止任何与应用的交互行为。它通常在你的应用管理的一个新的线程中使用一个BluetoothServerSocket 或 BluetoothSocket 来完成所有工作。为了中止一个阻塞调用，例如accept()，从你的其他线程里在BluetoothServerSocket (或 BluetoothSocket) 上调用 close() ，然后阻塞调用就会立即返回。注意在 BluetoothServerSocket 或 BluetoothSocket 上所有的方法都是线程安全的。<br>——参考<a href="https://developer.android.com/guide/topics/connectivity/bluetooth" target="_blank" rel="external">Android开发文档</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 服务端获取 BluetoothSocke线程</div><div class="line">*/</div><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">AcceptThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> BluetoothServerSocket mmServerSocket;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AcceptThread</span><span class="params">()</span> </span>&#123;</div><div class="line">        BluetoothServerSocket tmp = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">//不安全连接 不需要配对</span></div><div class="line">            tmp = device.createInsecureRfcommSocketToServiceRecord(MUUID);</div><div class="line">            <span class="comment">//安全连接 需要配对</span></div><div class="line">             <span class="comment">// tmp = device.createRfcommSocketToServiceRecord(MUUID);</span></div><div class="line"></div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            Log.e(TAG, <span class="string">"Socket listen() failed"</span>, e);</div><div class="line">        &#125;</div><div class="line">        mmServerSocket = tmp;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        BluetoothSocket socket = <span class="keyword">null</span>;</div><div class="line">    <span class="comment">// Keep listening until exception occurs or a socket is returned</span></div><div class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                socket = mmServerSocket.accept();</div><div class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                Log.e(TAG, <span class="string">"Socket accept() failed"</span>, e);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// If a connection was accepted</span></div><div class="line">            <span class="keyword">if</span> (socket != <span class="keyword">null</span>) &#123;</div><div class="line">         </div><div class="line">                startDataThread(socket);<span class="comment">//打开通讯线程</span></div><div class="line">              <span class="comment">//这里可以回调连接成功的情况</span></div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cancel</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            mmServerSocket.close();</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            Log.e(TAG, <span class="string">"close() of connect socket failed"</span>, e);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="数据传输部分"><a href="#数据传输部分" class="headerlink" title="数据传输部分"></a>数据传输部分</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">...</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">startDataThread</span><span class="params">(BluetoothSocket socket)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (mBluetoothDataThread != <span class="keyword">null</span>) &#123;</div><div class="line">            mBluetoothDataThread.cancel();</div><div class="line">            mBluetoothDataThread = <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">        mBluetoothDataThread = <span class="keyword">new</span> BluetoothDataThread(socket);</div><div class="line">        mBluetoothDataThread.start();</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 蓝牙数据处理线程</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">BluetoothDataThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> BluetoothSocket mmSocket;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> InputStream mmInStream;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> OutputStream mmOutStream;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">BluetoothDataThread</span><span class="params">(BluetoothSocket socket)</span> </span>&#123;</div><div class="line">            mmSocket = socket;</div><div class="line">            InputStream tmpIn = <span class="keyword">null</span>;</div><div class="line">            OutputStream tmpOut = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                tmpIn = socket.getInputStream();</div><div class="line">                tmpOut = socket.getOutputStream();</div><div class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                Log.e(TAG, <span class="string">"temp sockets not created"</span>, e);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            mmInStream = tmpIn;</div><div class="line">            mmOutStream = tmpOut;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];   </div><div class="line">            <span class="keyword">int</span> bytes;  </div><div class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    </div><div class="line">                    bytes = mmInStream.read(buffer);</div><div class="line">                    <span class="keyword">if</span> (bytes != <span class="number">0</span>) &#123;</div><div class="line">                        mBluetoothUtilsListener.onDataReceiver(buffer, bytes);<span class="comment">//这里回调接收的数据</span></div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                    <span class="comment">//这里回调断开连接</span></div><div class="line"> </div><div class="line">                    <span class="keyword">break</span>;</div><div class="line"></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//发送数据</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span> </span>&#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                mmOutStream.write(bytes);</div><div class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                Log.e(TAG, <span class="string">"Exception during write"</span>, e);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// 关闭连接</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cancel</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                mmSocket.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                Log.e(TAG, <span class="string">"close() of connect socket failed"</span>, e);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h1 id="BLE"><a href="#BLE" class="headerlink" title="BLE"></a>BLE</h1><h2 id="扫描设备-1"><a href="#扫描设备-1" class="headerlink" title="扫描设备"></a>扫描设备</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">//支持android4.3以上</span></div><div class="line">MyLeScanCallback mMyScanCallback=<span class="keyword">new</span> MyLeScanCallback();</div><div class="line">mBluetoothAdapter.startLeScan(mMyScanCallback);<span class="comment">//开始扫描</span></div><div class="line">mBluetoothAdapter.stopLeScan(mMyScanCallback);<span class="comment">//停止扫描</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyLeScanCallback</span> <span class="keyword">implements</span> <span class="title">BluetoothAdapter</span>.<span class="title">LeScanCallback</span> </span>&#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLeScan</span><span class="params">(BluetoothDevice device, <span class="keyword">int</span> rssi, <span class="keyword">byte</span>[] scanRecord)</span> </span>&#123;</div><div class="line">              <span class="comment">//扫描结果</span></div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line"> <span class="comment">//支持android5.0以上（api21）</span></div><div class="line">MyScanCallback mMyScanCallback=<span class="keyword">new</span> MyScanCallback();</div><div class="line">BluetoothLeScanner bluetoothLeScanner=mBluetoothAdapter.getBluetoothLeScanner();</div><div class="line">bluetoothLeScanner.startScan(mMyScanCallback);</div><div class="line">bluetoothLeScanner.stopScan(mMyScanCallback);</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyScanCallback</span> <span class="keyword">extends</span> <span class="title">ScanCallback</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScanResult</span><span class="params">(<span class="keyword">int</span> callbackType, ScanResult result)</span> </span>&#123;</div><div class="line">            <span class="keyword">super</span>.onScanResult(callbackType, result);</div><div class="line">            result.getScanRecord().toString();<span class="comment">//设备信息</span></div><div class="line">            BluetoothDevice bluetoothDevice=result.getDevice();<span class="comment">//扫描出的设备</span></div><div class="line">            </div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBatchScanResults</span><span class="params">(List&lt;ScanResult&gt; results)</span> </span>&#123;</div><div class="line">            <span class="keyword">super</span>.onBatchScanResults(results);</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScanFailed</span><span class="params">(<span class="keyword">int</span> errorCode)</span> </span>&#123;</div><div class="line">            <span class="keyword">super</span>.onScanFailed(errorCode);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取适配器"><a href="#获取适配器" class="headerlink" title="获取适配器"></a>获取适配器</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android-蓝牙/" rel="tag">#Android,蓝牙</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/17/ConstraintLayout和FlexboxLayout/" rel="next" title="ConstraintLayout和FlexboxLayout">
+                <i class="fa fa-chevron-left"></i> ConstraintLayout和FlexboxLayout
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+
+
+
+
+
+
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+
+  <div class="comments" id="comments">
+
+
+</script>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"
+               alt="cczhr" />
+          <p class="site-author-name" itemprop="name">cczhr</p>
+          <p class="site-description motion-element" itemprop="description">或许你真的可以改变世界。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cczhr" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/cczhr" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#通用配置"><span class="nav-number">1.</span> <span class="nav-text">通用配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传统蓝牙"><span class="nav-number">2.</span> <span class="nav-text">传统蓝牙</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作为客户端"><span class="nav-number">2.2.</span> <span class="nav-text">作为客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#扫描设备"><span class="nav-number">2.2.1.</span> <span class="nav-text">扫描设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端获取BluetoothSocket"><span class="nav-number">2.2.2.</span> <span class="nav-text">客户端获取BluetoothSocket</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端"><span class="nav-number">2.3.</span> <span class="nav-text">服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打开可被发现"><span class="nav-number">2.3.1.</span> <span class="nav-text">打开可被发现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监听连接状态获取BluetoothSocket"><span class="nav-number">2.3.2.</span> <span class="nav-text">监听连接状态获取BluetoothSocket</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据传输部分"><span class="nav-number">2.4.</span> <span class="nav-text">数据传输部分</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BLE"><span class="nav-number">3.</span> <span class="nav-text">BLE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#扫描设备-1"><span class="nav-number">3.1.</span> <span class="nav-text">扫描设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取适配器"><span class="nav-number">3.2.</span> <span class="nav-text">获取适配器</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cczhr</span>
+</div>
+
+<div class="powered-by">
+
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+   &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+ 
+
+ 
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+</html>
