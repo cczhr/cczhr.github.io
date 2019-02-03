@@ -1,20 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
 
 
 
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -25,66 +30,73 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
 
 
   
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
-
-
-
-
-
-
-<meta name="description" content="或许你真的可以改变世界。">
+  <meta name="description" content="或许你真的可以改变世界。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Not Found Blog">
 <meta property="og:url" content="https://bigbignews.club/index.html">
@@ -96,31 +108,20 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    }
-  };
-</script>
-
 
 
 
   <link rel="canonical" href="https://bigbignews.club/"/>
 
 
-  <title> Not Found Blog </title>
-</head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
+  <title>Not Found Blog</title>
   
 
 
@@ -131,104 +132,159 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Not Found Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Not Found Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
   </div>
-  <p class="site-subtitle"></p>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
+
 
 <nav class="site-nav">
-  
-
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-            标签
-          </a>
-        </li>
+          
+          <li class="menu-item menu-item-home menu-item-active">
+
+    
+    
+    
       
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
 
       
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-            搜索
-          </a>
-        </li>
       
     </ul>
   
 
   
-    <div class="site-search">
-      
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
-</div>
 
-
-    </div>
   
 </nav>
 
- </div>
+
+
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -236,13 +292,29 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bigbignews.club/2019/02/01/Android传统蓝牙与低功耗蓝牙/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
 
     
       <header class="post-header">
@@ -250,13 +322,9 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2019/02/01/Android传统蓝牙与低功耗蓝牙/" itemprop="url">
-                  Android传统蓝牙与低功耗蓝牙
-                </a>
+                
+                <a href="/2019/02/01/Android传统蓝牙与低功耗蓝牙/" class="post-title-link" itemprop="url">Android传统蓝牙与低功耗蓝牙</a>
               
             
           </h1>
@@ -264,59 +332,108 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-02-01T18:46:13+08:00" content="2019-02-01">
-              2019-02-01
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-01 18:46:13" itemprop="dateCreated datePublished" datetime="2019-02-01T18:46:13+08:00">2019-02-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-02 15:12:29" itemprop="dateModified" datetime="2019-02-02T15:12:29+08:00">2019-02-02</time>
+              
+            
           </span>
 
           
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/02/01/Android传统蓝牙与低功耗蓝牙/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/01/Android传统蓝牙与低功耗蓝牙/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
           
 
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">12k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">11 分钟</span>
+              
+            </div>
           
 
-
-
-         <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">1,862(字)</span>
-           
-         </span>
-	  
-      <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">8(分)</span>
-           
-         </span>
-
-
-
-
-
-
           
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -325,44 +442,55 @@
       
         
           
-           低功耗蓝牙又叫ble蓝牙，本文会用ble代替低功耗蓝牙（偷懒）
-通用配置要申请的权限12345&lt;uses-permission android:name="android.permission.BLUETOOTH"/&gt;&lt;uses-permission android:name="
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2019/02/01/Android传统蓝牙与低功耗蓝牙/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+            <p>
+               低功耗蓝牙又叫ble蓝牙，本文会用ble代替低功耗蓝牙（偷懒）
+通用配置要申请的权限&lt;uses-permission android:name="android.permission.BLUETOOTH"/&gt;&lt;uses-permission android:name="andro
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/01/Android传统蓝牙与低功耗蓝牙/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
 
       
 
-
-
-
-
-
-
+      
 
       
       
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -370,13 +498,29 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bigbignews.club/2018/11/17/ConstraintLayout和FlexboxLayout/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
 
     
       <header class="post-header">
@@ -384,13 +528,9 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2018/11/17/ConstraintLayout和FlexboxLayout/" itemprop="url">
-                  ConstraintLayout和FlexboxLayout
-                </a>
+                
+                <a href="/2018/11/17/ConstraintLayout和FlexboxLayout/" class="post-title-link" itemprop="url">ConstraintLayout和FlexboxLayout</a>
               
             
           </h1>
@@ -398,59 +538,96 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-11-17T22:11:13+08:00" content="2018-11-17">
-              2018-11-17
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-17 22:11:13 / 修改时间：22:47:56" itemprop="dateCreated datePublished" datetime="2018-11-17T22:11:13+08:00">2018-11-17</time>
+            
+
+            
+              
+
+              
+            
           </span>
 
           
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/11/17/ConstraintLayout和FlexboxLayout/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/17/ConstraintLayout和FlexboxLayout/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
           
 
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">4.6k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">4 分钟</span>
+              
+            </div>
           
 
-
-
-         <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">1,484(字)</span>
-           
-         </span>
-	  
-      <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">6(分)</span>
-           
-         </span>
-
-
-
-
-
-
           
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -459,43 +636,54 @@
       
         
           
-           ConstraintLayout一些说明有人可能好奇 android 定位 除了 left right top bottom 外还有 start end而 start end 和 left right 在布局里看感觉一模一样，其实是有一些区别的，引入start end 就是为了适配google的R
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/11/17/ConstraintLayout和FlexboxLayout/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+            <p>
+               ConstraintLayout一些说明有人可能好奇 android 定位 除了 left right top bottom 外还有 start end而 start end 和 left right 在布局里看感觉一模一样，其实是有一些区别的，引入start end 就是为了适配google的R
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/17/ConstraintLayout和FlexboxLayout/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
 
       
 
-
-
-
-
-
-
+      
 
       
       
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -503,13 +691,29 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bigbignews.club/2018/10/06/kotlin的笔记/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
 
     
       <header class="post-header">
@@ -517,13 +721,9 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2018/10/06/kotlin的笔记/" itemprop="url">
-                  kotlin的笔记
-                </a>
+                
+                <a href="/2018/10/06/kotlin的笔记/" class="post-title-link" itemprop="url">kotlin的笔记</a>
               
             
           </h1>
@@ -531,59 +731,108 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-10-06T21:23:07+08:00" content="2018-10-06">
-              2018-10-06
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-06 21:23:07" itemprop="dateCreated datePublished" datetime="2018-10-06T21:23:07+08:00">2018-10-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-17 22:50:37" itemprop="dateModified" datetime="2018-11-17T22:50:37+08:00">2018-11-17</time>
+              
+            
           </span>
 
           
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/10/06/kotlin的笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/06/kotlin的笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
           
 
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">7.5k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">7 分钟</span>
+              
+            </div>
           
 
-
-
-         <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">1,231(字)</span>
-           
-         </span>
-	  
-      <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">6(分)</span>
-           
-         </span>
-
-
-
-
-
-
           
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -592,44 +841,55 @@
       
         
           
-           Android Studio创建kotlin项目File-&gt;New-&gt;New Project-&gt;Include kotlin support
-project  build.gradle123456789101112131415161718192021222324buildscri
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/10/06/kotlin的笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+            <p>
+               Android Studio创建kotlin项目File-&gt;New-&gt;New Project-&gt;Include kotlin support
+project  build.gradlebuildscript &#123;    ext.kotlin_version = '1.2.
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/06/kotlin的笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
 
       
 
-
-
-
-
-
-
+      
 
       
       
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -637,13 +897,29 @@ project  build.gradle123456789101112131415161718192021222324buildscri
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bigbignews.club/2018/09/24/Android的AOP编程/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
 
     
       <header class="post-header">
@@ -651,13 +927,9 @@ project  build.gradle123456789101112131415161718192021222324buildscri
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2018/09/24/Android的AOP编程/" itemprop="url">
-                  Android的AOP编程
-                </a>
+                
+                <a href="/2018/09/24/Android的AOP编程/" class="post-title-link" itemprop="url">Android的AOP编程</a>
               
             
           </h1>
@@ -665,59 +937,108 @@ project  build.gradle123456789101112131415161718192021222324buildscri
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-09-24T18:06:50+08:00" content="2018-09-24">
-              2018-09-24
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-24 18:06:50" itemprop="dateCreated datePublished" datetime="2018-09-24T18:06:50+08:00">2018-09-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-02 12:22:27" itemprop="dateModified" datetime="2018-10-02T12:22:27+08:00">2018-10-02</time>
+              
+            
           </span>
 
           
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/09/24/Android的AOP编程/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/24/Android的AOP编程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
           
 
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">3.9k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">4 分钟</span>
+              
+            </div>
           
 
-
-
-         <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">991(字)</span>
-           
-         </span>
-	  
-      <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">4(分)</span>
-           
-         </span>
-
-
-
-
-
-
           
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -726,44 +1047,55 @@ project  build.gradle123456789101112131415161718192021222324buildscri
       
         
           
-           参考资料 https://blog.csdn.net/nthack5730/article/details/45604031
+            <p>
+               参考资料 https://blog.csdn.net/nthack5730/article/details/45604031
 理论可以通过预编译方式和运行期动态代理实现在不修改源代码的情况下给程序动态统一添加功能的一种技术。AOP实际是GoF设计模式的延续，设计模式孜孜不倦追求的是调用者和被调用者
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/09/24/Android的AOP编程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/24/Android的AOP编程/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
 
       
 
-
-
-
-
-
-
+      
 
       
       
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -771,13 +1103,29 @@ project  build.gradle123456789101112131415161718192021222324buildscri
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bigbignews.club/2018/09/24/线性代数/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
 
     
       <header class="post-header">
@@ -785,13 +1133,9 @@ project  build.gradle123456789101112131415161718192021222324buildscri
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2018/09/24/线性代数/" itemprop="url">
-                  线性代数
-                </a>
+                
+                <a href="/2018/09/24/线性代数/" class="post-title-link" itemprop="url">线性代数</a>
               
             
           </h1>
@@ -799,59 +1143,96 @@ project  build.gradle123456789101112131415161718192021222324buildscri
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-09-24T11:32:41+08:00" content="2018-09-24">
-              2018-09-24
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-24 11:32:41 / 修改时间：17:11:23" itemprop="dateCreated datePublished" datetime="2018-09-24T11:32:41+08:00">2018-09-24</time>
+            
+
+            
+              
+
+              
+            
           </span>
 
           
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/09/24/线性代数/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/24/线性代数/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
           
 
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
           
 
-
-
-         <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">0(字)</span>
-           
-         </span>
-	  
-      <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">1(分)</span>
-           
-         </span>
-
-
-
-
-
-
           
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -860,43 +1241,54 @@ project  build.gradle123456789101112131415161718192021222324buildscri
       
         
           
-           
+            <p>
+               
+              
+            </p>
+          <!--noindex-->
           
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/09/24/线性代数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/24/线性代数/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
 
       
 
-
-
-
-
-
-
+      
 
       
       
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -904,13 +1296,29 @@ project  build.gradle123456789101112131415161718192021222324buildscri
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bigbignews.club/2018/08/19/网站前端的一些记录/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
 
     
       <header class="post-header">
@@ -918,13 +1326,9 @@ project  build.gradle123456789101112131415161718192021222324buildscri
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2018/08/19/网站前端的一些记录/" itemprop="url">
-                  网站前端的一些记录
-                </a>
+                
+                <a href="/2018/08/19/网站前端的一些记录/" class="post-title-link" itemprop="url">网站前端的一些记录</a>
               
             
           </h1>
@@ -932,59 +1336,96 @@ project  build.gradle123456789101112131415161718192021222324buildscri
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-08-19T09:31:39+08:00" content="2018-08-19">
-              2018-08-19
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-19 09:31:39 / 修改时间：23:09:39" itemprop="dateCreated datePublished" datetime="2018-08-19T09:31:39+08:00">2018-08-19</time>
+            
+
+            
+              
+
+              
+            
           </span>
 
           
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/08/19/网站前端的一些记录/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/19/网站前端的一些记录/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
           
 
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">3.3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">3 分钟</span>
+              
+            </div>
           
 
-
-
-         <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">490(字)</span>
-           
-         </span>
-	  
-      <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">2(分)</span>
-           
-         </span>
-
-
-
-
-
-
           
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -993,44 +1434,55 @@ project  build.gradle123456789101112131415161718192021222324buildscri
       
         
           
-           CSSpostion(定位)static(默认)没有任何定位。top, bottom, left, right z-index 无效。
-relative(相对定位)相对于它当前位置再进行定位。12345678910111213141516171819202122232425262728293031
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/08/19/网站前端的一些记录/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+            <p>
+               CSSpostion(定位)static(默认)没有任何定位。top, bottom, left, right z-index 无效。
+relative(相对定位)相对于它当前位置再进行定位。&lt;html&gt;	&lt;head&gt;		&lt;meta charset="utf-8" /
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/08/19/网站前端的一些记录/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
 
       
 
-
-
-
-
-
-
+      
 
       
       
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1038,13 +1490,29 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bigbignews.club/2018/08/18/weex混合开发的一些记录/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
 
     
       <header class="post-header">
@@ -1052,13 +1520,9 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2018/08/18/weex混合开发的一些记录/" itemprop="url">
-                  weex混合开发的一些记录
-                </a>
+                
+                <a href="/2018/08/18/weex混合开发的一些记录/" class="post-title-link" itemprop="url">weex混合开发的一些记录</a>
               
             
           </h1>
@@ -1066,59 +1530,108 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-08-18T21:32:30+08:00" content="2018-08-18">
-              2018-08-18
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-18 21:32:30" itemprop="dateCreated datePublished" datetime="2018-08-18T21:32:30+08:00">2018-08-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-24 17:24:01" itemprop="dateModified" datetime="2018-09-24T17:24:01+08:00">2018-09-24</time>
+              
+            
           </span>
 
           
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/08/18/weex混合开发的一些记录/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/18/weex混合开发的一些记录/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
           
 
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">2.1k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">2 分钟</span>
+              
+            </div>
           
 
-
-
-         <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">509(字)</span>
-           
-         </span>
-	  
-      <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">2(分)</span>
-           
-         </span>
-
-
-
-
-
-
           
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1127,44 +1640,55 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
       
         
           
-           前言最近在研究weex，据我了解weex基本两种玩法，一种是混合开发（可热更新）生成app的h5页面和生成让原生渲染控件的js(需要有一定了解android/ios开发，需要接入sdk和一些处理)，另一种为直接打包为一个android/ios项目（不具备热更新）。这里记录的主要是前者。
+            <p>
+               前言最近在研究weex，据我了解weex基本两种玩法，一种是混合开发（可热更新）生成app的h5页面和生成让原生渲染控件的js(需要有一定了解android/ios开发，需要接入sdk和一些处理)，另一种为直接打包为一个android/ios项目（不具备热更新）。这里记录的主要是前者。
 接入前需要
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/08/18/weex混合开发的一些记录/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/08/18/weex混合开发的一些记录/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
 
       
 
-
-
-
-
-
-
+      
 
       
       
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1172,13 +1696,29 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bigbignews.club/2018/07/29/MySQL的一些记录/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
 
     
       <header class="post-header">
@@ -1186,13 +1726,9 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2018/07/29/MySQL的一些记录/" itemprop="url">
-                  MySQL的一些记录
-                </a>
+                
+                <a href="/2018/07/29/MySQL的一些记录/" class="post-title-link" itemprop="url">MySQL的一些记录</a>
               
             
           </h1>
@@ -1200,59 +1736,96 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-07-29T15:41:06+08:00" content="2018-07-29">
-              2018-07-29
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-29 15:41:06 / 修改时间：21:10:10" itemprop="dateCreated datePublished" datetime="2018-07-29T15:41:06+08:00">2018-07-29</time>
+            
+
+            
+              
+
+              
+            
           </span>
 
           
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/07/29/MySQL的一些记录/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/29/MySQL的一些记录/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
           
 
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">897</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
           
 
-
-
-         <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">495(字)</span>
-           
-         </span>
-	  
-      <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">2(分)</span>
-           
-         </span>
-
-
-
-
-
-
           
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1261,46 +1834,57 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
       
         
           
-           记录一些平时可能会遗忘的东西
+            <p>
+               记录一些平时可能会遗忘的东西
 拼接字段 Concat注意多数DBMS使用 + 或 || 来实现拼接，MySQL则使用 Concat() 函数来实现。当把SQL语句转换成 MySQL语句时一定要把这个区别铭记在心。
 使用
 分组GROUP BY 过滤分组 HAVING注意GROUP BY 子句必须出现
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/07/29/MySQL的一些记录/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/07/29/MySQL的一些记录/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
 
       
 
-
-
-
-
-
-
+      
 
       
       
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1308,13 +1892,29 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bigbignews.club/2018/07/21/Java的反射与注解/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
 
     
       <header class="post-header">
@@ -1322,13 +1922,9 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2018/07/21/Java的反射与注解/" itemprop="url">
-                  Java的反射与注解
-                </a>
+                
+                <a href="/2018/07/21/Java的反射与注解/" class="post-title-link" itemprop="url">Java的反射与注解</a>
               
             
           </h1>
@@ -1336,59 +1932,108 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-07-21T21:32:39+08:00" content="2018-07-21">
-              2018-07-21
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-21 21:32:39" itemprop="dateCreated datePublished" datetime="2018-07-21T21:32:39+08:00">2018-07-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-07-29 09:48:00" itemprop="dateModified" datetime="2018-07-29T09:48:00+08:00">2018-07-29</time>
+              
+            
           </span>
 
           
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/07/21/Java的反射与注解/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/21/Java的反射与注解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
           
 
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">7.6k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">7 分钟</span>
+              
+            </div>
           
 
-
-
-         <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">2,347(字)</span>
-           
-         </span>
-	  
-      <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">10(分)</span>
-           
-         </span>
-
-
-
-
-
-
           
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1397,43 +2042,54 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
       
         
           
-           反射理论在面向对象的编程语言如Java中，反射允许在编译期间不知道接口的名称，字段（fields，即成员变量）、方法的情况下在运行时检查类、接口、字段和方法。它还允许根据判断结果进行实例化新对象和不同方法的调用。反射还可以使给定的程序动态地适应不同的运行情况。例如，考虑一个应用程序，它使用2个不同
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/07/21/Java的反射与注解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+            <p>
+               反射理论在面向对象的编程语言如Java中，反射允许在编译期间不知道接口的名称，字段（fields，即成员变量）、方法的情况下在运行时检查类、接口、字段和方法。它还允许根据判断结果进行实例化新对象和不同方法的调用。反射还可以使给定的程序动态地适应不同的运行情况。例如，考虑一个应用程序，它使用2个不同
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/07/21/Java的反射与注解/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
 
       
 
-
-
-
-
-
-
+      
 
       
       
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1441,13 +2097,29 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bigbignews.club/2018/07/15/树莓派使用日志/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
 
     
       <header class="post-header">
@@ -1455,13 +2127,9 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2018/07/15/树莓派使用日志/" itemprop="url">
-                  树莓派使用日志
-                </a>
+                
+                <a href="/2018/07/15/树莓派使用日志/" class="post-title-link" itemprop="url">树莓派使用日志</a>
               
             
           </h1>
@@ -1469,59 +2137,96 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-07-15T18:00:39+08:00" content="2018-07-15">
-              2018-07-15
-            </time>
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-15 18:00:39 / 修改时间：21:48:43" itemprop="dateCreated datePublished" datetime="2018-07-15T18:00:39+08:00">2018-07-15</time>
+            
+
+            
+              
+
+              
+            
           </span>
 
           
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/07/15/树莓派使用日志/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/15/树莓派使用日志/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
           
 
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">2k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">2 分钟</span>
+              
+            </div>
           
 
-
-
-         <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">720(字)</span>
-           
-         </span>
-	  
-      <span class="post-time">
-	   &nbsp; | &nbsp;
-           <span class="post-meta-item-icon">
-             <i class="fa fa-calendar-o"></i>
-           </span>
-           <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">3(分)</span>
-           
-         </span>
-
-
-
-
-
-
           
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1530,44 +2235,55 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
       
         
           
-           前言买了个树莓派3b+ 记录一下把♂玩♀它的时刻。
+            <p>
+               前言买了个树莓派3b+ 记录一下把♂玩♀它的时刻。
 烧录系统官方推荐系统： Raspbian 下载默认帐号密码：Username: pi  Password: raspberry烧录工具：USB Image Tool 下载准备一张tf卡 一个读卡器 tf卡推荐16g以上解压USB Image To
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/07/15/树莓派使用日志/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/07/15/树莓派使用日志/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
 
       
 
-
-
-
-
-
-
+      
 
       
       
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1576,15 +2292,12 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -1600,73 +2313,105 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"
-               alt="cczhr" />
-          <p class="site-author-name" itemprop="name">cczhr</p>
-          <p class="site-description motion-element" itemprop="description">或许你真的可以改变世界。</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">58</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cczhr</p>
+              <p class="site-description motion-element" itemprop="description">或许你真的可以改变世界。</p>
           </div>
 
           
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
 
           
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">18</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
+
           
 
-        </nav>
+          
 
-        
+          
+          
 
-        <div class="links-of-author motion-element">
           
             
-              <span class="links-of-author-item">
-                <a href="https://github.com/cczhr" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://weibo.com/cczhr" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
-                </a>
-              </span>
-            
           
+          
+
         </div>
+      </div>
 
-        
-        
-
-        
-        
-      </section>
+      
 
       
 
@@ -1680,44 +2425,75 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">cczhr</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">227k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">3:26</span>
+  
 </div>
 
-<div class="powered-by">
 
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.2.2</div>
 
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-   &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
-</div>
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
 
         
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -1731,193 +2507,105 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
 
 
 
-  
 
-
-
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
-
-
-
-  
-
-
-
-  
 
 
 
 
   
+    
+    
   
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
 
-    }
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = false;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title >= 0 || index_content >= 0 ){
-                                isMatch = true;
-								if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            } 
-							
-                        });
-                    }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
 
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
-                        }
-                        str += "</li>";
-                    }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
-            });
-            proceedsearch();
-        }
-    });}
 
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched == false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
 
-    });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-  </script>
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'aMSu6hzeOMWDmzPvSSupyCSz-gzGzoHsz# your leancloud application appid',
+    appKey: 'kXxUv0I5NdmApftPNoX8nBul# your leancloud application appkey',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+
+
+
+
+  
+
+
+
 
 
   
@@ -1928,10 +2616,23 @@ relative(相对定位)相对于它当前位置再进行定位。1234567891011121
 
   
 
- 
+  
 
- 
-<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>
