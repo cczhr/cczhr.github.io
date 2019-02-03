@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Not Found Blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://cczhr.ink/"/>
+  <updated>2019-02-02T07:12:29.608Z</updated>
+  <id>http://cczhr.ink/</id>
+  
+  <author>
+    <name>cczhr</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android传统蓝牙与低功耗蓝牙</title>
+    <link href="http://cczhr.ink/2019/02/01/Android%E4%BC%A0%E7%BB%9F%E8%93%9D%E7%89%99%E4%B8%8E%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99/"/>
+    <id>http://cczhr.ink/2019/02/01/Android传统蓝牙与低功耗蓝牙/</id>
+    <published>2019-02-01T10:46:13.000Z</published>
+    <updated>2019-02-02T07:12:29.608Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;低功耗蓝牙又叫ble蓝牙，本文会用ble代替低功耗蓝牙（偷懒）&lt;/p&gt;
+&lt;h1 id=&quot;通用配置&quot;&gt;&lt;a href=&quot;#通用配置&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android,蓝牙" scheme="http://cczhr.ink/tags/Android-%E8%93%9D%E7%89%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ConstraintLayout和FlexboxLayout</title>
+    <link href="http://cczhr.ink/2018/11/17/ConstraintLayout%E5%92%8CFlexboxLayout/"/>
+    <id>http://cczhr.ink/2018/11/17/ConstraintLayout和FlexboxLayout/</id>
+    <published>2018-11-17T14:11:13.000Z</published>
+    <updated>2018-11-17T14:47:56.321Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;ConstraintLayout&quot;&gt;&lt;a href=&quot;#ConstraintLayout&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android布局" scheme="http://cczhr.ink/tags/Android%E5%B8%83%E5%B1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>kotlin的笔记</title>
+    <link href="http://cczhr.ink/2018/10/06/kotlin%E7%9A%84%E7%AC%94%E8%AE%B0/"/>
+    <id>http://cczhr.ink/2018/10/06/kotlin的笔记/</id>
+    <published>2018-10-06T13:23:07.000Z</published>
+    <updated>2018-11-17T14:50:37.849Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;Android-Studio创建kotlin项目&quot;&gt;&lt;a href=&quot;#Android-Studio创建kotlin项目&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Kotlin" scheme="http://cczhr.ink/tags/Kotlin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android的AOP编程</title>
+    <link href="http://cczhr.ink/2018/09/24/Android%E7%9A%84AOP%E7%BC%96%E7%A8%8B/"/>
+    <id>http://cczhr.ink/2018/09/24/Android的AOP编程/</id>
+    <published>2018-09-24T10:06:50.000Z</published>
+    <updated>2018-10-02T04:22:27.739Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;参考资料 &lt;a href=&quot;https://blog.csdn.net/nthack5730/article/details/45604031&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="面向切面,AOP" scheme="http://cczhr.ink/tags/%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2-AOP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线性代数</title>
+    <link href="http://cczhr.ink/2018/09/24/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+    <id>http://cczhr.ink/2018/09/24/线性代数/</id>
+    <published>2018-09-24T03:32:41.000Z</published>
+    <updated>2018-09-24T09:11:23.831Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="线性代数" scheme="http://cczhr.ink/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网站前端的一些记录</title>
+    <link href="http://cczhr.ink/2018/08/19/%E7%BD%91%E7%AB%99%E5%89%8D%E7%AB%AF%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/"/>
+    <id>http://cczhr.ink/2018/08/19/网站前端的一些记录/</id>
+    <published>2018-08-19T01:31:39.000Z</published>
+    <updated>2018-08-19T15:09:39.494Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;CSS&quot;&gt;&lt;a href=&quot;#CSS&quot; class=&quot;headerlink&quot; title=&quot;CSS&quot;&gt;&lt;/a&gt;CSS&lt;/h1&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="网站前端" scheme="http://cczhr.ink/tags/%E7%BD%91%E7%AB%99%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>weex混合开发的一些记录</title>
+    <link href="http://cczhr.ink/2018/08/18/weex%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/"/>
+    <id>http://cczhr.ink/2018/08/18/weex混合开发的一些记录/</id>
+    <published>2018-08-18T13:32:30.000Z</published>
+    <updated>2018-09-24T09:24:01.054Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="weex" scheme="http://cczhr.ink/tags/weex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL的一些记录</title>
+    <link href="http://cczhr.ink/2018/07/29/MySQL%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/"/>
+    <id>http://cczhr.ink/2018/07/29/MySQL的一些记录/</id>
+    <published>2018-07-29T07:41:06.000Z</published>
+    <updated>2018-07-29T13:10:10.573Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;del&gt;记录一些平时可能会遗忘的东西&lt;/del&gt;&lt;/p&gt;
+&lt;h2 id=&quot;拼接字段-Concat&quot;&gt;&lt;a href=&quot;#拼接字段-Concat&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="数据库,MySQL" scheme="http://cczhr.ink/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java的反射与注解</title>
+    <link href="http://cczhr.ink/2018/07/21/Java%E7%9A%84%E5%8F%8D%E5%B0%84%E4%B8%8E%E6%B3%A8%E8%A7%A3/"/>
+    <id>http://cczhr.ink/2018/07/21/Java的反射与注解/</id>
+    <published>2018-07-21T13:32:39.000Z</published>
+    <updated>2018-07-29T01:48:00.994Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;反射&quot;&gt;&lt;a href=&quot;#反射&quot; class=&quot;headerlink&quot; title=&quot;反射&quot;&gt;&lt;/a&gt;反射&lt;/h2&gt;&lt;h3 id=&quot;理论&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java笔记" scheme="http://cczhr.ink/tags/Java%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>树莓派使用日志</title>
+    <link href="http://cczhr.ink/2018/07/15/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8%E6%97%A5%E5%BF%97/"/>
+    <id>http://cczhr.ink/2018/07/15/树莓派使用日志/</id>
+    <published>2018-07-15T10:00:39.000Z</published>
+    <updated>2018-07-15T13:48:43.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;买了个树莓派3b+
+        
+      
+    
+    </summary>
+    
+    
+      <category term="树莓派" scheme="http://cczhr.ink/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android的GreenDao笔记</title>
+    <link href="http://cczhr.ink/2018/07/04/Android%E7%9A%84GreenDao%E7%AC%94%E8%AE%B0/"/>
+    <id>http://cczhr.ink/2018/07/04/Android的GreenDao笔记/</id>
+    <published>2018-07-04T12:11:05.000Z</published>
+    <updated>2018-07-08T06:36:18.467Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;ORM概念&quot;&gt;&lt;a href=&quot;#ORM概念&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android 数据库" scheme="http://cczhr.ink/tags/Android-%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android的RxJava笔记</title>
+    <link href="http://cczhr.ink/2018/06/23/Android%E7%9A%84RxJava%E7%AC%94%E8%AE%B0/"/>
+    <id>http://cczhr.ink/2018/06/23/Android的RxJava笔记/</id>
+    <published>2018-06-23T09:00:00.000Z</published>
+    <updated>2018-07-01T09:19:58.697Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;序&quot;&gt;&lt;a href=&quot;#序&quot; class=&quot;headerlink&quot; title=&quot;序&quot;&gt;&lt;/a&gt;序&lt;/h2&gt;&lt;p&gt;rvjava
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://cczhr.ink/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android串口开发的一些事</title>
+    <link href="http://cczhr.ink/2018/06/10/Android%E4%B8%B2%E5%8F%A3%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/"/>
+    <id>http://cczhr.ink/2018/06/10/Android串口开发的一些事/</id>
+    <published>2018-06-10T06:43:35.000Z</published>
+    <updated>2018-06-17T10:06:36.298Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;基础知识&quot;&gt;&lt;a href=&quot;#基础知识&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android 串口" scheme="http://cczhr.ink/tags/Android-%E4%B8%B2%E5%8F%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>正则表达式笔记</title>
+    <link href="http://cczhr.ink/2018/04/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%94%E8%AE%B0/"/>
+    <id>http://cczhr.ink/2018/04/22/正则表达式笔记/</id>
+    <published>2018-04-22T06:14:11.000Z</published>
+    <updated>2018-04-22T06:14:11.540Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android的运行时权限</title>
+    <link href="http://cczhr.ink/2018/04/09/Android%E7%9A%84%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90/"/>
+    <id>http://cczhr.ink/2018/04/09/Android的运行时权限/</id>
+    <published>2018-04-09T08:09:40.000Z</published>
+    <updated>2018-04-09T10:23:48.537Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;一般权限&quot;&gt;&lt;a href=&quot;#一般权限&quot; class=&quot;headerlink&quot; title=&quot;一般权限&quot;&gt;&lt;/a&gt;一般权限&lt;/h2&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://cczhr.ink/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 入门笔记</title>
+    <link href="http://cczhr.ink/2018/03/19/python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/"/>
+    <id>http://cczhr.ink/2018/03/19/python-入门笔记/</id>
+    <published>2018-03-19T05:29:24.000Z</published>
+    <updated>2018-03-22T09:15:39.925Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;基于python3.6，感觉熟悉java的人学python非常简单~&lt;/p&gt;
+&lt;h2 id=&quot;基础&quot;&gt;&lt;a href=&quot;#基础&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="http://cczhr.ink/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android常用的ViewPager</title>
+    <link href="http://cczhr.ink/2018/03/13/Android%E5%B8%B8%E7%94%A8%E7%9A%84ViewPager/"/>
+    <id>http://cczhr.ink/2018/03/13/Android常用的ViewPager/</id>
+    <published>2018-03-13T08:14:04.000Z</published>
+    <updated>2018-03-18T11:11:51.619Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;ViewPager&quot;&gt;&lt;a href=&quot;#ViewPager&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://cczhr.ink/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>几种常用的设计模式的笔记</title>
+    <link href="http://cczhr.ink/2018/03/09/%E5%87%A0%E7%A7%8D%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%AC%94%E8%AE%B0/"/>
+    <id>http://cczhr.ink/2018/03/09/几种常用的设计模式的笔记/</id>
+    <published>2018-03-09T13:58:03.000Z</published>
+    <updated>2018-03-10T14:35:34.755Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;面向对象的六大原则&quot;&gt;&lt;a href=&quot;#面向对象的六大原则&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java笔记" scheme="http://cczhr.ink/tags/Java%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android的Drawable</title>
+    <link href="http://cczhr.ink/2018/03/09/Android%E7%9A%84Drawable/"/>
+    <id>http://cczhr.ink/2018/03/09/Android的Drawable/</id>
+    <published>2018-03-09T11:18:16.000Z</published>
+    <updated>2018-03-09T11:22:32.930Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;shape&quot;&gt;&lt;a href=&quot;#shape&quot; class=&quot;headerlink&quot; title=&quot;shape&quot;&gt;&lt;/a&gt;shape&lt;/h2&gt;&lt;figure
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://cczhr.ink/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android的悬浮窗</title>
+    <link href="http://cczhr.ink/2018/03/09/Android%E7%9A%84%E6%82%AC%E6%B5%AE%E7%AA%97/"/>
+    <id>http://cczhr.ink/2018/03/09/Android的悬浮窗/</id>
+    <published>2018-03-09T11:14:36.000Z</published>
+    <updated>2018-03-09T11:15:38.756Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;适配8-0&quot;&gt;&lt;a href=&quot;#适配8-0&quot; class=&quot;headerlink&quot; title=&quot;适配8.0&quot;&gt;&lt;/a&gt;适配8.0&lt;/h2&gt;&lt;figure
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://cczhr.ink/tags/Android/"/>
+    
+  </entry>
+  
+</feed>
