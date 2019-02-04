@@ -74,7 +74,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '7.0.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -2229,6 +2229,8 @@ LitePal是一款开源的Android数据库框架，采用了对象关系映射(OR
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -2377,6 +2379,13 @@ LitePal是一款开源的Android数据库框架，采用了对象关系映射(OR
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -2441,11 +2450,6 @@ LitePal是一款开源的Android数据库框架，采用了对象关系映射(OR
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
     
 
@@ -2491,8 +2495,6 @@ LitePal是一款开源的Android数据库框架，采用了对象关系映射(OR
 
 
 
-  
-
 
 
   
@@ -2503,9 +2505,6 @@ LitePal是一款开源的Android数据库框架，采用了对象关系映射(OR
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/reading_progress/reading_progress.js"></script>
 
 
   

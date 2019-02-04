@@ -74,7 +74,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '7.0.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -337,8 +337,6 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
   
 
   
-    <div class="reading-progress-bar"></div>
-  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -584,6 +582,8 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -758,6 +758,13 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -822,11 +829,6 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
     
 
@@ -872,8 +874,6 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
 
 
 
-  
-
 
 
   
@@ -884,9 +884,6 @@ h5的页面（本文统称h5）和用js渲染原生控件的页面（本文统�
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/reading_progress/reading_progress.js"></script>
 
 
   

@@ -74,7 +74,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '7.0.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -2264,6 +2264,8 @@ compile &apos;com.android.support:cardview-v7:25.3.1&apos;
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -2412,6 +2414,13 @@ compile &apos;com.android.support:cardview-v7:25.3.1&apos;
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -2476,11 +2485,6 @@ compile &apos;com.android.support:cardview-v7:25.3.1&apos;
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
     
 
@@ -2526,8 +2530,6 @@ compile &apos;com.android.support:cardview-v7:25.3.1&apos;
 
 
 
-  
-
 
 
   
@@ -2538,9 +2540,6 @@ compile &apos;com.android.support:cardview-v7:25.3.1&apos;
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/reading_progress/reading_progress.js"></script>
 
 
   

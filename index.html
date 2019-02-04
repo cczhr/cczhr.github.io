@@ -74,7 +74,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '7.0.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -2227,6 +2227,8 @@ relative(相对定位)相对于它当前位置再进行定位。&lt;html&gt;	&lt
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -2375,6 +2377,13 @@ relative(相对定位)相对于它当前位置再进行定位。&lt;html&gt;	&lt
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -2439,11 +2448,6 @@ relative(相对定位)相对于它当前位置再进行定位。&lt;html&gt;	&lt
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
     
 
@@ -2489,8 +2493,6 @@ relative(相对定位)相对于它当前位置再进行定位。&lt;html&gt;	&lt
 
 
 
-  
-
 
 
   
@@ -2501,9 +2503,6 @@ relative(相对定位)相对于它当前位置再进行定位。&lt;html&gt;	&lt
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/reading_progress/reading_progress.js"></script>
 
 
   
