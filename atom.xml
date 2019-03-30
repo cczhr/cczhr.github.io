@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cczhr.ink/"/>
-  <updated>2019-03-08T12:29:11.526Z</updated>
+  <updated>2019-03-30T13:47:58.721Z</updated>
   <id>http://cczhr.ink/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>位运算复习</title>
+    <link href="http://cczhr.ink/2019/03/17/%E4%BD%8D%E8%BF%90%E7%AE%97%E5%A4%8D%E4%B9%A0/"/>
+    <id>http://cczhr.ink/2019/03/17/位运算复习/</id>
+    <published>2019-03-17T06:21:48.000Z</published>
+    <updated>2019-03-30T13:47:58.721Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;基础知识&quot;&gt;&lt;a href=&quot;#基础知识&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="位运算" scheme="http://cczhr.ink/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+    
+  </entry>
   
   <entry>
     <title>几种常用的设计模式的笔记</title>
@@ -334,7 +358,7 @@
     <link href="http://cczhr.ink/2018/06/10/Android%E4%B8%B2%E5%8F%A3%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/"/>
     <id>http://cczhr.ink/2018/06/10/Android串口开发的一些事/</id>
     <published>2018-06-10T06:43:35.000Z</published>
-    <updated>2018-06-17T10:06:36.298Z</updated>
+    <updated>2019-03-17T13:03:45.059Z</updated>
     
     <summary type="html">
     
@@ -462,30 +486,6 @@
         
         
           &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;shape&quot;&gt;&lt;a href=&quot;#shape&quot; class=&quot;headerlink&quot; title=&quot;shape&quot;&gt;&lt;/a&gt;shape&lt;/h2&gt;&lt;figure
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Android" scheme="http://cczhr.ink/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android的悬浮窗</title>
-    <link href="http://cczhr.ink/2018/03/09/Android%E7%9A%84%E6%82%AC%E6%B5%AE%E7%AA%97/"/>
-    <id>http://cczhr.ink/2018/03/09/Android的悬浮窗/</id>
-    <published>2018-03-09T11:14:36.000Z</published>
-    <updated>2018-03-09T11:15:38.756Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;适配8-0&quot;&gt;&lt;a href=&quot;#适配8-0&quot; class=&quot;headerlink&quot; title=&quot;适配8.0&quot;&gt;&lt;/a&gt;适配8.0&lt;/h2&gt;&lt;figure
         
       
     

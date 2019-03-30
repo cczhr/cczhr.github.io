@@ -4,6 +4,30 @@
   
     
     <entry>
+      <title><![CDATA[位运算复习]]></title>
+      <url>http://cczhr.ink/2019/03/17/%E4%BD%8D%E8%BF%90%E7%AE%97%E5%A4%8D%E4%B9%A0/</url>
+      <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><p>二进制中最高位为符号位。<br>例如一个字节的1<br>原码=反码=补码   0·000  0001<br>一个字节的-1<br>原码  1000 0001<br>反码  1111 1110<br>补码  1111 1111</p>
+<p>计算机的计算是以二进制的补码来进行运算的</p>
+<h1 id="（-amp-）按位与"><a href="#（-amp-）按位与" class="headerlink" title="（&amp;）按位与"></a>（&amp;）按位与</h1><p>两个数里的位相同则保持不变，相反则为0，简单来说，就是除了两个位为1的时候保持为1，其它情况都为0。<br>例如 1111 0000 &amp; 0100 1110 = 0100 0000</p>
+<h1 id="（-）按位或"><a href="#（-）按位或" class="headerlink" title="（|）按位或"></a>（|）按位或</h1><p>两个数里的位只要有一个为1则为1，其余为0。<br>例如 1111 0000 | 0100 1110 = 1111 1110</p>
+<h1 id="（-）按位异或"><a href="#（-）按位异或" class="headerlink" title="（^）按位异或"></a>（^）按位异或</h1><p>两个数里的位不相同为1，其余为0。<br>1111 0000 ^  0100 1110 = 1011 1110</p>
+<h1 id="（～）按位取反"><a href="#（～）按位取反" class="headerlink" title="（～）按位取反"></a>（～）按位取反</h1><p>1变成0，0变成1<br>例如 ~ 1111 0000 = 0000 1111</p>
+<h1 id="（-lt-lt-）左移"><a href="#（-lt-lt-）左移" class="headerlink" title="（&lt;&lt;）左移"></a>（&lt;&lt;）左移</h1><p>丢弃最高位低位补0<br>如 1000 0001 &lt;&lt; 1 =0000 00010<br>超过最高位取模移动<br>数学意义 左移n位相当于该数乘2的n次方</p>
+<h1 id="（-gt-gt-）右移"><a href="#（-gt-gt-）右移" class="headerlink" title="（&gt;&gt;）右移"></a>（&gt;&gt;）右移</h1><p>符号位不变 高位补符号位，丢弃最低位<br>1000 0001 &gt;&gt; 1 =1100 0000<br>数学意义 左移n位相当于该数除以2的n次方</p>
+<h1 id="（-gt-gt-gt-）无符号右移"><a href="#（-gt-gt-gt-）无符号右移" class="headerlink" title="（&gt;&gt;&gt;）无符号右移"></a>（&gt;&gt;&gt;）无符号右移</h1><p>高位补0，丢弃最低位</p>
+<h1 id="常用姿势"><a href="#常用姿势" class="headerlink" title="常用姿势"></a>常用姿势</h1><h2 id="设标志位"><a href="#设标志位" class="headerlink" title="设标志位"></a>设标志位</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a =<span class="number">0x01</span>;</div><div class="line"><span class="keyword">int</span> b =<span class="number">0x02</span>;</div><div class="line"><span class="keyword">int</span> c =<span class="number">0x08</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span>  state =a | c;</div><div class="line"></div><div class="line">判断是否有a</div><div class="line">可以a&amp; state ==a 来判断</div><div class="line">去除c 状态 可以用 state &amp;= ~c;</div></pre></td></tr></table></figure>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 位运算 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[几种常用的设计模式的笔记]]></title>
       <url>http://cczhr.ink/2019/03/07/%E5%87%A0%E7%A7%8D%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><h1 id="面向对象的六大原则"><a href="#面向对象的六大原则" class="headerlink" title="面向对象的六大原则"></a>面向对象的六大原则</h1><h2 id="基础-接口和抽象类区别"><a href="#基础-接口和抽象类区别" class="headerlink" title="基础 接口和抽象类区别"></a>基础 接口和抽象类区别</h2><p>抽象类是可以表示一种东西的根源，是可以有成员属性和动作的。而接口则仅仅表示动作。</p>
@@ -948,12 +972,12 @@
 <h3 id="上位机："><a href="#上位机：" class="headerlink" title="上位机："></a>上位机：</h3><p>上位机是指可以直接发出操控命令的设备</p>
 <h3 id="下位机："><a href="#下位机：" class="headerlink" title="下位机："></a>下位机：</h3><p>下位机一般是指被操控的设备（例如单片机）</p>
 <h3 id="波特率"><a href="#波特率" class="headerlink" title="波特率"></a>波特率</h3><p>波特率串行每秒传输数据的速率，例如，波特率是9600那么它传输一位0或1的时间就是1/9600秒，也就是每秒能传9600bit。波特率越高，代表传输信号频率越高。相同的电缆，信号频率越高时，感抗越大，信号在传输线上的损耗也就越大。因此，波特率越高，传输距离越短。</p>
-<h3 id="比特和字节（bit-amp-byte）"><a href="#比特和字节（bit-amp-byte）" class="headerlink" title="比特和字节（bit&amp;byte）"></a>比特和字节（bit&amp;byte）</h3><p>计算机就是各种电路的开关，每个开关自然就只有两种状态，开和关，在计算机中1表示的是开，0表示是关。而计算机最小的存储单位是字节，每个字节等于8比特（至于为啥自己查），那8比特用二进制表示当然就是0000 0000-1111 1111，那是不表达为十进制就是0-255呢？（ps 255 是由2的5次方减1来的 公式你懂的），当然不是，负数给狗吃了么☻。</p>
-<h3 id="原码、反码、补码"><a href="#原码、反码、补码" class="headerlink" title="原码、反码、补码"></a>原码、反码、补码</h3><p>定律：<br>原码就是二进制本身 例如十进制的1等于0000 0001<br>对于正数来说 ：<br>原码 = 反码 = 补码<br>对于负数来说 ：<br>反码 = 原码的非符号位取反（取反就是把1变成0 把0变成1）<br>补码 = 反码+1<br>反码转原码：非符号位取反<br>补码转原码：非符号位取反,末位再加1<br>补码转反码：先转原码，再取反（然并卵）  </p>
+<h3 id="比特和字节（bit-amp-byte）"><a href="#比特和字节（bit-amp-byte）" class="headerlink" title="比特和字节（bit&amp;byte）"></a>比特和字节（bit&amp;byte）</h3><p>计算机就是各种电路的开关，每个开关自然就只有两种状态，开和关，在计算机中1表示的是开，0表示是关。而计算机最小的存储单位是字节，每个字节等于8比特（至于为啥自己查），那8比特用二进制表示当然就是0000 0000-1111 1111，那是不表达为十进制就是0-255呢？（ps 255 是由2的7次方减1来的 公式你懂的），当然不是，负数给狗吃了么☻。</p>
+<h3 id="原码、反码、补码"><a href="#原码、反码、补码" class="headerlink" title="原码、反码、补码"></a>原码、反码、补码</h3><p>定律：<br>原码就是二进制本身 例如十进制的1等于0000 0001<br>对于正数来说 ：<br>原码 = 反码 = 补码<br>对于负数来说 ：<br>原码就是正数的符号位取1<br>反码 = 原码的非符号位取反（取反就是把1变成0 把0变成1）<br>补码 = 反码+1    </p>
 <pre><code>一些小知识 两个16进制代表一个字节
 异或：两者相等为0,不等为1
 如a=a^b=1011^1001=0010
-</code></pre><p>对于计算机来说，一个二进制的它的最高位是它的符号位，0代表正数，1代表负数，所以8比特范围区间应该是 1111 1111 - 0111 1111 也就是-127到127，你以为这就是对的么，其实也不是（我真的不是特意耍你）答案是-128到127，为什么呢，这就涉及到了计算机二进制的运算了。<br>对于计算机来说，假如要识别符号位来做加还是减，很麻烦，所以计算机只能做加法，例如1-1=1+(-1)。</p>
+</code></pre><p>对于计算机来说，一个二进制的它的最高位是它的符号位，0代表正数，1代表负数，所以一个字节8比特范围区间应该是 1111 1111 - 0111 1111 也就是-127到127，你以为这就是对的么，其实也不是（我真的不是特意耍你）答案是-128到127，为什么呢，这就涉及到了计算机二进制的运算了。<br>对于计算机来说，假如要识别符号位来做加还是减，很麻烦，所以计算机只能做加法，例如1-1=1+(-1)。</p>
 <p>计算机内部是用补码来存储一个数的，为什么呢，因为二进制的计算就是补码的加法，至于为啥用补码，举个例子1-1它的原码直接相加会等于 1000 0010 等于-2，肯定不科学，那反码呢，反码的1-1等于 1111 1111 转为原码 1000 0000 也就是 -0也不科学，补码就不一样了 补码的 1-1 等于1 0000 0000 超过8位的会被截掉，那结果就是0000 0000 转回原码还是0000 0000 那就正确了。而127加1二进制就会表示 1000 0000 负数么显然不科学，于是中央就决定1000 0000 就是-128了。所以128转字节会变成-128，也就是溢出了。</p>
 <h2 id="安卓的串口通讯"><a href="#安卓的串口通讯" class="headerlink" title="安卓的串口通讯"></a>安卓的串口通讯</h2><p>串口通讯顾名思义就是给串口发送或者接收数据，而串口的数据格式一般来说有<br>包头+数据+校验+包尾<br>或者<br>包头+数据长度+数据+校验值<br>等不同的格式，不同的设备有可能不同，当然安卓的串口通讯涉及了jni，也就是java调用c/c++的操作，不过不用担心，谷歌n年前已经帮我们封装好了，<a href="https://github.com/cepr/android-serialport-api" target="_blank" rel="external">https://github.com/cepr/android-serialport-api</a> ，至于怎么导入，自己搜素。当然，如果你像我一样那么懒，直接用别人弄好的arr包吧。</p>
 <h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//根build.gradle添加</span></div><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        ...</div><div class="line">        maven &#123; url <span class="string">'https://jitpack.io'</span> &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//模块build.gradle添加</span></div><div class="line">dependencies &#123;</div><div class="line">        compile <span class="string">'com.github.licheedev.Android-SerialPort-API:serialport:1.0.1'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
