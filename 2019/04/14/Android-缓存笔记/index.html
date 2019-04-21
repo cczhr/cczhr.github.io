@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="内存缓存1234567891011long maxMemory = Runtime.getRuntime().maxMemory();//kb单位int cacheSize = (int) (maxMemory / 8);LruCache  lruCache = new LruCache&amp;lt;String, Bitmap&amp;gt;(cacheSize) &amp;#123;            @Ov">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 缓存笔记">
+<meta property="og:url" content="http://cczhr.ink/2019/04/14/Android-缓存笔记/index.html">
+<meta property="og:site_name" content="Not Found Blog">
+<meta property="og:description" content="内存缓存1234567891011long maxMemory = Runtime.getRuntime().maxMemory();//kb单位int cacheSize = (int) (maxMemory / 8);LruCache  lruCache = new LruCache&amp;lt;String, Bitmap&amp;gt;(cacheSize) &amp;#123;            @Ov">
+<meta property="og:updated_time" content="2019-04-14T06:19:26.405Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 缓存笔记">
+<meta name="twitter:description" content="内存缓存1234567891011long maxMemory = Runtime.getRuntime().maxMemory();//kb单位int cacheSize = (int) (maxMemory / 8);LruCache  lruCache = new LruCache&amp;lt;String, Bitmap&amp;gt;(cacheSize) &amp;#123;            @Ov">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Not Found Blog" type="application/atom+xml"/>
+
+
+
+
+  <link rel="canonical" href="http://cczhr.ink/2019/04/14/Android-缓存笔记/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android 缓存笔记 | Not Found Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Not Found Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cczhr.ink/2019/04/14/Android-缓存笔记/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 缓存笔记
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-14 14:13:01 / 修改时间：14:19:26" itemprop="dateCreated datePublished" datetime="2019-04-14T14:13:01+08:00">2019-04-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/04/14/Android-缓存笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/04/14/Android-缓存笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">39k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">36 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="\assets\js\APlayer.min.js"> </script><h1 id="内存缓存"><a href="#内存缓存" class="headerlink" title="内存缓存"></a>内存缓存</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">long</span> maxMemory = Runtime.getRuntime().maxMemory();<span class="comment">//kb单位</span></div><div class="line"><span class="keyword">int</span> cacheSize = (<span class="keyword">int</span>) (maxMemory / <span class="number">8</span>);</div><div class="line">LruCache  lruCache = <span class="keyword">new</span> LruCache&lt;String, Bitmap&gt;(cacheSize) &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">sizeOf</span><span class="params">(String key, Bitmap value)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> value.getByteCount();</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">lruCache.put(<span class="string">"key"</span>,mBitmap);</div><div class="line">lruCache.get(<span class="string">"key"</span>);</div><div class="line">lruCache.remove(<span class="string">"key"</span>);</div></pre></td></tr></table></figure>
+<h1 id="磁盘缓存"><a href="#磁盘缓存" class="headerlink" title="磁盘缓存"></a>磁盘缓存</h1><p>DiskLruCache.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div><div class="line">403</div><div class="line">404</div><div class="line">405</div><div class="line">406</div><div class="line">407</div><div class="line">408</div><div class="line">409</div><div class="line">410</div><div class="line">411</div><div class="line">412</div><div class="line">413</div><div class="line">414</div><div class="line">415</div><div class="line">416</div><div class="line">417</div><div class="line">418</div><div class="line">419</div><div class="line">420</div><div class="line">421</div><div class="line">422</div><div class="line">423</div><div class="line">424</div><div class="line">425</div><div class="line">426</div><div class="line">427</div><div class="line">428</div><div class="line">429</div><div class="line">430</div><div class="line">431</div><div class="line">432</div><div class="line">433</div><div class="line">434</div><div class="line">435</div><div class="line">436</div><div class="line">437</div><div class="line">438</div><div class="line">439</div><div class="line">440</div><div class="line">441</div><div class="line">442</div><div class="line">443</div><div class="line">444</div><div class="line">445</div><div class="line">446</div><div class="line">447</div><div class="line">448</div><div class="line">449</div><div class="line">450</div><div class="line">451</div><div class="line">452</div><div class="line">453</div><div class="line">454</div><div class="line">455</div><div class="line">456</div><div class="line">457</div><div class="line">458</div><div class="line">459</div><div class="line">460</div><div class="line">461</div><div class="line">462</div><div class="line">463</div><div class="line">464</div><div class="line">465</div><div class="line">466</div><div class="line">467</div><div class="line">468</div><div class="line">469</div><div class="line">470</div><div class="line">471</div><div class="line">472</div><div class="line">473</div><div class="line">474</div><div class="line">475</div><div class="line">476</div><div class="line">477</div><div class="line">478</div><div class="line">479</div><div class="line">480</div><div class="line">481</div><div class="line">482</div><div class="line">483</div><div class="line">484</div><div class="line">485</div><div class="line">486</div><div class="line">487</div><div class="line">488</div><div class="line">489</div><div class="line">490</div><div class="line">491</div><div class="line">492</div><div class="line">493</div><div class="line">494</div><div class="line">495</div><div class="line">496</div><div class="line">497</div><div class="line">498</div><div class="line">499</div><div class="line">500</div><div class="line">501</div><div class="line">502</div><div class="line">503</div><div class="line">504</div><div class="line">505</div><div class="line">506</div><div class="line">507</div><div class="line">508</div><div class="line">509</div><div class="line">510</div><div class="line">511</div><div class="line">512</div><div class="line">513</div><div class="line">514</div><div class="line">515</div><div class="line">516</div><div class="line">517</div><div class="line">518</div><div class="line">519</div><div class="line">520</div><div class="line">521</div><div class="line">522</div><div class="line">523</div><div class="line">524</div><div class="line">525</div><div class="line">526</div><div class="line">527</div><div class="line">528</div><div class="line">529</div><div class="line">530</div><div class="line">531</div><div class="line">532</div><div class="line">533</div><div class="line">534</div><div class="line">535</div><div class="line">536</div><div class="line">537</div><div class="line">538</div><div class="line">539</div><div class="line">540</div><div class="line">541</div><div class="line">542</div><div class="line">543</div><div class="line">544</div><div class="line">545</div><div class="line">546</div><div class="line">547</div><div class="line">548</div><div class="line">549</div><div class="line">550</div><div class="line">551</div><div class="line">552</div><div class="line">553</div><div class="line">554</div><div class="line">555</div><div class="line">556</div><div class="line">557</div><div class="line">558</div><div class="line">559</div><div class="line">560</div><div class="line">561</div><div class="line">562</div><div class="line">563</div><div class="line">564</div><div class="line">565</div><div class="line">566</div><div class="line">567</div><div class="line">568</div><div class="line">569</div><div class="line">570</div><div class="line">571</div><div class="line">572</div><div class="line">573</div><div class="line">574</div><div class="line">575</div><div class="line">576</div><div class="line">577</div><div class="line">578</div><div class="line">579</div><div class="line">580</div><div class="line">581</div><div class="line">582</div><div class="line">583</div><div class="line">584</div><div class="line">585</div><div class="line">586</div><div class="line">587</div><div class="line">588</div><div class="line">589</div><div class="line">590</div><div class="line">591</div><div class="line">592</div><div class="line">593</div><div class="line">594</div><div class="line">595</div><div class="line">596</div><div class="line">597</div><div class="line">598</div><div class="line">599</div><div class="line">600</div><div class="line">601</div><div class="line">602</div><div class="line">603</div><div class="line">604</div><div class="line">605</div><div class="line">606</div><div class="line">607</div><div class="line">608</div><div class="line">609</div><div class="line">610</div><div class="line">611</div><div class="line">612</div><div class="line">613</div><div class="line">614</div><div class="line">615</div><div class="line">616</div><div class="line">617</div><div class="line">618</div><div class="line">619</div><div class="line">620</div><div class="line">621</div><div class="line">622</div><div class="line">623</div><div class="line">624</div><div class="line">625</div><div class="line">626</div><div class="line">627</div><div class="line">628</div><div class="line">629</div><div class="line">630</div><div class="line">631</div><div class="line">632</div><div class="line">633</div><div class="line">634</div><div class="line">635</div><div class="line">636</div><div class="line">637</div><div class="line">638</div><div class="line">639</div><div class="line">640</div><div class="line">641</div><div class="line">642</div><div class="line">643</div><div class="line">644</div><div class="line">645</div><div class="line">646</div><div class="line">647</div><div class="line">648</div><div class="line">649</div><div class="line">650</div><div class="line">651</div><div class="line">652</div><div class="line">653</div><div class="line">654</div><div class="line">655</div><div class="line">656</div><div class="line">657</div><div class="line">658</div><div class="line">659</div><div class="line">660</div><div class="line">661</div><div class="line">662</div><div class="line">663</div><div class="line">664</div><div class="line">665</div><div class="line">666</div><div class="line">667</div><div class="line">668</div><div class="line">669</div><div class="line">670</div><div class="line">671</div><div class="line">672</div><div class="line">673</div><div class="line">674</div><div class="line">675</div><div class="line">676</div><div class="line">677</div><div class="line">678</div><div class="line">679</div><div class="line">680</div><div class="line">681</div><div class="line">682</div><div class="line">683</div><div class="line">684</div><div class="line">685</div><div class="line">686</div><div class="line">687</div><div class="line">688</div><div class="line">689</div><div class="line">690</div><div class="line">691</div><div class="line">692</div><div class="line">693</div><div class="line">694</div><div class="line">695</div><div class="line">696</div><div class="line">697</div><div class="line">698</div><div class="line">699</div><div class="line">700</div><div class="line">701</div><div class="line">702</div><div class="line">703</div><div class="line">704</div><div class="line">705</div><div class="line">706</div><div class="line">707</div><div class="line">708</div><div class="line">709</div><div class="line">710</div><div class="line">711</div><div class="line">712</div><div class="line">713</div><div class="line">714</div><div class="line">715</div><div class="line">716</div><div class="line">717</div><div class="line">718</div><div class="line">719</div><div class="line">720</div><div class="line">721</div><div class="line">722</div><div class="line">723</div><div class="line">724</div><div class="line">725</div><div class="line">726</div><div class="line">727</div><div class="line">728</div><div class="line">729</div><div class="line">730</div><div class="line">731</div><div class="line">732</div><div class="line">733</div><div class="line">734</div><div class="line">735</div><div class="line">736</div><div class="line">737</div><div class="line">738</div><div class="line">739</div><div class="line">740</div><div class="line">741</div><div class="line">742</div><div class="line">743</div><div class="line">744</div><div class="line">745</div><div class="line">746</div><div class="line">747</div><div class="line">748</div><div class="line">749</div><div class="line">750</div><div class="line">751</div><div class="line">752</div><div class="line">753</div><div class="line">754</div><div class="line">755</div><div class="line">756</div><div class="line">757</div><div class="line">758</div><div class="line">759</div><div class="line">760</div><div class="line">761</div><div class="line">762</div><div class="line">763</div><div class="line">764</div><div class="line">765</div><div class="line">766</div><div class="line">767</div><div class="line">768</div><div class="line">769</div><div class="line">770</div><div class="line">771</div><div class="line">772</div><div class="line">773</div><div class="line">774</div><div class="line">775</div><div class="line">776</div><div class="line">777</div><div class="line">778</div><div class="line">779</div><div class="line">780</div><div class="line">781</div><div class="line">782</div><div class="line">783</div><div class="line">784</div><div class="line">785</div><div class="line">786</div><div class="line">787</div><div class="line">788</div><div class="line">789</div><div class="line">790</div><div class="line">791</div><div class="line">792</div><div class="line">793</div><div class="line">794</div><div class="line">795</div><div class="line">796</div><div class="line">797</div><div class="line">798</div><div class="line">799</div><div class="line">800</div><div class="line">801</div><div class="line">802</div><div class="line">803</div><div class="line">804</div><div class="line">805</div><div class="line">806</div><div class="line">807</div><div class="line">808</div><div class="line">809</div><div class="line">810</div><div class="line">811</div><div class="line">812</div><div class="line">813</div><div class="line">814</div><div class="line">815</div><div class="line">816</div><div class="line">817</div><div class="line">818</div><div class="line">819</div><div class="line">820</div><div class="line">821</div><div class="line">822</div><div class="line">823</div><div class="line">824</div><div class="line">825</div><div class="line">826</div><div class="line">827</div><div class="line">828</div><div class="line">829</div><div class="line">830</div><div class="line">831</div><div class="line">832</div><div class="line">833</div><div class="line">834</div><div class="line">835</div><div class="line">836</div><div class="line">837</div><div class="line">838</div><div class="line">839</div><div class="line">840</div><div class="line">841</div><div class="line">842</div><div class="line">843</div><div class="line">844</div><div class="line">845</div><div class="line">846</div><div class="line">847</div><div class="line">848</div><div class="line">849</div><div class="line">850</div><div class="line">851</div><div class="line">852</div><div class="line">853</div><div class="line">854</div><div class="line">855</div><div class="line">856</div><div class="line">857</div><div class="line">858</div><div class="line">859</div><div class="line">860</div><div class="line">861</div><div class="line">862</div><div class="line">863</div><div class="line">864</div><div class="line">865</div><div class="line">866</div><div class="line">867</div><div class="line">868</div><div class="line">869</div><div class="line">870</div><div class="line">871</div><div class="line">872</div><div class="line">873</div><div class="line">874</div><div class="line">875</div><div class="line">876</div><div class="line">877</div><div class="line">878</div><div class="line">879</div><div class="line">880</div><div class="line">881</div><div class="line">882</div><div class="line">883</div><div class="line">884</div><div class="line">885</div><div class="line">886</div><div class="line">887</div><div class="line">888</div><div class="line">889</div><div class="line">890</div><div class="line">891</div><div class="line">892</div><div class="line">893</div><div class="line">894</div><div class="line">895</div><div class="line">896</div><div class="line">897</div><div class="line">898</div><div class="line">899</div><div class="line">900</div><div class="line">901</div><div class="line">902</div><div class="line">903</div><div class="line">904</div><div class="line">905</div><div class="line">906</div><div class="line">907</div><div class="line">908</div><div class="line">909</div><div class="line">910</div><div class="line">911</div><div class="line">912</div><div class="line">913</div><div class="line">914</div><div class="line">915</div><div class="line">916</div><div class="line">917</div><div class="line">918</div><div class="line">919</div><div class="line">920</div><div class="line">921</div><div class="line">922</div><div class="line">923</div><div class="line">924</div><div class="line">925</div><div class="line">926</div><div class="line">927</div><div class="line">928</div><div class="line">929</div><div class="line">930</div><div class="line">931</div><div class="line">932</div><div class="line">933</div><div class="line">934</div><div class="line">935</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.BufferedInputStream;</div><div class="line"><span class="keyword">import</span> java.io.BufferedWriter;</div><div class="line"><span class="keyword">import</span> java.io.Closeable;</div><div class="line"><span class="keyword">import</span> java.io.EOFException;</div><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">import</span> java.io.FileInputStream;</div><div class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</div><div class="line"><span class="keyword">import</span> java.io.FileOutputStream;</div><div class="line"><span class="keyword">import</span> java.io.FileWriter;</div><div class="line"><span class="keyword">import</span> java.io.FilterOutputStream;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.io.InputStream;</div><div class="line"><span class="keyword">import</span> java.io.InputStreamReader;</div><div class="line"><span class="keyword">import</span> java.io.OutputStream;</div><div class="line"><span class="keyword">import</span> java.io.OutputStreamWriter;</div><div class="line"><span class="keyword">import</span> java.io.Reader;</div><div class="line"><span class="keyword">import</span> java.io.StringWriter;</div><div class="line"><span class="keyword">import</span> java.io.Writer;</div><div class="line"><span class="keyword">import</span> java.lang.reflect.Array;</div><div class="line"><span class="keyword">import</span> java.nio.charset.Charset;</div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Arrays;</div><div class="line"><span class="keyword">import</span> java.util.Iterator;</div><div class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"><span class="keyword">import</span> java.util.concurrent.Callable;</div><div class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</div><div class="line"><span class="keyword">import</span> java.util.concurrent.LinkedBlockingQueue;</div><div class="line"><span class="keyword">import</span> java.util.concurrent.ThreadPoolExecutor;</div><div class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> ******************************************************************************</div><div class="line"> * Taken from the JB source code, can be found in:</div><div class="line"> * libcore/luni/src/main/java/libcore/io/DiskLruCache.java</div><div class="line"> * or direct link:</div><div class="line"> * https://android.googlesource.com/platform/libcore/+/android-4.1.1_r1/luni/src/main/java/libcore/io/DiskLruCache.java</div><div class="line"> ******************************************************************************</div><div class="line"> *</div><div class="line"> * A cache that uses a bounded amount of space on a filesystem. Each cache</div><div class="line"> * entry has a string key and a fixed number of values. Values are byte</div><div class="line"> * sequences, accessible as streams or files. Each value must be between &#123;<span class="doctag">@code</span></div><div class="line"> * 0&#125; and &#123;<span class="doctag">@code</span> Integer.MAX_VALUE&#125; bytes in length.</div><div class="line"> *</div><div class="line"> * &lt;p&gt;The cache stores its data in a directory on the filesystem. This</div><div class="line"> * directory must be exclusive to the cache; the cache may delete or overwrite</div><div class="line"> * files from its directory. It is an error for multiple processes to use the</div><div class="line"> * same cache directory at the same time.</div><div class="line"> *</div><div class="line"> * &lt;p&gt;This cache limits the number of bytes that it will store on the</div><div class="line"> * filesystem. When the number of stored bytes exceeds the limit, the cache will</div><div class="line"> * remove entries in the background until the limit is satisfied. The limit is</div><div class="line"> * not strict: the cache may temporarily exceed it while waiting for files to be</div><div class="line"> * deleted. The limit does not include filesystem overhead or the cache</div><div class="line"> * journal so space-sensitive applications should set a conservative limit.</div><div class="line"> *</div><div class="line"> * &lt;p&gt;Clients call &#123;<span class="doctag">@link</span> #edit&#125; to create or update the values of an entry. An</div><div class="line"> * entry may have only one editor at one time; if a value is not available to be</div><div class="line"> * edited then &#123;<span class="doctag">@link</span> #edit&#125; will return null.</div><div class="line"> * &lt;ul&gt;</div><div class="line"> *     &lt;li&gt;When an entry is being &lt;strong&gt;created&lt;/strong&gt; it is necessary to</div><div class="line"> *         supply a full set of values; the empty value should be used as a</div><div class="line"> *         placeholder if necessary.</div><div class="line"> *     &lt;li&gt;When an entry is being &lt;strong&gt;edited&lt;/strong&gt;, it is not necessary</div><div class="line"> *         to supply data for every value; values default to their previous</div><div class="line"> *         value.</div><div class="line"> * &lt;/ul&gt;</div><div class="line"> * Every &#123;<span class="doctag">@link</span> #edit&#125; call must be matched by a call to &#123;<span class="doctag">@link</span> Editor#commit&#125;</div><div class="line"> * or &#123;<span class="doctag">@link</span> Editor#abort&#125;. Committing is atomic: a read observes the full set</div><div class="line"> * of values as they were before or after the commit, but never a mix of values.</div><div class="line"> *</div><div class="line"> * &lt;p&gt;Clients call &#123;<span class="doctag">@link</span> #get&#125; to read a snapshot of an entry. The read will</div><div class="line"> * observe the value at the time that &#123;<span class="doctag">@link</span> #get&#125; was called. Updates and</div><div class="line"> * removals after the call do not impact ongoing reads.</div><div class="line"> *</div><div class="line"> * &lt;p&gt;This class is tolerant of some I/O errors. If files are missing from the</div><div class="line"> * filesystem, the corresponding entries will be dropped from the cache. If</div><div class="line"> * an error occurs while writing a cache value, the edit will fail silently.</div><div class="line"> * Callers should handle other problems by catching &#123;<span class="doctag">@code</span> IOException&#125; and</div><div class="line"> * responding appropriately.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">DiskLruCache</span> <span class="keyword">implements</span> <span class="title">Closeable</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String JOURNAL_FILE = <span class="string">"journal"</span>;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String JOURNAL_FILE_TMP = <span class="string">"journal.tmp"</span>;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String MAGIC = <span class="string">"libcore.io.DiskLruCache"</span>;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String VERSION_1 = <span class="string">"1"</span>;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> ANY_SEQUENCE_NUMBER = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String CLEAN = <span class="string">"CLEAN"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DIRTY = <span class="string">"DIRTY"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String REMOVE = <span class="string">"REMOVE"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String READ = <span class="string">"READ"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Charset UTF_8 = Charset.forName(<span class="string">"UTF-8"</span>);</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> IO_BUFFER_SIZE = <span class="number">8</span> * <span class="number">1024</span>;</div><div class="line"></div><div class="line">    <span class="comment">/*</span></div><div class="line">     * This cache uses a journal file named "journal". A typical journal file</div><div class="line">     * looks like this:</div><div class="line">     *     libcore.io.DiskLruCache</div><div class="line">     *     1</div><div class="line">     *     100</div><div class="line">     *     2</div><div class="line">     *</div><div class="line">     *     CLEAN 3400330d1dfc7f3f7f4b8d4d803dfcf6 832 21054</div><div class="line">     *     DIRTY 335c4c6028171cfddfbaae1a9c313c52</div><div class="line">     *     CLEAN 335c4c6028171cfddfbaae1a9c313c52 3934 2342</div><div class="line">     *     REMOVE 335c4c6028171cfddfbaae1a9c313c52</div><div class="line">     *     DIRTY 1ab96a171faeeee38496d8b330771a7a</div><div class="line">     *     CLEAN 1ab96a171faeeee38496d8b330771a7a 1600 234</div><div class="line">     *     READ 335c4c6028171cfddfbaae1a9c313c52</div><div class="line">     *     READ 3400330d1dfc7f3f7f4b8d4d803dfcf6</div><div class="line">     *</div><div class="line">     * The first five lines of the journal form its header. They are the</div><div class="line">     * constant string "libcore.io.DiskLruCache", the disk cache's version,</div><div class="line">     * the application's version, the value count, and a blank line.</div><div class="line">     *</div><div class="line">     * Each of the subsequent lines in the file is a record of the state of a</div><div class="line">     * cache entry. Each line contains space-separated values: a state, a key,</div><div class="line">     * and optional state-specific values.</div><div class="line">     *   o DIRTY lines track that an entry is actively being created or updated.</div><div class="line">     *     Every successful DIRTY action should be followed by a CLEAN or REMOVE</div><div class="line">     *     action. DIRTY lines without a matching CLEAN or REMOVE indicate that</div><div class="line">     *     temporary files may need to be deleted.</div><div class="line">     *   o CLEAN lines track a cache entry that has been successfully published</div><div class="line">     *     and may be read. A publish line is followed by the lengths of each of</div><div class="line">     *     its values.</div><div class="line">     *   o READ lines track accesses for LRU.</div><div class="line">     *   o REMOVE lines track entries that have been deleted.</div><div class="line">     *</div><div class="line">     * The journal file is appended to as cache operations occur. The journal may</div><div class="line">     * occasionally be compacted by dropping redundant lines. A temporary file named</div><div class="line">     * "journal.tmp" will be used during compaction; that file should be deleted if</div><div class="line">     * it exists when the cache is opened.</div><div class="line">     */</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> File directory;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> File journalFile;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> File journalFileTmp;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> appVersion;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> maxSize;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> valueCount;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> size = <span class="number">0</span>;</div><div class="line">    <span class="keyword">private</span> Writer journalWriter;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> LinkedHashMap&lt;String, Entry&gt; lruEntries</div><div class="line">            = <span class="keyword">new</span> LinkedHashMap&lt;String, Entry&gt;(<span class="number">0</span>, <span class="number">0.75f</span>, <span class="keyword">true</span>);</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> redundantOpCount;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * To differentiate between old and current snapshots, each entry is given</div><div class="line">     * a sequence number each time an edit is committed. A snapshot is stale if</div><div class="line">     * its sequence number is not equal to its entry's sequence number.</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> nextSequenceNumber = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="comment">/* From java.util.Arrays */</span></div><div class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; T[] copyOfRange(T[] original, <span class="keyword">int</span> start, <span class="keyword">int</span> end) &#123;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> originalLength = original.length; <span class="comment">// For exception priority compatibility.</span></div><div class="line">        <span class="keyword">if</span> (start &gt; end) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (start &lt; <span class="number">0</span> || start &gt; originalLength) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> resultLength = end - start;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> copyLength = Math.min(resultLength, originalLength - start);</div><div class="line">        <span class="keyword">final</span> T[] result = (T[]) Array</div><div class="line">                .newInstance(original.getClass().getComponentType(), resultLength);</div><div class="line">        System.arraycopy(original, start, result, <span class="number">0</span>, copyLength);</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns the remainder of 'reader' as a string, closing it when done.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">readFully</span><span class="params">(Reader reader)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            StringWriter writer = <span class="keyword">new</span> StringWriter();</div><div class="line">            <span class="keyword">char</span>[] buffer = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1024</span>];</div><div class="line">            <span class="keyword">int</span> count;</div><div class="line">            <span class="keyword">while</span> ((count = reader.read(buffer)) != -<span class="number">1</span>) &#123;</div><div class="line">                writer.write(buffer, <span class="number">0</span>, count);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> writer.toString();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            reader.close();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns the ASCII characters up to but not including the next "\r\n", or</div><div class="line">     * "\n".</div><div class="line">     *</div><div class="line">     * <span class="doctag">@throws</span> java.io.EOFException if the stream is exhausted before the next newline</div><div class="line">     *     character.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">readAsciiLine</span><span class="params">(InputStream in)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="comment">// <span class="doctag">TODO:</span> support UTF-8 here instead</span></div><div class="line"></div><div class="line">        StringBuilder result = <span class="keyword">new</span> StringBuilder(<span class="number">80</span>);</div><div class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">            <span class="keyword">int</span> c = in.read();</div><div class="line">            <span class="keyword">if</span> (c == -<span class="number">1</span>) &#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> EOFException();</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">'\n'</span>) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            result.append((<span class="keyword">char</span>) c);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> length = result.length();</div><div class="line">        <span class="keyword">if</span> (length &gt; <span class="number">0</span> &amp;&amp; result.charAt(length - <span class="number">1</span>) == <span class="string">'\r'</span>) &#123;</div><div class="line">            result.setLength(length - <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result.toString();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Closes 'closeable', ignoring any checked exceptions. Does nothing if 'closeable' is null.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">closeQuietly</span><span class="params">(Closeable closeable)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (closeable != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                closeable.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (RuntimeException rethrown) &#123;</div><div class="line">                <span class="keyword">throw</span> rethrown;</div><div class="line">            &#125; <span class="keyword">catch</span> (Exception ignored) &#123;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Recursively delete everything in &#123;<span class="doctag">@code</span> dir&#125;.</div><div class="line">     */</div><div class="line">    <span class="comment">// <span class="doctag">TODO:</span> this should specify paths as Strings rather than as Files</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteContents</span><span class="params">(File dir)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        File[] files = dir.listFiles();</div><div class="line">        <span class="keyword">if</span> (files == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"not a directory: "</span> + dir);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (File file : files) &#123;</div><div class="line">            <span class="keyword">if</span> (file.isDirectory()) &#123;</div><div class="line">                deleteContents(file);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (!file.delete()) &#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"failed to delete file: "</span> + file);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/** This cache uses a single background thread to evict entries. */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ExecutorService executorService = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span>, <span class="number">1</span>,</div><div class="line">            <span class="number">60L</span>, TimeUnit.SECONDS, <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;());</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Callable&lt;Void&gt; cleanupCallable = <span class="keyword">new</span> Callable&lt;Void&gt;() &#123;</div><div class="line">        <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Void <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">            <span class="keyword">synchronized</span> (DiskLruCache.<span class="keyword">this</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (journalWriter == <span class="keyword">null</span>) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">null</span>; <span class="comment">// closed</span></div><div class="line">                &#125;</div><div class="line">                trimToSize();</div><div class="line">                <span class="keyword">if</span> (journalRebuildRequired()) &#123;</div><div class="line">                    rebuildJournal();</div><div class="line">                    redundantOpCount = <span class="number">0</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">DiskLruCache</span><span class="params">(File directory, <span class="keyword">int</span> appVersion, <span class="keyword">int</span> valueCount, <span class="keyword">long</span> maxSize)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.directory = directory;</div><div class="line">        <span class="keyword">this</span>.appVersion = appVersion;</div><div class="line">        <span class="keyword">this</span>.journalFile = <span class="keyword">new</span> File(directory, JOURNAL_FILE);</div><div class="line">        <span class="keyword">this</span>.journalFileTmp = <span class="keyword">new</span> File(directory, JOURNAL_FILE_TMP);</div><div class="line">        <span class="keyword">this</span>.valueCount = valueCount;</div><div class="line">        <span class="keyword">this</span>.maxSize = maxSize;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Opens the cache in &#123;<span class="doctag">@code</span> directory&#125;, creating a cache if none exists</div><div class="line">     * there.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> directory a writable directory</div><div class="line">     * <span class="doctag">@param</span> appVersion</div><div class="line">     * <span class="doctag">@param</span> valueCount the number of values per cache entry. Must be positive.</div><div class="line">     * <span class="doctag">@param</span> maxSize the maximum number of bytes this cache should use to store</div><div class="line">     * <span class="doctag">@throws</span> java.io.IOException if reading or writing the cache directory fails</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DiskLruCache <span class="title">open</span><span class="params">(File directory, <span class="keyword">int</span> appVersion, <span class="keyword">int</span> valueCount, <span class="keyword">long</span> maxSize)</span></span></div><div class="line">            <span class="keyword">throws</span> IOException &#123;</div><div class="line">        <span class="keyword">if</span> (maxSize &lt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"maxSize &lt;= 0"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (valueCount &lt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"valueCount &lt;= 0"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// prefer to pick up where we left off</span></div><div class="line">        DiskLruCache cache = <span class="keyword">new</span> DiskLruCache(directory, appVersion, valueCount, maxSize);</div><div class="line">        <span class="keyword">if</span> (cache.journalFile.exists()) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                cache.readJournal();</div><div class="line">                cache.processJournal();</div><div class="line">                cache.journalWriter = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(cache.journalFile, <span class="keyword">true</span>),</div><div class="line">                        IO_BUFFER_SIZE);</div><div class="line">                <span class="keyword">return</span> cache;</div><div class="line">            &#125; <span class="keyword">catch</span> (IOException journalIsCorrupt) &#123;</div><div class="line"><span class="comment">//                System.logW("DiskLruCache " + directory + " is corrupt: "</span></div><div class="line"><span class="comment">//                        + journalIsCorrupt.getMessage() + ", removing");</span></div><div class="line">                cache.delete();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// create a new empty cache</span></div><div class="line">        directory.mkdirs();</div><div class="line">        cache = <span class="keyword">new</span> DiskLruCache(directory, appVersion, valueCount, maxSize);</div><div class="line">        cache.rebuildJournal();</div><div class="line">        <span class="keyword">return</span> cache;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readJournal</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        InputStream in = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(journalFile), IO_BUFFER_SIZE);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            String magic = readAsciiLine(in);</div><div class="line">            String version = readAsciiLine(in);</div><div class="line">            String appVersionString = readAsciiLine(in);</div><div class="line">            String valueCountString = readAsciiLine(in);</div><div class="line">            String blank = readAsciiLine(in);</div><div class="line">            <span class="keyword">if</span> (!MAGIC.equals(magic)</div><div class="line">                    || !VERSION_1.equals(version)</div><div class="line">                    || !Integer.toString(appVersion).equals(appVersionString)</div><div class="line">                    || !Integer.toString(valueCount).equals(valueCountString)</div><div class="line">                    || !<span class="string">""</span>.equals(blank)) &#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"unexpected journal header: ["</span></div><div class="line">                        + magic + <span class="string">", "</span> + version + <span class="string">", "</span> + valueCountString + <span class="string">", "</span> + blank + <span class="string">"]"</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    readJournalLine(readAsciiLine(in));</div><div class="line">                &#125; <span class="keyword">catch</span> (EOFException endOfJournal) &#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            closeQuietly(in);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readJournalLine</span><span class="params">(String line)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        String[] parts = line.split(<span class="string">" "</span>);</div><div class="line">        <span class="keyword">if</span> (parts.length &lt; <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"unexpected journal line: "</span> + line);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        String key = parts[<span class="number">1</span>];</div><div class="line">        <span class="keyword">if</span> (parts[<span class="number">0</span>].equals(REMOVE) &amp;&amp; parts.length == <span class="number">2</span>) &#123;</div><div class="line">            lruEntries.remove(key);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        Entry entry = lruEntries.get(key);</div><div class="line">        <span class="keyword">if</span> (entry == <span class="keyword">null</span>) &#123;</div><div class="line">            entry = <span class="keyword">new</span> Entry(key);</div><div class="line">            lruEntries.put(key, entry);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (parts[<span class="number">0</span>].equals(CLEAN) &amp;&amp; parts.length == <span class="number">2</span> + valueCount) &#123;</div><div class="line">            entry.readable = <span class="keyword">true</span>;</div><div class="line">            entry.currentEditor = <span class="keyword">null</span>;</div><div class="line">            entry.setLengths(copyOfRange(parts, <span class="number">2</span>, parts.length));</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (parts[<span class="number">0</span>].equals(DIRTY) &amp;&amp; parts.length == <span class="number">2</span>) &#123;</div><div class="line">            entry.currentEditor = <span class="keyword">new</span> Editor(entry);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (parts[<span class="number">0</span>].equals(READ) &amp;&amp; parts.length == <span class="number">2</span>) &#123;</div><div class="line">            <span class="comment">// this work was already done by calling lruEntries.get()</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"unexpected journal line: "</span> + line);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Computes the initial size and collects garbage as a part of opening the</div><div class="line">     * cache. Dirty entries are assumed to be inconsistent and will be deleted.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">processJournal</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        deleteIfExists(journalFileTmp);</div><div class="line">        <span class="keyword">for</span> (Iterator&lt;Entry&gt; i = lruEntries.values().iterator(); i.hasNext(); ) &#123;</div><div class="line">            Entry entry = i.next();</div><div class="line">            <span class="keyword">if</span> (entry.currentEditor == <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> t = <span class="number">0</span>; t &lt; valueCount; t++) &#123;</div><div class="line">                    size += entry.lengths[t];</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                entry.currentEditor = <span class="keyword">null</span>;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> t = <span class="number">0</span>; t &lt; valueCount; t++) &#123;</div><div class="line">                    deleteIfExists(entry.getCleanFile(t));</div><div class="line">                    deleteIfExists(entry.getDirtyFile(t));</div><div class="line">                &#125;</div><div class="line">                i.remove();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Creates a new journal that omits redundant information. This replaces the</div><div class="line">     * current journal if it exists.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">rebuildJournal</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="keyword">if</span> (journalWriter != <span class="keyword">null</span>) &#123;</div><div class="line">            journalWriter.close();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        Writer writer = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(journalFileTmp), IO_BUFFER_SIZE);</div><div class="line">        writer.write(MAGIC);</div><div class="line">        writer.write(<span class="string">"\n"</span>);</div><div class="line">        writer.write(VERSION_1);</div><div class="line">        writer.write(<span class="string">"\n"</span>);</div><div class="line">        writer.write(Integer.toString(appVersion));</div><div class="line">        writer.write(<span class="string">"\n"</span>);</div><div class="line">        writer.write(Integer.toString(valueCount));</div><div class="line">        writer.write(<span class="string">"\n"</span>);</div><div class="line">        writer.write(<span class="string">"\n"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (Entry entry : lruEntries.values()) &#123;</div><div class="line">            <span class="keyword">if</span> (entry.currentEditor != <span class="keyword">null</span>) &#123;</div><div class="line">                writer.write(DIRTY + <span class="string">' '</span> + entry.key + <span class="string">'\n'</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                writer.write(CLEAN + <span class="string">' '</span> + entry.key + entry.getLengths() + <span class="string">'\n'</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        writer.close();</div><div class="line">        journalFileTmp.renameTo(journalFile);</div><div class="line">        journalWriter = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(journalFile, <span class="keyword">true</span>), IO_BUFFER_SIZE);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteIfExists</span><span class="params">(File file)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"><span class="comment">//        try &#123;</span></div><div class="line"><span class="comment">//            Libcore.os.remove(file.getPath());</span></div><div class="line"><span class="comment">//        &#125; catch (ErrnoException errnoException) &#123;</span></div><div class="line"><span class="comment">//            if (errnoException.errno != OsConstants.ENOENT) &#123;</span></div><div class="line"><span class="comment">//                throw errnoException.rethrowAsIOException();</span></div><div class="line"><span class="comment">//            &#125;</span></div><div class="line"><span class="comment">//        &#125;</span></div><div class="line">        <span class="keyword">if</span> (file.exists() &amp;&amp; !file.delete()) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IOException();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns a snapshot of the entry named &#123;<span class="doctag">@code</span> key&#125;, or null if it doesn't</div><div class="line">     * exist is not currently readable. If a value is returned, it is moved to</div><div class="line">     * the head of the LRU queue.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> Snapshot <span class="title">get</span><span class="params">(String key)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        checkNotClosed();</div><div class="line">        validateKey(key);</div><div class="line">        Entry entry = lruEntries.get(key);</div><div class="line">        <span class="keyword">if</span> (entry == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (!entry.readable) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/*</span></div><div class="line">         * Open all streams eagerly to guarantee that we see a single published</div><div class="line">         * snapshot. If we opened streams lazily then the streams could come</div><div class="line">         * from different edits.</div><div class="line">         */</div><div class="line">        InputStream[] ins = <span class="keyword">new</span> InputStream[valueCount];</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; valueCount; i++) &#123;</div><div class="line">                ins[i] = <span class="keyword">new</span> FileInputStream(entry.getCleanFile(i));</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">            <span class="comment">// a file must have been deleted manually!</span></div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        redundantOpCount++;</div><div class="line">        journalWriter.append(READ + <span class="string">' '</span> + key + <span class="string">'\n'</span>);</div><div class="line">        <span class="keyword">if</span> (journalRebuildRequired()) &#123;</div><div class="line">            executorService.submit(cleanupCallable);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Snapshot(key, entry.sequenceNumber, ins);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns an editor for the entry named &#123;<span class="doctag">@code</span> key&#125;, or null if another</div><div class="line">     * edit is in progress.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> Editor <span class="title">edit</span><span class="params">(String key)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="keyword">return</span> edit(key, ANY_SEQUENCE_NUMBER);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">synchronized</span> Editor <span class="title">edit</span><span class="params">(String key, <span class="keyword">long</span> expectedSequenceNumber)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        checkNotClosed();</div><div class="line">        validateKey(key);</div><div class="line">        Entry entry = lruEntries.get(key);</div><div class="line">        <span class="keyword">if</span> (expectedSequenceNumber != ANY_SEQUENCE_NUMBER</div><div class="line">                &amp;&amp; (entry == <span class="keyword">null</span> || entry.sequenceNumber != expectedSequenceNumber)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>; <span class="comment">// snapshot is stale</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (entry == <span class="keyword">null</span>) &#123;</div><div class="line">            entry = <span class="keyword">new</span> Entry(key);</div><div class="line">            lruEntries.put(key, entry);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (entry.currentEditor != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>; <span class="comment">// another edit is in progress</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        Editor editor = <span class="keyword">new</span> Editor(entry);</div><div class="line">        entry.currentEditor = editor;</div><div class="line"></div><div class="line">        <span class="comment">// flush the journal before creating files to prevent file leaks</span></div><div class="line">        journalWriter.write(DIRTY + <span class="string">' '</span> + key + <span class="string">'\n'</span>);</div><div class="line">        journalWriter.flush();</div><div class="line">        <span class="keyword">return</span> editor;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns the directory where this cache stores its data.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> File <span class="title">getDirectory</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> directory;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns the maximum number of bytes that this cache should use to store</div><div class="line">     * its data.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">maxSize</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> maxSize;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns the number of bytes currently being used to store the values in</div><div class="line">     * this cache. This may be greater than the max size if a background</div><div class="line">     * deletion is pending.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">long</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> size;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">completeEdit</span><span class="params">(Editor editor, <span class="keyword">boolean</span> success)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        Entry entry = editor.entry;</div><div class="line">        <span class="keyword">if</span> (entry.currentEditor != editor) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// if this edit is creating the entry for the first time, every index must have a value</span></div><div class="line">        <span class="keyword">if</span> (success &amp;&amp; !entry.readable) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; valueCount; i++) &#123;</div><div class="line">                <span class="keyword">if</span> (!entry.getDirtyFile(i).exists()) &#123;</div><div class="line">                    editor.abort();</div><div class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"edit didn't create file "</span> + i);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; valueCount; i++) &#123;</div><div class="line">            File dirty = entry.getDirtyFile(i);</div><div class="line">            <span class="keyword">if</span> (success) &#123;</div><div class="line">                <span class="keyword">if</span> (dirty.exists()) &#123;</div><div class="line">                    File clean = entry.getCleanFile(i);</div><div class="line">                    dirty.renameTo(clean);</div><div class="line">                    <span class="keyword">long</span> oldLength = entry.lengths[i];</div><div class="line">                    <span class="keyword">long</span> newLength = clean.length();</div><div class="line">                    entry.lengths[i] = newLength;</div><div class="line">                    size = size - oldLength + newLength;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                deleteIfExists(dirty);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        redundantOpCount++;</div><div class="line">        entry.currentEditor = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span> (entry.readable | success) &#123;</div><div class="line">            entry.readable = <span class="keyword">true</span>;</div><div class="line">            journalWriter.write(CLEAN + <span class="string">' '</span> + entry.key + entry.getLengths() + <span class="string">'\n'</span>);</div><div class="line">            <span class="keyword">if</span> (success) &#123;</div><div class="line">                entry.sequenceNumber = nextSequenceNumber++;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            lruEntries.remove(entry.key);</div><div class="line">            journalWriter.write(REMOVE + <span class="string">' '</span> + entry.key + <span class="string">'\n'</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (size &gt; maxSize || journalRebuildRequired()) &#123;</div><div class="line">            executorService.submit(cleanupCallable);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * We only rebuild the journal when it will halve the size of the journal</div><div class="line">     * and eliminate at least 2000 ops.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">journalRebuildRequired</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> REDUNDANT_OP_COMPACT_THRESHOLD = <span class="number">2000</span>;</div><div class="line">        <span class="keyword">return</span> redundantOpCount &gt;= REDUNDANT_OP_COMPACT_THRESHOLD</div><div class="line">                &amp;&amp; redundantOpCount &gt;= lruEntries.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Drops the entry for &#123;<span class="doctag">@code</span> key&#125; if it exists and can be removed. Entries</div><div class="line">     * actively being edited cannot be removed.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> true if an entry was removed.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(String key)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        checkNotClosed();</div><div class="line">        validateKey(key);</div><div class="line">        Entry entry = lruEntries.get(key);</div><div class="line">        <span class="keyword">if</span> (entry == <span class="keyword">null</span> || entry.currentEditor != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; valueCount; i++) &#123;</div><div class="line">            File file = entry.getCleanFile(i);</div><div class="line">            <span class="keyword">if</span> (!file.delete()) &#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"failed to delete "</span> + file);</div><div class="line">            &#125;</div><div class="line">            size -= entry.lengths[i];</div><div class="line">            entry.lengths[i] = <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        redundantOpCount++;</div><div class="line">        journalWriter.append(REMOVE + <span class="string">' '</span> + key + <span class="string">'\n'</span>);</div><div class="line">        lruEntries.remove(key);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (journalRebuildRequired()) &#123;</div><div class="line">            executorService.submit(cleanupCallable);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns true if this cache has been closed.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isClosed</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> journalWriter == <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">checkNotClosed</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (journalWriter == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"cache is closed"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Force buffered operations to the filesystem.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">flush</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        checkNotClosed();</div><div class="line">        trimToSize();</div><div class="line">        journalWriter.flush();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Closes this cache. Stored values will remain on the filesystem.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="keyword">if</span> (journalWriter == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span>; <span class="comment">// already closed</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (Entry entry : <span class="keyword">new</span> ArrayList&lt;Entry&gt;(lruEntries.values())) &#123;</div><div class="line">            <span class="keyword">if</span> (entry.currentEditor != <span class="keyword">null</span>) &#123;</div><div class="line">                entry.currentEditor.abort();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        trimToSize();</div><div class="line">        journalWriter.close();</div><div class="line">        journalWriter = <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">trimToSize</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="keyword">while</span> (size &gt; maxSize) &#123;</div><div class="line"><span class="comment">//            Map.Entry&lt;String, Entry&gt; toEvict = lruEntries.eldest();</span></div><div class="line">            <span class="keyword">final</span> Map.Entry&lt;String, Entry&gt; toEvict = lruEntries.entrySet().iterator().next();</div><div class="line">            remove(toEvict.getKey());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Closes the cache and deletes all of its stored values. This will delete</div><div class="line">     * all files in the cache directory including files that weren't created by</div><div class="line">     * the cache.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        close();</div><div class="line">        deleteContents(directory);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">validateKey</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (key.contains(<span class="string">" "</span>) || key.contains(<span class="string">"\n"</span>) || key.contains(<span class="string">"\r"</span>)) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</div><div class="line">                    <span class="string">"keys must not contain spaces or newlines: \""</span> + key + <span class="string">"\""</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">inputStreamToString</span><span class="params">(InputStream in)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="keyword">return</span> readFully(<span class="keyword">new</span> InputStreamReader(in, UTF_8));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * A snapshot of the values for an entry.</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Snapshot</span> <span class="keyword">implements</span> <span class="title">Closeable</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> String key;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> sequenceNumber;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> InputStream[] ins;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="title">Snapshot</span><span class="params">(String key, <span class="keyword">long</span> sequenceNumber, InputStream[] ins)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.key = key;</div><div class="line">            <span class="keyword">this</span>.sequenceNumber = sequenceNumber;</div><div class="line">            <span class="keyword">this</span>.ins = ins;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Returns an editor for this snapshot's entry, or null if either the</div><div class="line">         * entry has changed since this snapshot was created or if another edit</div><div class="line">         * is in progress.</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">public</span> Editor <span class="title">edit</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">            <span class="keyword">return</span> DiskLruCache.<span class="keyword">this</span>.edit(key, sequenceNumber);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Returns the unbuffered stream with the value for &#123;<span class="doctag">@code</span> index&#125;.</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">public</span> InputStream <span class="title">getInputStream</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> ins[index];</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Returns the string value for &#123;<span class="doctag">@code</span> index&#125;.</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getString</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">            <span class="keyword">return</span> inputStreamToString(getInputStream(index));</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">for</span> (InputStream in : ins) &#123;</div><div class="line">                closeQuietly(in);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Edits the values for an entry.</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Editor</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> Entry entry;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> hasErrors;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="title">Editor</span><span class="params">(Entry entry)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.entry = entry;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Returns an unbuffered input stream to read the last committed value,</div><div class="line">         * or null if no value has been committed.</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">public</span> InputStream <span class="title">newInputStream</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">            <span class="keyword">synchronized</span> (DiskLruCache.<span class="keyword">this</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (entry.currentEditor != <span class="keyword">this</span>) &#123;</div><div class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (!entry.readable) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">new</span> FileInputStream(entry.getCleanFile(index));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Returns the last committed value as a string, or null if no value</div><div class="line">         * has been committed.</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getString</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">            InputStream in = newInputStream(index);</div><div class="line">            <span class="keyword">return</span> in != <span class="keyword">null</span> ? inputStreamToString(in) : <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Returns a new unbuffered output stream to write the value at</div><div class="line">         * &#123;<span class="doctag">@code</span> index&#125;. If the underlying output stream encounters errors</div><div class="line">         * when writing to the filesystem, this edit will be aborted when</div><div class="line">         * &#123;<span class="doctag">@link</span> #commit&#125; is called. The returned output stream does not throw</div><div class="line">         * IOExceptions.</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">public</span> OutputStream <span class="title">newOutputStream</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">            <span class="keyword">synchronized</span> (DiskLruCache.<span class="keyword">this</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (entry.currentEditor != <span class="keyword">this</span>) &#123;</div><div class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">new</span> FaultHidingOutputStream(<span class="keyword">new</span> FileOutputStream(entry.getDirtyFile(index)));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Sets the value at &#123;<span class="doctag">@code</span> index&#125; to &#123;<span class="doctag">@code</span> value&#125;.</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, String value)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">            Writer writer = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                writer = <span class="keyword">new</span> OutputStreamWriter(newOutputStream(index), UTF_8);</div><div class="line">                writer.write(value);</div><div class="line">            &#125; <span class="keyword">finally</span> &#123;</div><div class="line">                closeQuietly(writer);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Commits this edit so it is visible to readers.  This releases the</div><div class="line">         * edit lock so another edit may be started on the same key.</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">commit</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">            <span class="keyword">if</span> (hasErrors) &#123;</div><div class="line">                completeEdit(<span class="keyword">this</span>, <span class="keyword">false</span>);</div><div class="line">                remove(entry.key); <span class="comment">// the previous entry is stale</span></div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                completeEdit(<span class="keyword">this</span>, <span class="keyword">true</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Aborts this edit. This releases the edit lock so another edit may be</div><div class="line">         * started on the same key.</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">abort</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">            completeEdit(<span class="keyword">this</span>, <span class="keyword">false</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">FaultHidingOutputStream</span> <span class="keyword">extends</span> <span class="title">FilterOutputStream</span> </span>&#123;</div><div class="line">            <span class="function"><span class="keyword">private</span> <span class="title">FaultHidingOutputStream</span><span class="params">(OutputStream out)</span> </span>&#123;</div><div class="line">                <span class="keyword">super</span>(out);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> oneByte)</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    out.write(oneByte);</div><div class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                    hasErrors = <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] buffer, <span class="keyword">int</span> offset, <span class="keyword">int</span> length)</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    out.write(buffer, offset, length);</div><div class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                    hasErrors = <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    out.close();</div><div class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                    hasErrors = <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flush</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    out.flush();</div><div class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                    hasErrors = <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> String key;</div><div class="line"></div><div class="line">        <span class="comment">/** Lengths of this entry's files. */</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span>[] lengths;</div><div class="line"></div><div class="line">        <span class="comment">/** True if this entry has ever been published */</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> readable;</div><div class="line"></div><div class="line">        <span class="comment">/** The ongoing edit or null if this entry is not being edited. */</span></div><div class="line">        <span class="keyword">private</span> Editor currentEditor;</div><div class="line"></div><div class="line">        <span class="comment">/** The sequence number of the most recently committed edit to this entry. */</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">long</span> sequenceNumber;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="title">Entry</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.key = key;</div><div class="line">            <span class="keyword">this</span>.lengths = <span class="keyword">new</span> <span class="keyword">long</span>[valueCount];</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getLengths</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">            StringBuilder result = <span class="keyword">new</span> StringBuilder();</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">long</span> size : lengths) &#123;</div><div class="line">                result.append(<span class="string">' '</span>).append(size);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> result.toString();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Set lengths using decimal numbers like "10123".</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setLengths</span><span class="params">(String[] strings)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">            <span class="keyword">if</span> (strings.length != valueCount) &#123;</div><div class="line">                <span class="keyword">throw</span> invalidLengths(strings);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strings.length; i++) &#123;</div><div class="line">                    lengths[i] = Long.parseLong(strings[i]);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</div><div class="line">                <span class="keyword">throw</span> invalidLengths(strings);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">private</span> IOException <span class="title">invalidLengths</span><span class="params">(String[] strings)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"unexpected journal line: "</span> + Arrays.toString(strings));</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> File <span class="title">getCleanFile</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> File(directory, key + <span class="string">"."</span> + i);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> File <span class="title">getDirtyFile</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> File(directory, key + <span class="string">"."</span> + i + <span class="string">".tmp"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">File file=<span class="keyword">new</span> File(<span class="string">"sdcard/app"</span>);</div><div class="line"></div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">           <span class="comment">//存储路径 版本号 指定同一个key可以对应多少个缓存文件基本都是传1 缓存容量</span></div><div class="line">         mDiskLruCache=  DiskLruCache.open(file,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1024</span>*<span class="number">1024</span>*<span class="number">50</span>);</div><div class="line">       &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">           e.printStackTrace();</div><div class="line">       &#125;</div><div class="line"></div><div class="line"></div><div class="line">       <span class="comment">//写入缓存操作</span></div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">          DiskLruCache.Editor editor=  mDiskLruCache.edit(<span class="string">"key"</span>);</div><div class="line">          <span class="keyword">if</span>(editor==<span class="keyword">null</span>)</div><div class="line">              <span class="keyword">return</span>;</div><div class="line">           OutputStream outputStream=editor.newOutputStream(<span class="number">0</span>);</div><div class="line">           <span class="comment">//常规io操作</span></div><div class="line"></div><div class="line">           <span class="comment">//io操作成功</span></div><div class="line">           editor.commit();</div><div class="line"></div><div class="line"></div><div class="line">           <span class="comment">//失败 回退操作</span></div><div class="line">           editor.abort();</div><div class="line"></div><div class="line"></div><div class="line">           <span class="comment">//释放</span></div><div class="line">           mDiskLruCache.flush();</div><div class="line"></div><div class="line">       &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">           e.printStackTrace();</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       <span class="comment">//读取缓存操作</span></div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">           DiskLruCache.Snapshot snapShot = mDiskLruCache.get(<span class="string">"key"</span>);</div><div class="line">           <span class="keyword">if</span>(snapShot==<span class="keyword">null</span>)</div><div class="line">               <span class="keyword">return</span>;</div><div class="line">           InputStream inputStream=snapShot.getInputStream(<span class="number">0</span>);</div><div class="line">       &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">           e.printStackTrace();</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       <span class="comment">// 删除缓存工作</span></div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">           mDiskLruCache.remove(<span class="string">"key"</span>);</div><div class="line">       &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">           e.printStackTrace();</div><div class="line">       &#125;</div><div class="line"></div><div class="line"></div><div class="line">       <span class="comment">//最后的回收工作</span></div><div class="line">       <span class="keyword">if</span>(!mDiskLruCache.isClosed())&#123;</div><div class="line">           <span class="keyword">try</span> &#123;</div><div class="line">               mDiskLruCache.close();</div><div class="line">           &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">             <span class="comment">//  e.printStackTrace();</span></div><div class="line">           &#125;</div><div class="line">       &#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/缓存/" rel="tag"># 缓存</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/06/Android-5-x中-UsbDevice-mInterfaces为空的解决方法/" rel="next" title="Android 5.x中 UsbDevice mInterfaces为空的解决方法">
+                <i class="fa fa-chevron-left"></i> Android 5.x中 UsbDevice mInterfaces为空的解决方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/21/c语言回顾/" rel="prev" title="c语言回顾">
+                c语言回顾 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"
+                alt="cczhr"/>
+            
+              <p class="site-author-name" itemprop="name">cczhr</p>
+              <p class="site-description motion-element" itemprop="description">或许你真的可以改变世界。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/cczhr" title="GitHub &rarr; https://github.com/cczhr" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:cczhr.dev@gmail.com" title="E-Mail &rarr; mailto:cczhr.dev@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/cczhr" title="Weibo &rarr; https://weibo.com/cczhr" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内存缓存"><span class="nav-number">1.</span> <span class="nav-text">内存缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#磁盘缓存"><span class="nav-number">2.</span> <span class="nav-text">磁盘缓存</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cczhr</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">306k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">4:38</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.2.2</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'aMSu6hzeOMWDmzPvSSupyCSz-gzGzoHsz',
+    appKey: 'kXxUv0I5NdmApftPNoX8nBul',
+    placeholder: 'leave a message',
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":112.5,"height":225,"vOffset":-110},"mobile":{"show":false},"log":false});</script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
