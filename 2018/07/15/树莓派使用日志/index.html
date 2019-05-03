@@ -1,7 +1,972 @@
-<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"><link rel="stylesheet" href="/css/main.css?v=7.0.0"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0"><link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222"><script id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Gemini",version:"7.0.0",sidebar:{position:"left",display:"post",offset:12,b2t:!0,scrollpercent:!0,onmobile:!0},fancybox:!1,fastclick:!1,lazyload:!1,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><meta name="description" content="前言买了个树莓派3b+ 记录一下把♂玩♀它的时刻。
-烧录系统官方推荐系统： Raspbian 下载默认帐号密码：Username: pi  Password: raspberry烧录工具：USB Image Tool 下载准备一张tf卡 一个读卡器 tf卡推荐16g以上解压USB Image Tool打开USB Image Tool.exe，选择你的tf卡设备，点击Restore选择下载的系统即"><meta property="og:type" content="article"><meta property="og:title" content="树莓派使用日志"><meta property="og:url" content="http://cczhr.ink/2018/07/15/树莓派使用日志/index.html"><meta property="og:site_name" content="Not Found Blog"><meta property="og:description" content="前言买了个树莓派3b+ 记录一下把♂玩♀它的时刻。
-烧录系统官方推荐系统： Raspbian 下载默认帐号密码：Username: pi  Password: raspberry烧录工具：USB Image Tool 下载准备一张tf卡 一个读卡器 tf卡推荐16g以上解压USB Image Tool打开USB Image Tool.exe，选择你的tf卡设备，点击Restore选择下载的系统即"><meta property="og:image" content="http://cczhr.ink/2018/07/15/树莓派使用日志/usb1.jpg"><meta property="og:image" content="http://cczhr.ink/2018/07/15/树莓派使用日志/vnc.jpg"><meta property="og:image" content="http://cczhr.ink/2018/07/15/树莓派使用日志/vnc2.jpg"><meta property="og:updated_time" content="2018-07-15T13:48:43.000Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="树莓派使用日志"><meta name="twitter:description" content="前言买了个树莓派3b+ 记录一下把♂玩♀它的时刻。
-烧录系统官方推荐系统： Raspbian 下载默认帐号密码：Username: pi  Password: raspberry烧录工具：USB Image Tool 下载准备一张tf卡 一个读卡器 tf卡推荐16g以上解压USB Image Tool打开USB Image Tool.exe，选择你的tf卡设备，点击Restore选择下载的系统即"><meta name="twitter:image" content="http://cczhr.ink/2018/07/15/树莓派使用日志/usb1.jpg"><link rel="alternate" href="/atom.xml" title="Not Found Blog" type="application/atom+xml"><link rel="canonical" href="http://cczhr.ink/2018/07/15/树莓派使用日志/"><script id="page.configurations">CONFIG.page={sidebar:""}</script><title>树莓派使用日志 | Not Found Blog</title><noscript><style>.sidebar-inner,.use-motion .brand,.use-motion .collection-title,.use-motion .comments,.use-motion .menu-item,.use-motion .motion-element,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .logo,.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.use-motion .logo-line-before i{left:initial}.use-motion .logo-line-after i{right:initial}</style></noscript></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Not Found Blog</span><span class="logo-line-after"><i></i></span></a></div></div><div class="site-nav-toggle"> <button aria-label="切换导航栏"><span class="btn-bar"></span><span class="btn-bar"></span><span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i></span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"> <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://cczhr.ink/2018/07/15/树莓派使用日志/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="cczhr"><meta itemprop="description" content="或许你真的可以改变世界。"><meta itemprop="image" content="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Not Found Blog"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">树莓派使用日志</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span> <span class="post-meta-item-text">发表于</span> <time title="创建时间：2018-07-15 18:00:39 / 修改时间：21:48:43" itemprop="dateCreated datePublished" datetime="2018-07-15T18:00:39+08:00">2018-07-15</time></span> <span class="post-comments-count"><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-comment-o"></i></span> <a href="/2018/07/15/树莓派使用日志/#comments" itemprop="discussionUrl"><span class="post-meta-item-text">评论数：</span><span class="post-comments-count valine-comment-count" data-xid="/2018/07/15/树莓派使用日志/" itemprop="commentCount"></span></a></span><div class="post-symbolscount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span> <span class="post-meta-item-text">本文字数：</span> <span title="本文字数">2k</span> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-clock-o"></i></span> <span class="post-meta-item-text">阅读时长 &asymp;</span> <span title="阅读时长">2 分钟</span></div></div></header><div class="post-body" itemprop="articleBody"><script src="\assets\js\APlayer.min.js"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>买了个树莓派3b+ 记录一下把♂玩♀它的时刻。</p><h2 id="烧录系统"><a href="#烧录系统" class="headerlink" title="烧录系统"></a>烧录系统</h2><p>官方推荐系统： Raspbian <a href="http://downloads.raspberrypi.org/raspbian_latest" target="_blank" rel="external">下载</a><br>默认帐号密码：Username: pi Password: raspberry<br>烧录工具：USB Image Tool <a href="usbit-162.zip">下载</a><br>准备一张tf卡 一个读卡器 tf卡推荐16g以上<br>解压USB Image Tool打开USB Image Tool.exe，选择你的tf卡设备，点击Restore选择下载的系统即可<br><img src="/2018/07/15/树莓派使用日志/usb1.jpg" alt=""></p><h2 id="远程控制"><a href="#远程控制" class="headerlink" title="远程控制"></a>远程控制</h2><p>树莓派 当然要远程控制啦</p><h3 id="vnc-可视化界面"><a href="#vnc-可视化界面" class="headerlink" title="vnc 可视化界面"></a>vnc 可视化界面</h3><p>系统自带，手动开启即可。<br><img src="/2018/07/15/树莓派使用日志/vnc.jpg" alt=""><br><img src="/2018/07/15/树莓派使用日志/vnc2.jpg" alt=""><br>电脑上安装vnc <a href="VNC.zip">下载</a><br>连接使用即可</p><h3 id="xrdp-可视化界面"><a href="#xrdp-可视化界面" class="headerlink" title="xrdp 可视化界面"></a>xrdp 可视化界面</h3><p>实际体验下来 vnc操作画面还是比较卡顿，用xrdp会更加流畅一些<br>操作也很简单 打开终端 输入<br>sudo apt-get install xrdp<br>安装完成就可以用电脑的远程连接连上了<br>重启xrdp命令 sudo /etc/init.d/xrdp restart</p><h3 id="ssh-命令行界面"><a href="#ssh-命令行界面" class="headerlink" title="ssh 命令行界面"></a>ssh 命令行界面</h3><p>ssh和vnc一样打开即可使用<br>电脑连接ssh可以使用xshell</p><h2 id="修改软件源"><a href="#修改软件源" class="headerlink" title="修改软件源"></a>修改软件源</h2><p>国内连树莓派的软件源还是比较卡 所以换成国内的镜像体验比较好我这里使用的是清华大学的镜像<br>首先终端执行 sudo nano /etc/apt/sources.list<br>把里面的内容改为如下 链接前面加#是注释的意思</p><p>#deb <a href="http://mirrordirector.raspbian.org/raspbian/" target="_blank" rel="external">http://mirrordirector.raspbian.org/raspbian/</a> jessie main contrib non-free rpi</p><p>#Uncomment line below then ‘apt-get update’ to enable ‘apt-get source’</p><p>#deb-src <a href="http://archive.raspbian.org/raspbian/" target="_blank" rel="external">http://archive.raspbian.org/raspbian/</a> jessie main contrib non-free rpi</p><p>deb <a href="http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/" target="_blank" rel="external">http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/</a> stretch main contrib non-free rpi<br>deb-src <a href="http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/" target="_blank" rel="external">http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/</a> stretch main contrib non-free rpi</p><p>然后ctrl+x保存退出，接着执行<br>sudo nano /etc/apt/sources.list.d/raspi.list<br>把里面的内容改为</p><p>#deb <a href="http://archive.raspberrypi.org/debian/" target="_blank" rel="external">http://archive.raspberrypi.org/debian/</a> jessie main ui</p><p>#Uncomment line below then ‘apt-get update’ to enable ‘apt-get source’</p><p>#deb-src <a href="http://archive.raspberrypi.org/debian/" target="_blank" rel="external">http://archive.raspberrypi.org/debian/</a> jessie main ui</p><p>deb <a href="http://mirror.tuna.tsinghua.edu.cn/raspberrypi/" target="_blank" rel="external">http://mirror.tuna.tsinghua.edu.cn/raspberrypi/</a> stretch main ui<br>deb-src <a href="http://mirror.tuna.tsinghua.edu.cn/raspberrypi/" target="_blank" rel="external">http://mirror.tuna.tsinghua.edu.cn/raspberrypi/</a> stretch main ui</p><p>保存后执行sudo apt-get update 更新一下数据源即可</p><h2 id="制作nas"><a href="#制作nas" class="headerlink" title="制作nas"></a>制作nas</h2><p>首先看看你的移动硬盘插进树莓派能否识别如可以请忽略安装ntfs-3g的步骤<br>安装能让树莓派读取NTFS格式的软件包<br>sudo apt-get install fuse-utils ntfs-3g</p><p>安装samba<br>sudo apt-get install samba samba-common-bin<br>安装后编辑配置文件<br>sudo nano /etc/samba/smb.conf<br>在最下面一行加上 path填上你移动硬盘的路径 share是命名可以随便命，连接的时候用到valid users 为登录用户。<br></p><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[share]</div><div class="line">path = /media/pi/cczhr</div><div class="line">valid users = pi</div><div class="line">browseable = yes</div><div class="line">public = yes</div><div class="line">writable = yes</div><div class="line">create mask = 0777</div><div class="line">directory mask = 0777</div></pre></td></tr></table></figure><p></p><p>配置好后重启一下<br>service samba restart<br>添加上面填写的用户<br>useradd pi -m -G pi<br>设置密码<br>passwd pi</p><p>电脑上添加一个网络位置 \192.168.x.x\share 即可使用<br>android手机可以使用es文件管理器</p><h2 id="制作下载机"><a href="#制作下载机" class="headerlink" title="制作下载机"></a>制作下载机</h2><p>安装aria2<br>sudo apt-get install aria2</p><h2 id="支持百度云盘"><a href="#支持百度云盘" class="headerlink" title="支持百度云盘"></a>支持百度云盘</h2></div><footer class="post-footer"><div class="post-tags"> <a href="/tags/树莓派/" rel="tag"># 树莓派</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2018/07/04/Android的GreenDao笔记/" rel="next" title="Android的GreenDao笔记"><i class="fa fa-chevron-left"></i> Android的GreenDao笔记</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"> <a href="/2018/07/21/Java的反射与注解/" rel="prev" title="Java的反射与注解">Java的反射与注解<i class="fa fa-chevron-right"></i></a></div></div></footer></div></article></div></div><div class="comments" id="comments"></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div id="sidebar-dimmer"></div><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap"> 文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap"> 站点概览</li></ul><div class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"> <img class="site-author-image" itemprop="image" src="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg" alt="cczhr"><p class="site-author-name" itemprop="name">cczhr</p><p class="site-description motion-element" itemprop="description">或许你真的可以改变世界。</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"> <a href="/archives/"><span class="site-state-item-count">62</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-tags"> <a href="/tags/index.html"><span class="site-state-item-count">23</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/cczhr" title="GitHub &rarr; https://github.com/cczhr" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i> GitHub</a></span><span class="links-of-author-item"><a href="mailto:cczhr.dev@gmail.com" title="E-Mail &rarr; mailto:cczhr.dev@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i> E-Mail</a></span><span class="links-of-author-item"><a href="https://weibo.com/cczhr" title="Weibo &rarr; https://weibo.com/cczhr" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i> Weibo</a></span></div></div></div><div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#烧录系统"><span class="nav-number">2.</span> <span class="nav-text">烧录系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程控制"><span class="nav-number">3.</span> <span class="nav-text">远程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vnc-可视化界面"><span class="nav-number">3.1.</span> <span class="nav-text">vnc 可视化界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xrdp-可视化界面"><span class="nav-number">3.2.</span> <span class="nav-text">xrdp 可视化界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh-命令行界面"><span class="nav-number">3.3.</span> <span class="nav-text">ssh 命令行界面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改软件源"><span class="nav-number">4.</span> <span class="nav-text">修改软件源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作nas"><span class="nav-number">5.</span> <span class="nav-text">制作nas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作下载机"><span class="nav-number">6.</span> <span class="nav-text">制作下载机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持百度云盘"><span class="nav-number">7.</span> <span class="nav-text">支持百度云盘</span></a></li></ol></div></div></div><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2019</span><span class="with-love" id="animate"><i class="fa fa-user"></i></span> <span class="author" itemprop="copyrightHolder">cczhr</span> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-area-chart"></i></span> <span title="站点总字数">306k</span> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-coffee"></i></span> <span title="站点阅读时长">4:38</span></div><div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.2.2</div> <span class="post-meta-divider">|</span><div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div></div></footer></div><script>"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script><script src="/lib/jquery/index.js?v=2.1.3"></script><script src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script src="/js/src/utils.js?v=7.0.0"></script><script src="/js/src/motion.js?v=7.0.0"></script><script src="/js/src/affix.js?v=7.0.0"></script><script src="/js/src/schemes/pisces.js?v=7.0.0"></script><script src="/js/src/scrollspy.js?v=7.0.0"></script><script src="/js/src/post-details.js?v=7.0.0"></script><script src="/js/src/bootstrap.js?v=7.0.0"></script><script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script><script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script><script>var GUEST=["nick","mail","link"],guest="nick";guest=guest.split(",").filter(function(e){return-1<GUEST.indexOf(e)}),new Valine({el:"#comments",verify:!1,notify:!1,appId:"aMSu6hzeOMWDmzPvSSupyCSz-gzGzoHsz",appKey:"kXxUv0I5NdmApftPNoX8nBul",placeholder:"leave a message",avatar:"wavatar",meta:guest,pageSize:"10",visitor:!1})</script><script>
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言买了个树莓派3b+ 记录一下把♂玩♀它的时刻。
+烧录系统官方推荐系统： Raspbian 下载默认帐号密码：Username: pi  Password: raspberry烧录工具：USB Image Tool 下载准备一张tf卡 一个读卡器 tf卡推荐16g以上解压USB Image Tool打开USB Image Tool.exe，选择你的tf卡设备，点击Restore选择下载的系统即">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派使用日志">
+<meta property="og:url" content="http://cczhr.ink/2018/07/15/树莓派使用日志/index.html">
+<meta property="og:site_name" content="Not Found Blog">
+<meta property="og:description" content="前言买了个树莓派3b+ 记录一下把♂玩♀它的时刻。
+烧录系统官方推荐系统： Raspbian 下载默认帐号密码：Username: pi  Password: raspberry烧录工具：USB Image Tool 下载准备一张tf卡 一个读卡器 tf卡推荐16g以上解压USB Image Tool打开USB Image Tool.exe，选择你的tf卡设备，点击Restore选择下载的系统即">
+<meta property="og:image" content="http://cczhr.ink/2018/07/15/树莓派使用日志/usb1.jpg">
+<meta property="og:image" content="http://cczhr.ink/2018/07/15/树莓派使用日志/vnc.jpg">
+<meta property="og:image" content="http://cczhr.ink/2018/07/15/树莓派使用日志/vnc2.jpg">
+<meta property="og:updated_time" content="2018-07-15T13:48:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树莓派使用日志">
+<meta name="twitter:description" content="前言买了个树莓派3b+ 记录一下把♂玩♀它的时刻。
+烧录系统官方推荐系统： Raspbian 下载默认帐号密码：Username: pi  Password: raspberry烧录工具：USB Image Tool 下载准备一张tf卡 一个读卡器 tf卡推荐16g以上解压USB Image Tool打开USB Image Tool.exe，选择你的tf卡设备，点击Restore选择下载的系统即">
+<meta name="twitter:image" content="http://cczhr.ink/2018/07/15/树莓派使用日志/usb1.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Not Found Blog" type="application/atom+xml"/>
+
+
+
+
+  <link rel="canonical" href="http://cczhr.ink/2018/07/15/树莓派使用日志/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>树莓派使用日志 | Not Found Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Not Found Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cczhr.ink/2018/07/15/树莓派使用日志/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">树莓派使用日志
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-15 18:00:39 / 修改时间：21:48:43" itemprop="dateCreated datePublished" datetime="2018-07-15T18:00:39+08:00">2018-07-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/07/15/树莓派使用日志/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/15/树莓派使用日志/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">2k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">2 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="\assets\js\APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>买了个树莓派3b+ 记录一下把♂玩♀它的时刻。</p>
+<h2 id="烧录系统"><a href="#烧录系统" class="headerlink" title="烧录系统"></a>烧录系统</h2><p>官方推荐系统： Raspbian <a href="http://downloads.raspberrypi.org/raspbian_latest" target="_blank" rel="external">下载</a><br>默认帐号密码：Username: pi  Password: raspberry<br>烧录工具：USB Image Tool <a href="usbit-162.zip">下载</a><br>准备一张tf卡 一个读卡器 tf卡推荐16g以上<br>解压USB Image Tool打开USB Image Tool.exe，选择你的tf卡设备，点击Restore选择下载的系统即可<br><img src="/2018/07/15/树莓派使用日志/usb1.jpg" alt=""></p>
+<h2 id="远程控制"><a href="#远程控制" class="headerlink" title="远程控制"></a>远程控制</h2><p>树莓派 当然要远程控制啦</p>
+<h3 id="vnc-可视化界面"><a href="#vnc-可视化界面" class="headerlink" title="vnc 可视化界面"></a>vnc 可视化界面</h3><p>系统自带，手动开启即可。<br><img src="/2018/07/15/树莓派使用日志/vnc.jpg" alt=""><br><img src="/2018/07/15/树莓派使用日志/vnc2.jpg" alt=""><br>电脑上安装vnc  <a href="VNC.zip">下载</a><br>连接使用即可</p>
+<h3 id="xrdp-可视化界面"><a href="#xrdp-可视化界面" class="headerlink" title="xrdp 可视化界面"></a>xrdp 可视化界面</h3><p>实际体验下来 vnc操作画面还是比较卡顿，用xrdp会更加流畅一些<br>操作也很简单 打开终端 输入<br>sudo apt-get install xrdp<br>安装完成就可以用电脑的远程连接连上了<br>重启xrdp命令 sudo /etc/init.d/xrdp restart</p>
+<h3 id="ssh-命令行界面"><a href="#ssh-命令行界面" class="headerlink" title="ssh 命令行界面"></a>ssh 命令行界面</h3><p>ssh和vnc一样打开即可使用<br>电脑连接ssh可以使用xshell </p>
+<h2 id="修改软件源"><a href="#修改软件源" class="headerlink" title="修改软件源"></a>修改软件源</h2><p>国内连树莓派的软件源还是比较卡 所以换成国内的镜像体验比较好我这里使用的是清华大学的镜像<br>首先终端执行 sudo nano /etc/apt/sources.list<br>把里面的内容改为如下 链接前面加#是注释的意思</p>
+<p>#deb <a href="http://mirrordirector.raspbian.org/raspbian/" target="_blank" rel="external">http://mirrordirector.raspbian.org/raspbian/</a> jessie main contrib non-free rpi</p>
+<p>#Uncomment line below then ‘apt-get update’ to enable ‘apt-get source’</p>
+<p>#deb-src <a href="http://archive.raspbian.org/raspbian/" target="_blank" rel="external">http://archive.raspbian.org/raspbian/</a> jessie main contrib non-free rpi</p>
+<p>deb <a href="http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/" target="_blank" rel="external">http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/</a> stretch main contrib non-free rpi<br>deb-src <a href="http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/" target="_blank" rel="external">http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/</a> stretch main contrib non-free rpi</p>
+<p>然后ctrl+x保存退出，接着执行<br>sudo nano /etc/apt/sources.list.d/raspi.list<br>把里面的内容改为</p>
+<p>#deb <a href="http://archive.raspberrypi.org/debian/" target="_blank" rel="external">http://archive.raspberrypi.org/debian/</a> jessie main ui</p>
+<p>#Uncomment line below then ‘apt-get update’ to enable ‘apt-get source’</p>
+<p>#deb-src <a href="http://archive.raspberrypi.org/debian/" target="_blank" rel="external">http://archive.raspberrypi.org/debian/</a> jessie main ui</p>
+<p>deb <a href="http://mirror.tuna.tsinghua.edu.cn/raspberrypi/" target="_blank" rel="external">http://mirror.tuna.tsinghua.edu.cn/raspberrypi/</a> stretch main ui<br>deb-src <a href="http://mirror.tuna.tsinghua.edu.cn/raspberrypi/" target="_blank" rel="external">http://mirror.tuna.tsinghua.edu.cn/raspberrypi/</a> stretch main ui</p>
+<p>保存后执行sudo apt-get update 更新一下数据源即可</p>
+<h2 id="制作nas"><a href="#制作nas" class="headerlink" title="制作nas"></a>制作nas</h2><p>首先看看你的移动硬盘插进树莓派能否识别如可以请忽略安装ntfs-3g的步骤<br>安装能让树莓派读取NTFS格式的软件包<br>sudo apt-get install fuse-utils ntfs-3g</p>
+<p>安装samba<br>sudo apt-get install samba samba-common-bin<br>安装后编辑配置文件<br>sudo nano /etc/samba/smb.conf<br>在最下面一行加上 path填上你移动硬盘的路径 share是命名可以随便命，连接的时候用到valid users 为登录用户。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[share]</div><div class="line">path = /media/pi/cczhr</div><div class="line">valid users = pi</div><div class="line">browseable = yes</div><div class="line">public = yes</div><div class="line">writable = yes</div><div class="line">create mask = 0777</div><div class="line">directory mask = 0777</div></pre></td></tr></table></figure></p>
+<p>配置好后重启一下<br>service samba restart<br>添加上面填写的用户<br>useradd pi -m -G pi<br>设置密码<br>passwd pi</p>
+<p>电脑上添加一个网络位置 \192.168.x.x\share 即可使用<br>android手机可以使用es文件管理器</p>
+<h2 id="制作下载机"><a href="#制作下载机" class="headerlink" title="制作下载机"></a>制作下载机</h2><p>安装aria2<br>sudo apt-get install aria2 </p>
+<h2 id="支持百度云盘"><a href="#支持百度云盘" class="headerlink" title="支持百度云盘"></a>支持百度云盘</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/树莓派/" rel="tag"># 树莓派</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/04/Android的GreenDao笔记/" rel="next" title="Android的GreenDao笔记">
+                <i class="fa fa-chevron-left"></i> Android的GreenDao笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/21/Java的反射与注解/" rel="prev" title="Java的反射与注解">
+                Java的反射与注解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"
+                alt="cczhr"/>
+            
+              <p class="site-author-name" itemprop="name">cczhr</p>
+              <p class="site-description motion-element" itemprop="description">或许你真的可以改变世界。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/cczhr" title="GitHub &rarr; https://github.com/cczhr" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:cczhr.dev@gmail.com" title="E-Mail &rarr; mailto:cczhr.dev@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/cczhr" title="Weibo &rarr; https://weibo.com/cczhr" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#烧录系统"><span class="nav-number">2.</span> <span class="nav-text">烧录系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程控制"><span class="nav-number">3.</span> <span class="nav-text">远程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vnc-可视化界面"><span class="nav-number">3.1.</span> <span class="nav-text">vnc 可视化界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xrdp-可视化界面"><span class="nav-number">3.2.</span> <span class="nav-text">xrdp 可视化界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh-命令行界面"><span class="nav-number">3.3.</span> <span class="nav-text">ssh 命令行界面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改软件源"><span class="nav-number">4.</span> <span class="nav-text">修改软件源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作nas"><span class="nav-number">5.</span> <span class="nav-text">制作nas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作下载机"><span class="nav-number">6.</span> <span class="nav-text">制作下载机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持百度云盘"><span class="nav-number">7.</span> <span class="nav-text">支持百度云盘</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cczhr</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">306k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">4:38</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.2.2</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'aMSu6hzeOMWDmzPvSSupyCSz-gzGzoHsz',
+    appKey: 'kXxUv0I5NdmApftPNoX8nBul',
+    placeholder: 'leave a message',
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -319,4 +1284,36 @@
         onPopupClose();
       }
     });
-  </script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({pluginRootPath:"live2dw/",pluginJsPath:"lib/",pluginModelPath:"assets/",tagMode:!1,debug:!1,model:{jsonPath:"/live2dw/assets/assets/hijiki.model.json"},display:{position:"left",width:112.5,height:225,vOffset:-110},mobile:{show:!1},log:!1})</script><script async>window.onload=function(){var e=document.createElement("script"),t=document.getElementsByTagName("script")[0];e.type="text/javascript",e.async=!0,e.src="/sw-register.js?v="+Date.now(),t.parentNode.insertBefore(e,t)}</script></body></html>
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":112.5,"height":225,"vOffset":-110},"mobile":{"show":false},"log":false});</script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
