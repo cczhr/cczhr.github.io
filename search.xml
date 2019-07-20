@@ -4,6 +4,379 @@
   
     
     <entry>
+      <title><![CDATA[smali语法笔记]]></title>
+      <url>http://cczhr.ink/2019/07/14/smali%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/</url>
+      <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://ctf-wiki.github.io/ctf-wiki/android/basic_operating_mechanism/java_layer/smali/smali-zh/" target="_blank" rel="external">https://ctf-wiki.github.io/ctf-wiki/android/basic_operating_mechanism/java_layer/smali/smali-zh/</a></p>
+<h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>在执行 Android Java 层的代码时，其实就是 Dalvik(ART) 虚拟机（使用 C 或 C++ 代码实现）在解析 Dalvik 字节码，从而模拟程序的执行过程。而smali则是Dalvik的指令集。Java文件中的每一个内部类,都会产生一个单独的smali文件。</p>
+<h1 id="文件描述"><a href="#文件描述" class="headerlink" title="文件描述"></a>文件描述</h1><p>.class &lt; 访问权限&gt; [ 修饰关键字] &lt; 类名&gt;<br>.super &lt; 父类名&gt;<br>.source &lt;源文件名&gt;  </p>
+<p>如果一个类实现了接口还有以下的说明</p>
+<p>#interfaces<br>.implements &lt;接口名称&gt;</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><table>
+<thead>
+<tr>
+<th>描述符</th>
+<th>Java类型</th>
+<th>说明  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td>byte</td>
+<td>字节</td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td>char</td>
+<td>字符</td>
+<td></td>
+</tr>
+<tr>
+<td>D</td>
+<td>double</td>
+<td>双精度浮点数</td>
+<td></td>
+</tr>
+<tr>
+<td>F</td>
+<td>float</td>
+<td>单精度浮点数</td>
+<td></td>
+</tr>
+<tr>
+<td>I</td>
+<td>int</td>
+<td>整型</td>
+<td></td>
+</tr>
+<tr>
+<td>J</td>
+<td>long</td>
+<td>长整型</td>
+<td></td>
+</tr>
+<tr>
+<td>S</td>
+<td>short</td>
+<td>短整型</td>
+<td></td>
+</tr>
+<tr>
+<td>V</td>
+<td>void</td>
+<td>无类型</td>
+<td></td>
+</tr>
+<tr>
+<td>Z</td>
+<td>boolean</td>
+<td>布尔型</td>
+<td></td>
+</tr>
+<tr>
+<td>[</td>
+<td>array</td>
+<td>[ XXX ，XXX为数组类型有几个就为几维数组</td>
+<td></td>
+</tr>
+<tr>
+<td>L</td>
+<td>object</td>
+<td>Lxxx/yyy，xxx/yyy为对象的包名路径</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><table>
+<thead>
+<tr>
+<th>运算类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>add-type</td>
+<td>vBB + vCC</td>
+<td></td>
+</tr>
+<tr>
+<td>sub-type</td>
+<td>vBB - vCC</td>
+<td></td>
+</tr>
+<tr>
+<td>mul-type</td>
+<td>vBB * vCC</td>
+<td></td>
+</tr>
+<tr>
+<td>div-type</td>
+<td>vBB / vCC</td>
+<td></td>
+</tr>
+<tr>
+<td>rem-type</td>
+<td>vBB % vCC</td>
+<td></td>
+</tr>
+<tr>
+<td>and-type</td>
+<td>vBB &amp; vCC</td>
+<td></td>
+</tr>
+<tr>
+<td>or-type</td>
+<td>vBB</td>
+<td>vCC</td>
+<td></td>
+</tr>
+<tr>
+<td>xor-type</td>
+<td>vBB ^ vCC</td>
+<td></td>
+</tr>
+<tr>
+<td>shl-type</td>
+<td>vBB &lt;&lt; vCC ，有符号数左移</td>
+<td></td>
+</tr>
+<tr>
+<td>shr-type</td>
+<td>vBB &gt;&gt; vCC，有符号数右移</td>
+<td></td>
+</tr>
+<tr>
+<td>ushr-type</td>
+<td>vBB &gt;&gt;&gt; vCC，无符号数右移</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="寄存器的命名"><a href="#寄存器的命名" class="headerlink" title="寄存器的命名"></a>寄存器的命名</h1><p>Dalvik字节码中，register（寄存器）一定是32位<br>p 开头的寄存器都是参数寄存器<br>v 开头的寄存器都是局部变量寄存器<br>两者的数量之和为方法申请的寄存器数量<br>方法自身占用一个寄存器  引用自身类的this 如果是子类还会隐含父类的this</p>
+<h1 id="函数描述"><a href="#函数描述" class="headerlink" title="函数描述"></a>函数描述</h1><h1 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h1><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>invoke-super</td>
+<td>调用父函数</td>
+<td></td>
+</tr>
+<tr>
+<td>invoke-direct</td>
+<td>调用private函数</td>
+<td></td>
+</tr>
+<tr>
+<td>invoke-static</td>
+<td>调用static函数</td>
+<td></td>
+</tr>
+<tr>
+<td>invoke-virtual</td>
+<td>调用protected或public函数</td>
+<td></td>
+</tr>
+<tr>
+<td>invoke-xxxx/range {v0 .. vn}</td>
+<td>多于5个时（含5个）在后面加上“/range”，range表示范围 n为参数个数 xxxx为类型</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="if-指令"><a href="#if-指令" class="headerlink" title="if 指令"></a>if 指令</h1><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if-eq vA,vB,target</td>
+<td>如果 vA=vB，跳转</td>
+<td></td>
+</tr>
+<tr>
+<td>if-ne vA,vB,target</td>
+<td>如果 vA!=vB，跳转</td>
+<td></td>
+</tr>
+<tr>
+<td>if-lt vA,vB,targe</td>
+<td>如果 vA&lt;vB，跳转</td>
+<td></td>
+</tr>
+<tr>
+<td>if-gt vA,vB,target</td>
+<td>如果 vA&gt;vB，跳转</td>
+<td></td>
+</tr>
+<tr>
+<td>if-ge vA,vB,target</td>
+<td>如果 vA&gt;=vB，跳转</td>
+<td></td>
+</tr>
+<tr>
+<td>if-le vA,vB,target</td>
+<td>如果 vA&lt;=vB，跳转</td>
+<td></td>
+</tr>
+<tr>
+<td>if-eqz vAA,target</td>
+<td>如果 vA=0，跳转</td>
+<td></td>
+</tr>
+<tr>
+<td>if-nez vAA,target</td>
+<td>如果 vA!=0，跳转</td>
+<td></td>
+</tr>
+<tr>
+<td>if-ltz vAA,target</td>
+<td>如果 vA&lt;0，跳转</td>
+<td></td>
+</tr>
+<tr>
+<td>if-gtz vAA,target</td>
+<td>如果 vA&gt;0，跳转</td>
+<td></td>
+</tr>
+<tr>
+<td>if-lez vAA,target</td>
+<td>如果 vA&lt;=0，跳转</td>
+<td></td>
+</tr>
+<tr>
+<td>if-gtz vAA,target</td>
+<td>如果 vA&gt;=0，跳转</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><p>注解的作用范围可以是类、方法或字段。如果注解的作用范围是类，“.annotation”指令会直接定义在 smali 文件中，如果是方法或字段，“.annotation”指令则会包含在方法或字段定义中<br>格式为<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#annotations</span></div><div class="line"><span class="keyword">.annotation</span> [注解的属性] &lt;注解范围&gt;</div><div class="line">    [注解字段=值]</div><div class="line"><span class="keyword">    .</span>..</div><div class="line"><span class="keyword">.end</span></div></pre></td></tr></table></figure></p>
+<h2 id="常用系统注释"><a href="#常用系统注释" class="headerlink" title="常用系统注释"></a>常用系统注释</h2><h3 id="MemberClasses注解"><a href="#MemberClasses注解" class="headerlink" title="MemberClasses注解"></a>MemberClasses注解</h3><p>MemberClasses注解是编译时自动加上的，Memberclasses是一个子类的集合，说明当前类有多少子类。<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># annotations</span></div><div class="line"><span class="keyword">.annotation</span><span class="keyword"> system</span> <span class="class">Ldalvik/annotation/MemberClasses;</span></div><div class="line">    value = &#123;</div><div class="line">        <span class="class">Lxxx/yyy;</span></div><div class="line">    &#125;<span class="keyword"></span></div><div class="line">.end annotation</div></pre></td></tr></table></figure></p>
+<h3 id="EnclosingMethod注解"><a href="#EnclosingMethod注解" class="headerlink" title="EnclosingMethod注解"></a>EnclosingMethod注解</h3><p>EnclosingMethod 注解用于说明当前smali文件的作用范围，<br>Method说明它作用于一个方法。<br>只要有EnclosingMethod 那么InnerClass一定出现，而且一个类不得同时包含 EnclosingClass 和 EnclosingMethod 注释。<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># annotations</span></div><div class="line"><span class="keyword">.annotation</span><span class="keyword"> system</span> <span class="class">Ldalvik/annotation/EnclosingMethod;</span></div><div class="line">    value = <span class="class">Lcom/cczhr/MainActivity;</span>-&gt;onCreate(<span class="class">Landroid/os/Bundle;</span>)V<span class="keyword"></span></div><div class="line">.end annotation</div></pre></td></tr></table></figure></p>
+<h3 id="EnclosingClass"><a href="#EnclosingClass" class="headerlink" title="EnclosingClass"></a>EnclosingClass</h3><p>EnclosingClass 注解用于说明当前smali文件的作用范围，<br>Class说明它作用于一个类。<br>只要有EnclosingClass那么InnerClass一定出现，而且一个类不得同时包含 EnclosingClass 和 EnclosingMethod 注释。</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># annotations</span></div><div class="line"><span class="keyword">.annotation</span><span class="keyword"> system</span> <span class="class">Ldalvik/annotation/EnclosingClass;</span></div><div class="line">    value = <span class="class">Lcom/cczhr/utils/TimeCalibrateHelper;</span><span class="keyword"></span></div><div class="line">.end annotation</div></pre></td></tr></table></figure>
+<h3 id="InnerClass"><a href="#InnerClass" class="headerlink" title="InnerClass"></a>InnerClass</h3><p>表明是一个内部类  accessFlags为访问标志 name为内部类的名称</p>
+<table>
+<thead>
+<tr>
+<th>访问标志名称</th>
+<th>值  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACC_ABSTRACT</td>
+<td>0x0400</td>
+<td></td>
+</tr>
+<tr>
+<td>ACC_FINAL</td>
+<td>0x0010</td>
+<td></td>
+</tr>
+<tr>
+<td>ACC_INTERFACE</td>
+<td>0x0200</td>
+<td></td>
+</tr>
+<tr>
+<td>ACC_NATIVE</td>
+<td>0x0100</td>
+<td></td>
+</tr>
+<tr>
+<td>ACC_PRIVATE</td>
+<td>0x0002</td>
+<td></td>
+</tr>
+<tr>
+<td>ACC_PROTECTED</td>
+<td>0x0004</td>
+<td></td>
+</tr>
+<tr>
+<td>ACC_PUBLIC</td>
+<td>0x0001</td>
+<td></td>
+</tr>
+<tr>
+<td>ACC_STATIC</td>
+<td>0x0008</td>
+<td></td>
+</tr>
+<tr>
+<td>ACC_STRICT</td>
+<td>0x0800</td>
+<td></td>
+</tr>
+<tr>
+<td>ACC_SUPER</td>
+<td>0x0020</td>
+<td></td>
+</tr>
+<tr>
+<td>ACC_SYNCHRONIZED</td>
+<td>0x0020</td>
+<td></td>
+</tr>
+<tr>
+<td>ACC_TRANSIENT</td>
+<td>0x0080</td>
+<td></td>
+</tr>
+<tr>
+<td>ACC_VOLATILE</td>
+<td>0x0040</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>下面的0x9 则是ACC_STATIC | ACC_PUBLIC 计算出来的<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">.annotation</span><span class="keyword"> system</span> <span class="class">Ldalvik/annotation/InnerClass;</span></div><div class="line">    accessFlags = 0x9</div><div class="line">    name = <span class="string">"SntpClient"</span><span class="keyword"></span></div><div class="line">.end annotation</div></pre></td></tr></table></figure></p>
+<p>对应java文件<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimeCalibrateHelper</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SntpClient</span> </span>&#123;&#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<h1 id="数据移动"><a href="#数据移动" class="headerlink" title="数据移动"></a>数据移动</h1><p>move系列指令以及move-result 用于处理小于等于 32 位的基本类型。<br>move-wide系列指令和move-result-wide用于处理 64 位类型，包括long和double类型。<br>move-object系列指令和move-result-object用于处理对象引用。<br>move-result 是把上一条执行的代码的返回值放到指定寄存器上</p>
+<p>move A: 目标寄存器 B: 源寄存器</p>
+<h1 id="数组定义"><a href="#数组定义" class="headerlink" title="数组定义"></a>数组定义</h1><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new-array v0, v1, I</td>
+<td>v0为存放数组的寄存器，v1为数组长度，I为类型</td>
+<td></td>
+</tr>
+<tr>
+<td>filled-new-array {v1, v2, v3, v4, v5}, I move-result v0</td>
+<td>v0为存放数组的寄存器， v1-v5为存放的参数， I为类型</td>
+</tr>
+</tbody>
+</table>
+<h1 id="“特殊”的synthetic方法"><a href="#“特殊”的synthetic方法" class="headerlink" title="“特殊”的synthetic方法"></a>“特殊”的synthetic方法</h1><p>在smail文件中会看到定义为 .method static synthetic access$xxx 的方法，这些方法是由编译器生成的，目的是方便内部类/外部类 访问 外部类/内部类 的私有方法。<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">.method</span><span class="keyword"> static</span><span class="keyword"> synthetic</span> access$100(<span class="class">Lcom/ccahr/myxposed/MainActivity;</span>)Z</div><div class="line"><span class="keyword">    .registers</span> 2</div><div class="line"><span class="keyword">    .param</span> p0, <span class="string">"x0"</span>    <span class="comment"># Lcom/cczhr/myxposed/MainActivity;</span></div><div class="line"></div><div class="line"><span class="keyword">    .prologue</span></div><div class="line"><span class="keyword">    .line</span> 13</div><div class="line">   <span class="built_in"> invoke-direct </span>&#123;p0&#125;, <span class="class">Lcom/cczhr/myxposed/MainActivity;</span>-&gt;test()Z</div><div class="line"></div><div class="line">   <span class="built_in"> move-result </span>v0</div><div class="line"></div><div class="line">   <span class="built_in"> return </span>v0<span class="keyword"></span></div><div class="line">.end method</div><div class="line"></div><div class="line"><span class="keyword">.method</span><span class="keyword"> private</span> test()Z</div><div class="line"><span class="keyword">    .registers</span> 2</div><div class="line"></div><div class="line"><span class="keyword">    .prologue</span></div><div class="line"><span class="keyword">    .line</span> 70</div><div class="line">   <span class="built_in"> const/4 </span>v0, 0x1</div><div class="line"></div><div class="line">   <span class="built_in"> return </span>v0<span class="keyword"></span></div><div class="line">.end method</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Android安全 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Java 只有值传递]]></title>
       <url>http://cczhr.ink/2019/05/03/Java-%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/</url>
       <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><h1 id="值传递："><a href="#值传递：" class="headerlink" title="值传递："></a>值传递：</h1><p>在方法被调用时，实参通过形参把它的内容副本传入方法内部，此时形参接收到的内容是实参值的一个拷贝，因此在方法内对形参的任何操作，都仅仅是对这个副本的操作，不影响原始值的内容。</p>
