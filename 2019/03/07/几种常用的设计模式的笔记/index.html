@@ -102,21 +102,21 @@
 开闭原则 OCP“软件中的对象（类，模块，函数等等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="几种常用的设计模式的笔记">
-<meta property="og:url" content="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/index.html">
+<meta property="og:url" content="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/index.html">
 <meta property="og:site_name" content="Not Found Blog">
 <meta property="og:description" content="面向对象的六大原则基础 接口和抽象类区别抽象类是可以表示一种东西的根源，是可以有成员属性和动作的。而接口则仅仅表示动作。
 单一职责原则 SRP每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。——维基百科
 就是一个类尽量就只有一个单一功能。——我的理解
 开闭原则 OCP“软件中的对象（类，模块，函数等等">
-<meta property="og:image" content="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/1.jpg">
-<meta property="og:image" content="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/2.jpg">
-<meta property="og:image" content="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/6.jpg">
-<meta property="og:image" content="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/5.jpg">
-<meta property="og:image" content="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/7.jpg">
-<meta property="og:image" content="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/4.jpg">
-<meta property="og:image" content="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/3.jpg">
-<meta property="og:image" content="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/r1.png">
-<meta property="og:image" content="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/r2.png">
+<meta property="og:image" content="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/1.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/2.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/6.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/5.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/7.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/4.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/3.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/r1.png">
+<meta property="og:image" content="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/r2.png">
 <meta property="og:updated_time" content="2019-03-08T12:29:11.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="几种常用的设计模式的笔记">
@@ -124,7 +124,7 @@
 单一职责原则 SRP每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。——维基百科
 就是一个类尽量就只有一个单一功能。——我的理解
 开闭原则 OCP“软件中的对象（类，模块，函数等等">
-<meta name="twitter:image" content="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/1.jpg">
+<meta name="twitter:image" content="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/1.jpg">
 
 
 
@@ -133,7 +133,7 @@
 
 
 
-  <link rel="canonical" href="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/"/>
+  <link rel="canonical" href="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/"/>
 
 
 
@@ -356,7 +356,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cczhr.ink/2019/03/07/几种常用的设计模式的笔记/"/>
+    <link itemprop="mainEntityOfPage" href="http://cczhr.ltd/2019/03/07/几种常用的设计模式的笔记/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cczhr"/>
@@ -535,10 +535,10 @@
 <h2 id="Command（命令）模式"><a href="#Command（命令）模式" class="headerlink" title="Command（命令）模式"></a>Command（命令）模式</h2><p>适用于将一个请求封装为一个对象，从而可用不同的请求对客户进行参数化；对请求排队或记录日志，以及支持可撤销的操作。就是把具体执行命令的类包装两层。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Receiver</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"执行具体操作"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Command</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span>  <span class="title">execute</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Receiver mReceiver;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConcreteCommand</span><span class="params">(Receiver receiver)</span> </span>&#123;</div><div class="line">        mReceiver = receiver;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">        mReceiver.action();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Invoker</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Command mCommand;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Invoker</span><span class="params">(Command command)</span> </span>&#123;</div><div class="line">        mCommand = command;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">()</span></span>&#123;</div><div class="line">        mCommand.execute();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>效果<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Invoker invoker=<span class="keyword">new</span> Invoker(<span class="keyword">new</span> ConcreteCommand(<span class="keyword">new</span> Receiver()));</div><div class="line">invoker.action();</div><div class="line"><span class="comment">//输出： 执行具体操作</span></div></pre></td></tr></table></figure></p>
 <h2 id="Observer（观察者）模式"><a href="#Observer（观察者）模式" class="headerlink" title="Observer（观察者）模式"></a>Observer（观察者）模式</h2><p>适用于一对多的依赖状态，使当一个类改变状态时，所有依赖它的其它类会收到通知。<br><img src="/2019/03/07/几种常用的设计模式的笔记/r1.png" alt=""><br><img src="/2019/03/07/几种常用的设计模式的笔记/r2.png" alt=""></p>
-<h2 id="Proxy（代理）模式"><a href="#Proxy（代理）模式" class="headerlink" title="Proxy（代理）模式"></a>Proxy（代理）模式</h2><p>适用于不想直接或无法直接访问一个类的时候，可以使用代理对象。<br><a href="https://cczhr.ink/2017/07/16/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">代理模式</a></p>
-<h2 id="Singleton（单例）模式"><a href="#Singleton（单例）模式" class="headerlink" title="Singleton（单例）模式"></a>Singleton（单例）模式</h2><p>适用于确保一个类只有一个实例的情况<br><a href="https://cczhr.ink/2017/07/16/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">懒汉式单例模式</a></p>
+<h2 id="Proxy（代理）模式"><a href="#Proxy（代理）模式" class="headerlink" title="Proxy（代理）模式"></a>Proxy（代理）模式</h2><p>适用于不想直接或无法直接访问一个类的时候，可以使用代理对象。<br><a href="https://cczhr.ink/2017/07/16/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" target="_blank" rel="external">代理模式</a></p>
+<h2 id="Singleton（单例）模式"><a href="#Singleton（单例）模式" class="headerlink" title="Singleton（单例）模式"></a>Singleton（单例）模式</h2><p>适用于确保一个类只有一个实例的情况<br><a href="https://cczhr.ink/2017/07/16/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" target="_blank" rel="external">懒汉式单例模式</a></p>
 <p>静态内部类单例(线程安全且懒加载)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticInnerSingleton</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">StaticInnerSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> StaticInnerSingleton instance = <span class="keyword">new</span> StaticInnerSingleton();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> StaticInnerSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> SingletonHolder.instance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="Decorator（装饰）模式"><a href="#Decorator（装饰）模式" class="headerlink" title="Decorator（装饰）模式"></a>Decorator（装饰）模式</h2><p>动态地将责任附加到对象上.若要扩展功能,装饰者提供了比继承更有弹性的替代方案。<br><a href="https://cczhr.ink/2017/02/24/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/">懒汉式单例模式</a></p>
+<h2 id="Decorator（装饰）模式"><a href="#Decorator（装饰）模式" class="headerlink" title="Decorator（装饰）模式"></a>Decorator（装饰）模式</h2><p>动态地将责任附加到对象上.若要扩展功能,装饰者提供了比继承更有弹性的替代方案。<br><a href="https://cczhr.ink/2017/02/24/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/" target="_blank" rel="external">懒汉式单例模式</a></p>
 
       
     </div>
@@ -667,7 +667,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-count">66</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -732,7 +732,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">25</span>
+                      
+                    
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -839,7 +841,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -851,7 +853,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">312k</span>
+    <span title="站点总字数">317k</span>
   
 
   
@@ -860,7 +862,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">4:44</span>
+    <span title="站点阅读时长">4:48</span>
   
 </div>
 
