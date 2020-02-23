@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="多点触控Action通过MotionEvent的getActionMasked()获取支持多点触控的action
+
+
+
+动作
+说明
+
+
+
+
+MotionEvent.ACTION_DOWN
+手指按下
+
+
+MotionEvent.ACTION_MOVE
+手指移动
+
+
+MotionEvent.ACTION_UP
+手指抬起
+
+
+MotionEvent.ACTION_CANCEL
+事件被拦截
+
+
+Moti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android自定义view-多点触控与拖拽">
+<meta property="og:url" content="http://cczhr.ltd/2020/02/15/Android自定义view-多点触控与拖拽/index.html">
+<meta property="og:site_name" content="Not Found Blog">
+<meta property="og:description" content="多点触控Action通过MotionEvent的getActionMasked()获取支持多点触控的action
+
+
+
+动作
+说明
+
+
+
+
+MotionEvent.ACTION_DOWN
+手指按下
+
+
+MotionEvent.ACTION_MOVE
+手指移动
+
+
+MotionEvent.ACTION_UP
+手指抬起
+
+
+MotionEvent.ACTION_CANCEL
+事件被拦截
+
+
+Moti">
+<meta property="og:image" content="http://cczhr.ltd/2020/02/15/Android自定义view-多点触控与拖拽/1.png">
+<meta property="og:image" content="http://cczhr.ltd/2020/02/15/Android自定义view-多点触控与拖拽/2.gif">
+<meta property="og:updated_time" content="2020-02-23T11:15:25.647Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android自定义view-多点触控与拖拽">
+<meta name="twitter:description" content="多点触控Action通过MotionEvent的getActionMasked()获取支持多点触控的action
+
+
+
+动作
+说明
+
+
+
+
+MotionEvent.ACTION_DOWN
+手指按下
+
+
+MotionEvent.ACTION_MOVE
+手指移动
+
+
+MotionEvent.ACTION_UP
+手指抬起
+
+
+MotionEvent.ACTION_CANCEL
+事件被拦截
+
+
+Moti">
+<meta name="twitter:image" content="http://cczhr.ltd/2020/02/15/Android自定义view-多点触控与拖拽/1.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Not Found Blog" type="application/atom+xml"/>
+
+
+
+
+  <link rel="canonical" href="http://cczhr.ltd/2020/02/15/Android自定义view-多点触控与拖拽/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android自定义view-多点触控与拖拽 | Not Found Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Not Found Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cczhr.ltd/2020/02/15/Android自定义view-多点触控与拖拽/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android自定义view-多点触控与拖拽
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-15 11:52:21" itemprop="dateCreated datePublished" datetime="2020-02-15T11:52:21+08:00">2020-02-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-23 19:15:25" itemprop="dateModified" datetime="2020-02-23T19:15:25+08:00">2020-02-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2020/02/15/Android自定义view-多点触控与拖拽/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/02/15/Android自定义view-多点触控与拖拽/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">14k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">12 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="\assets\js\APlayer.min.js"> </script><h1 id="多点触控"><a href="#多点触控" class="headerlink" title="多点触控"></a>多点触控</h1><h2 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h2><p>通过MotionEvent的getActionMasked()获取支持多点触控的action</p>
+<table>
+<thead>
+<tr>
+<th>动作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MotionEvent.ACTION_DOWN</td>
+<td>手指按下</td>
+</tr>
+<tr>
+<td>MotionEvent.ACTION_MOVE</td>
+<td>手指移动</td>
+</tr>
+<tr>
+<td>MotionEvent.ACTION_UP</td>
+<td>手指抬起</td>
+</tr>
+<tr>
+<td>MotionEvent.ACTION_CANCEL</td>
+<td>事件被拦截</td>
+</tr>
+<tr>
+<td>MotionEvent.ACTION_OUTSIDE</td>
+<td>超出区域</td>
+</tr>
+<tr>
+<td>MotionEvent.ACTION_POINTER_DOWN</td>
+<td>有非主要的手指按下(即按下之前已经有手指在屏幕上)</td>
+</tr>
+<tr>
+<td>MotionEvent.ACTION_POINTER_UP</td>
+<td>有非主要的手指抬起(即抬起之前已经有手指在屏幕上)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="触控坐标定位"><a href="#触控坐标定位" class="headerlink" title="触控坐标定位"></a>触控坐标定位</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getActionIndex()</td>
+<td>获取当前手指的Index 在按下到抬起过程有可能会变化</td>
+</tr>
+<tr>
+<td>getPointerId(int pointerIndex)</td>
+<td>传入手指的Index获取手指的唯一id 在按下到抬起过程不变</td>
+</tr>
+<tr>
+<td>findPointerIndex(int pointerId)</td>
+<td>传入手指的唯一id 获取手指的index</td>
+</tr>
+<tr>
+<td>getX(int pointerIndex)</td>
+<td>传入手指的Index获取当前触控的x坐标</td>
+</tr>
+<tr>
+<td>getY(int pointerIndex)</td>
+<td>传入手指的Index获取当前触控的y坐标</td>
+</tr>
+<tr>
+<td>getPointerCount()</td>
+<td>获取在屏幕上手指的个数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="多指滑动的处理"><a href="#多指滑动的处理" class="headerlink" title="多指滑动的处理"></a>多指滑动的处理</h2><h3 id="第一种-把旧值给活动手指"><a href="#第一种-把旧值给活动手指" class="headerlink" title="第一种 把旧值给活动手指"></a>第一种 把旧值给活动手指</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">       <span class="keyword">switch</span> (event.getActionMasked()) &#123;</div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</div><div class="line">               trackingPointerId = event.getPointerId(<span class="number">0</span>);</div><div class="line">               downX = event.getX();</div><div class="line">               downY = event.getY();</div><div class="line">               originalOffsetX = offsetX;</div><div class="line">               originalOffsetY = offsetY;</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</div><div class="line">               <span class="keyword">int</span> index = event.findPointerIndex(trackingPointerId);<span class="comment">//根据唯一id找index</span></div><div class="line">               <span class="comment">//实际移动的偏移量为 前偏移量加现偏移量</span></div><div class="line">               offsetX = originalOffsetX + (event.getX(index) - downX);</div><div class="line">               offsetY = originalOffsetY + (event.getY(index) - downY);</div><div class="line">               invalidate();</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_POINTER_DOWN:<span class="comment">//第二只手指放下</span></div><div class="line">               <span class="keyword">int</span> actionIndex = event.getActionIndex();</div><div class="line">               trackingPointerId = event.getPointerId(actionIndex);<span class="comment">//活动id变为新按下的手指</span></div><div class="line">               downX = event.getX(actionIndex);</div><div class="line">               downY = event.getY(actionIndex);</div><div class="line">               originalOffsetX = offsetX;<span class="comment">//初始位置为上只手指的offset</span></div><div class="line">               originalOffsetY = offsetY;<span class="comment">//初始位置为上只手指的offset</span></div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_POINTER_UP:<span class="comment">//多手抬起一只</span></div><div class="line">               actionIndex = event.getActionIndex();</div><div class="line">               <span class="keyword">int</span> pointerId = event.getPointerId(actionIndex);</div><div class="line">               <span class="keyword">if</span> (pointerId == trackingPointerId) &#123;<span class="comment">//如果抬起的是当前活动的手指</span></div><div class="line">                   <span class="keyword">int</span> newIndex;</div><div class="line">                   <span class="keyword">if</span> (actionIndex == event.getPointerCount() - <span class="number">1</span>) &#123;<span class="comment">//如果当前抬起的index是最后按下的index</span></div><div class="line">                       newIndex = event.getPointerCount() - <span class="number">2</span>;<span class="comment">//把活动Index改为它前一只按下的手指</span></div><div class="line">                   &#125; <span class="keyword">else</span> &#123;</div><div class="line">                       newIndex = event.getPointerCount() - <span class="number">1</span>;<span class="comment">//把活动Index改为最后一只按下的手指</span></div><div class="line">                   &#125;</div><div class="line">                   trackingPointerId = event.getPointerId(newIndex);<span class="comment">//获取新的Index的唯一id</span></div><div class="line">                   downX = event.getX(actionIndex);</div><div class="line">                   downY = event.getY(actionIndex);</div><div class="line">                   originalOffsetX = offsetX;</div><div class="line">                   originalOffsetY = offsetY;</div><div class="line"></div><div class="line">               &#125;</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">       canvas.drawBitmap(bitmap, offsetX, offsetY, paint);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h3 id="第二种-直接叠加多手指平均偏移量"><a href="#第二种-直接叠加多手指平均偏移量" class="headerlink" title="第二种 直接叠加多手指平均偏移量"></a>第二种 直接叠加多手指平均偏移量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">       <span class="keyword">float</span> sumX = <span class="number">0</span>;</div><div class="line">       <span class="keyword">float</span> sumY = <span class="number">0</span>;</div><div class="line">       <span class="keyword">int</span> pointerCount = event.getPointerCount();</div><div class="line">       <span class="keyword">boolean</span> isPointerUp = event.getActionMasked() == MotionEvent.ACTION_POINTER_UP;</div><div class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; pointerCount; i++) &#123;</div><div class="line">           <span class="keyword">if</span> (!(isPointerUp &amp;&amp; i == event.getActionIndex())) &#123;<span class="comment">//抬起手指的坐标不累加</span></div><div class="line">               sumX += event.getX(i);</div><div class="line">               sumY += event.getY(i);</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">if</span> (isPointerUp) &#123;</div><div class="line">           pointerCount -= <span class="number">1</span>;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">float</span> focusX = sumX / pointerCount;<span class="comment">//移动过程中的平均坐标</span></div><div class="line">       <span class="keyword">float</span> focusY = sumY / pointerCount;<span class="comment">//移动过程中的平均坐标</span></div><div class="line">       <span class="keyword">switch</span> (event.getActionMasked()) &#123;</div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_POINTER_DOWN:</div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_POINTER_UP:</div><div class="line">               downX = focusX; <span class="comment">//记录手指放下或抬起的瞬间平均坐标</span></div><div class="line">               downY = focusY;<span class="comment">//记录手指放下或抬起的瞬间平均坐标</span></div><div class="line">               originalOffsetX = offsetX;<span class="comment">//记录上次移动坐标</span></div><div class="line">               originalOffsetY = offsetY;<span class="comment">//记录上次移动坐标</span></div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</div><div class="line">               offsetX = originalOffsetX + (focusX - downX);<span class="comment">//最后移动的坐标加上偏移量</span></div><div class="line">               offsetY = originalOffsetY + (focusY - downY);<span class="comment">//最后移动的坐标加上偏移量</span></div><div class="line">               invalidate();</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">       canvas.drawBitmap(bitmap, offsetX, offsetY, paint);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h3 id="第三种互不干扰"><a href="#第三种互不干扰" class="headerlink" title="第三种互不干扰"></a>第三种互不干扰</h3><p>多指画图例子<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">SparseArray&lt;Path&gt; paths = <span class="keyword">new</span> SparseArray&lt;&gt;();</div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">       <span class="keyword">switch</span> (event.getActionMasked()) &#123;</div><div class="line">           <span class="keyword">case</span> ACTION_DOWN:</div><div class="line">           <span class="keyword">case</span> ACTION_POINTER_DOWN:</div><div class="line">               <span class="keyword">int</span> actionIndex = event.getActionIndex();</div><div class="line">               <span class="keyword">int</span> pointerId = event.getPointerId(actionIndex);</div><div class="line">               Path path = <span class="keyword">new</span> Path();</div><div class="line">               path.moveTo(event.getX(actionIndex), event.getY(actionIndex));</div><div class="line">               paths.append(pointerId, path);</div><div class="line">               invalidate();</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           <span class="keyword">case</span> ACTION_MOVE:</div><div class="line">               <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; event.getPointerCount(); i++) &#123;</div><div class="line">                   pointerId = event.getPointerId(i);</div><div class="line">                   path = paths.get(pointerId);</div><div class="line">                   path.lineTo(event.getX(i), event.getY(i));</div><div class="line">               &#125;</div><div class="line">               invalidate();</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           <span class="keyword">case</span> ACTION_UP:</div><div class="line">           <span class="keyword">case</span> ACTION_POINTER_UP:</div><div class="line">               pointerId = event.getPointerId(event.getActionIndex());</div><div class="line">               paths.remove(pointerId);</div><div class="line">               invalidate();</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;paths.size(); i++) &#123;</div><div class="line">           Path path = paths.valueAt(i);</div><div class="line">           canvas.drawPath(path, paint);</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="拖拽"><a href="#拖拽" class="headerlink" title="拖拽"></a>拖拽</h2><h3 id="OnDragListener-拖拽view影子"><a href="#OnDragListener-拖拽view影子" class="headerlink" title="OnDragListener 拖拽view影子"></a>OnDragListener 拖拽view影子</h3><h4 id="ClipData-剪切板"><a href="#ClipData-剪切板" class="headerlink" title="ClipData 剪切板"></a>ClipData 剪切板</h4><p>系统服务剪切板<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);</div></pre></td></tr></table></figure></p>
+<p>在系统剪贴板里只存在一个，当另一个clip对象进来时，前一个clip对象会消失。<br>简单使用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);</div><div class="line">       ClipData clipData = ClipData.newPlainText(<span class="string">"标签"</span>, <span class="string">"内容"</span>);</div><div class="line">       <span class="comment">//添加ClipData对象到剪切板中</span></div><div class="line">       clipboardManager.setPrimaryClip(clipData);</div><div class="line">       clipboardManager.addPrimaryClipChangedListener(<span class="keyword">new</span> ClipboardManager.OnPrimaryClipChangedListener() &#123;</div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPrimaryClipChanged</span><span class="params">()</span> </span>&#123;</div><div class="line">               <span class="comment">// 获取剪贴板的剪贴数据集</span></div><div class="line">               ClipData clipData = clipboardManager.getPrimaryClip();</div><div class="line">               <span class="keyword">if</span> (clipData != <span class="keyword">null</span> &amp;&amp; clipData.getItemCount() &gt; <span class="number">0</span>) &#123;</div><div class="line">                   <span class="comment">// 从数据集中获取（粘贴）第一条文本数据</span></div><div class="line">                   <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;clipData.getItemCount();i++)&#123;</div><div class="line">                       CharSequence text = clipData.getItemAt(i).getText();</div><div class="line">                       <span class="keyword">if</span>(text!=<span class="keyword">null</span>)</div><div class="line">                       Log.e(<span class="string">"复制"</span>,text.toString());</div><div class="line">                   &#125;</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">       &#125;);</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/15/Android自定义view-多点触控与拖拽/1.png" alt=""></p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p><img src="/2020/02/15/Android自定义view-多点触控与拖拽/2.gif" alt=""><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">img = (ImageView) findViewById(R.id.img);</div><div class="line">     tv = (TextView) findViewById(R.id.tv);</div><div class="line">     img.setOnLongClickListener(<span class="keyword">new</span> View.OnLongClickListener() &#123;</div><div class="line">         <span class="meta">@Override</span></div><div class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onLongClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">             ClipData imageData = ClipData.newPlainText(<span class="string">"name"</span>, <span class="string">"google"</span>);</div><div class="line">             <span class="keyword">return</span> ViewCompat.startDragAndDrop(v, imageData, <span class="keyword">new</span> View.DragShadowBuilder(v), <span class="keyword">null</span>, View.DRAG_FLAG_GLOBAL);</div><div class="line"></div><div class="line">         &#125;</div><div class="line">     &#125;);</div><div class="line">     img.setOnDragListener(<span class="keyword">new</span> View.OnDragListener() &#123;</div><div class="line">         <span class="meta">@Override</span></div><div class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDrag</span><span class="params">(View v, DragEvent event)</span> </span>&#123;</div><div class="line"></div><div class="line">             <span class="keyword">switch</span> (event.getAction()) &#123;</div><div class="line">                 <span class="keyword">case</span> DragEvent.ACTION_DRAG_STARTED:<span class="comment">//开始拖拽</span></div><div class="line">                     tv.setText(<span class="string">"开始拖拽"</span>);</div><div class="line">                     <span class="keyword">break</span>;</div><div class="line">                 <span class="keyword">case</span> DragEvent.ACTION_DRAG_ENDED:</div><div class="line">                     tv.setText(<span class="string">"结束拖拽"</span>);</div><div class="line">                     <span class="keyword">break</span>;</div><div class="line">             &#125;</div><div class="line">             <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">         &#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">tv = (TextView) findViewById(R.id.tv);</div><div class="line">tv.setOnDragListener(<span class="keyword">new</span> View.OnDragListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDrag</span><span class="params">(View v, DragEvent event)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (event.getAction()) &#123;</div><div class="line">            <span class="keyword">case</span> DragEvent.ACTION_DROP:<span class="comment">//释放拖拽</span></div><div class="line">                tv.setTextSize(<span class="number">16</span>);</div><div class="line">                tv.setText(<span class="string">"释放拖拽：收到信息"</span> + event.getClipData().getItemAt(<span class="number">0</span>).getText());</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> DragEvent.ACTION_DRAG_STARTED:<span class="comment">//开始拖拽</span></div><div class="line">                tv.setText(<span class="string">"开始拖拽"</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> DragEvent.ACTION_DRAG_ENDED:</div><div class="line">                tv.setText(<span class="string">"结束拖拽"</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> DragEvent.ACTION_DRAG_ENTERED:</div><div class="line">                tv.setText(<span class="string">"拖拽的view进入监听的view时"</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> DragEvent.ACTION_DRAG_EXITED:</div><div class="line">                tv.setText(<span class="string">"拖拽的view离开监听的view时"</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> DragEvent.ACTION_DRAG_LOCATION:</div><div class="line">                <span class="keyword">float</span> x = event.getX();</div><div class="line">                <span class="keyword">float</span> y = event.getY();</div><div class="line">                tv.setText(<span class="string">"拖拽的view在监听view中的位置:x ="</span> + x + <span class="string">",y="</span> + y);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="ViewDragHelper-拖拽view本身"><a href="#ViewDragHelper-拖拽view本身" class="headerlink" title="ViewDragHelper 拖拽view本身"></a>ViewDragHelper 拖拽view本身</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>settleCapturedViewAt(int finalLeft, int finalTop)</td>
+<td>onViewReleased上调用 以松手前的滑动速度为初值，让捕获到的子View自动滚动到指定位置</td>
+</tr>
+<tr>
+<td>flingCapturedView(int minLeft, int minTop, int maxLeft, int maxTop)</td>
+<td>onViewReleased上调用 以松手前的滑动速度为初值，让捕获到的子View在指定范围内fling惯性运动</td>
+</tr>
+<tr>
+<td>smoothSlideViewTo(View child, int finalLeft, int finalTop)</td>
+<td>View自动滚动到指定的位置</td>
+</tr>
+<tr>
+<td> abort()</td>
+<td>中断动画</td>
+</tr>
+<tr>
+<td> continueSettling(boolean)</td>
+<td>判断动画是否介素</td>
+</tr>
+</tbody>
+</table>
+<p>使用前需要重写onInterceptTouchEvent onTouchEvent computeScroll()<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> dragHelper.shouldInterceptTouchEvent(ev);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">       dragHelper.processTouchEvent(event);</div><div class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">computeScroll</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">       <span class="keyword">if</span> (dragHelper.continueSettling(<span class="keyword">true</span>)) &#123;</div><div class="line">           ViewCompat.postInvalidateOnAnimation(<span class="keyword">this</span>);</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>示例代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewDragHelperSimple</span> <span class="keyword">extends</span> <span class="title">FrameLayout</span> </span>&#123;</div><div class="line">    View view;</div><div class="line">    ViewDragHelper dragHelper;</div><div class="line">    ViewDragHelper.Callback dragListener = <span class="keyword">new</span> DragListener();</div><div class="line">    ViewConfiguration viewConfiguration;</div><div class="line">    Button btn;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ViewDragHelperSimple</span><span class="params">(@NonNull Context context, @Nullable AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">        dragHelper = ViewDragHelper.create(<span class="keyword">this</span>, dragListener);</div><div class="line">        viewConfiguration = ViewConfiguration.get(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onFinishInflate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onFinishInflate();</div><div class="line">        view = findViewById(R.id.view);</div><div class="line">        btn =  findViewById(R.id.btn);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> dragHelper.shouldInterceptTouchEvent(ev);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">        dragHelper.processTouchEvent(event);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">computeScroll</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (dragHelper.continueSettling(<span class="keyword">true</span>)) &#123;</div><div class="line">            ViewCompat.postInvalidateOnAnimation(<span class="keyword">this</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">DragListener</span> <span class="keyword">extends</span> <span class="title">ViewDragHelper</span>.<span class="title">Callback</span> </span>&#123;</div><div class="line">        <span class="comment">//判断当前操作的view是否可以进行捕获</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">tryCaptureView</span><span class="params">(@NonNull View child, <span class="keyword">int</span> pointerId)</span> </span>&#123;</div><div class="line">           <span class="comment">/* return child ==view;*/</span></div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//child：当前操作的view left: 将要到达的垂直方向的距离 dx: 相对于当前位置的偏移量</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">clampViewPositionVertical</span><span class="params">(@NonNull View child, <span class="keyword">int</span> top, <span class="keyword">int</span> dy)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> top;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">//child：当前操作的view left: 将要到达的水平方向的距离 dx: 相对于当前位置的偏移量</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">clampViewPositionHorizontal</span><span class="params">(View child, <span class="keyword">int</span> left, <span class="keyword">int</span> dx)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> left;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">//返回可拖动子视图的水平运动范围的大小（以像素为单位）对于无法水平移动的视图，此方法应返回0 子view有点击事件时要重写</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getViewHorizontalDragRange</span><span class="params">(View child)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> getMeasuredWidth() - child.getMeasuredWidth();</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//返回可拖动子视图的垂直运动范围的大小（以像素为单位）对于无法水平移动的视图，此方法应返回0 子view有点击事件时要重写</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getViewVerticalDragRange</span><span class="params">(View child)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> getMeasuredHeight() - child.getMeasuredHeight();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//松手</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onViewReleased</span><span class="params">(@NonNull View releasedChild, <span class="keyword">float</span> xvel, <span class="keyword">float</span> yvel)</span> </span>&#123;</div><div class="line">            <span class="keyword">if</span> (Math.abs(yvel) &gt; viewConfiguration.getScaledMinimumFlingVelocity()) &#123;<span class="comment">//超过最小滑动速度 移到最下</span></div><div class="line">                <span class="keyword">if</span> (yvel &gt; <span class="number">0</span>) &#123;</div><div class="line">                    dragHelper.settleCapturedViewAt(<span class="number">0</span>, getHeight() - releasedChild.getHeight());</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    dragHelper.settleCapturedViewAt(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (releasedChild.getTop() &lt; getHeight() - releasedChild.getBottom()) &#123;</div><div class="line">                    dragHelper.settleCapturedViewAt(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    dragHelper.settleCapturedViewAt(<span class="number">0</span>, getHeight() - releasedChild.getHeight());</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            postInvalidateOnAnimation();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义View/" rel="tag"># 自定义View</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/13/Android自定义view-手势与滑动/" rel="next" title="Android自定义view-手势与滑动">
+                <i class="fa fa-chevron-left"></i> Android自定义view-手势与滑动
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"
+                alt="cczhr"/>
+            
+              <p class="site-author-name" itemprop="name">cczhr</p>
+              <p class="site-description motion-element" itemprop="description">或许你真的可以改变世界。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">69</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/cczhr" title="GitHub &rarr; https://github.com/cczhr" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:cczhr.dev@gmail.com" title="E-Mail &rarr; mailto:cczhr.dev@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/cczhr" title="Weibo &rarr; https://weibo.com/cczhr" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多点触控"><span class="nav-number">1.</span> <span class="nav-text">多点触控</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Action"><span class="nav-number">1.1.</span> <span class="nav-text">Action</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触控坐标定位"><span class="nav-number">1.2.</span> <span class="nav-text">触控坐标定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多指滑动的处理"><span class="nav-number">1.3.</span> <span class="nav-text">多指滑动的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种-把旧值给活动手指"><span class="nav-number">1.3.1.</span> <span class="nav-text">第一种 把旧值给活动手指</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种-直接叠加多手指平均偏移量"><span class="nav-number">1.3.2.</span> <span class="nav-text">第二种 直接叠加多手指平均偏移量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三种互不干扰"><span class="nav-number">1.3.3.</span> <span class="nav-text">第三种互不干扰</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拖拽"><span class="nav-number">1.4.</span> <span class="nav-text">拖拽</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OnDragListener-拖拽view影子"><span class="nav-number">1.4.1.</span> <span class="nav-text">OnDragListener 拖拽view影子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ClipData-剪切板"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">ClipData 剪切板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewDragHelper-拖拽view本身"><span class="nav-number">1.4.2.</span> <span class="nav-text">ViewDragHelper 拖拽view本身</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cczhr</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">341k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">5:10</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.2.2</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'aMSu6hzeOMWDmzPvSSupyCSz-gzGzoHsz',
+    appKey: 'kXxUv0I5NdmApftPNoX8nBul',
+    placeholder: 'leave a message',
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":112.5,"height":225,"vOffset":-110},"mobile":{"show":false},"log":false});</script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

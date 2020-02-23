@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cczhr.ltd/"/>
-  <updated>2020-01-05T14:12:21.315Z</updated>
+  <updated>2020-02-23T11:15:25.647Z</updated>
   <id>http://cczhr.ltd/</id>
   
   <author>
@@ -15,6 +15,79 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android自定义view-多点触控与拖拽</title>
+    <link href="http://cczhr.ltd/2020/02/15/Android%E8%87%AA%E5%AE%9A%E4%B9%89view-%E5%A4%9A%E7%82%B9%E8%A7%A6%E6%8E%A7%E4%B8%8E%E6%8B%96%E6%8B%BD/"/>
+    <id>http://cczhr.ltd/2020/02/15/Android自定义view-多点触控与拖拽/</id>
+    <published>2020-02-15T03:52:21.000Z</published>
+    <updated>2020-02-23T11:15:25.647Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;多点触控&quot;&gt;&lt;a href=&quot;#多点触控&quot; class=&quot;headerlink&quot; title=&quot;多点触控&quot;&gt;&lt;/a&gt;多点触控&lt;/h1&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="自定义View" scheme="http://cczhr.ltd/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android自定义view-手势与滑动</title>
+    <link href="http://cczhr.ltd/2020/02/13/Android%E8%87%AA%E5%AE%9A%E4%B9%89view-%E6%89%8B%E5%8A%BF%E4%B8%8E%E6%BB%91%E5%8A%A8/"/>
+    <id>http://cczhr.ltd/2020/02/13/Android自定义view-手势与滑动/</id>
+    <published>2020-02-13T09:21:19.000Z</published>
+    <updated>2020-02-15T03:34:25.437Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt; 
+        
+      
+    
+    </summary>
+    
+    
+      <category term="自定义View" scheme="http://cczhr.ltd/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android自定义view-几种刷新方法的区别</title>
+    <link href="http://cczhr.ltd/2020/02/13/Android%E8%87%AA%E5%AE%9A%E4%B9%89view-%E5%87%A0%E7%A7%8D%E5%88%B7%E6%96%B0%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://cczhr.ltd/2020/02/13/Android自定义view-几种刷新方法的区别/</id>
+    <published>2020-02-13T09:16:32.000Z</published>
+    <updated>2020-02-13T09:31:15.881Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;运行动画刷新线程 在ui线程 不执行invalidate()&lt;br&gt;postOnAnimation(Runnable)&lt;/p&gt;
+&lt;p&gt;使当前界面无效 
+        
+      
+    
+    </summary>
+    
+    
+      <category term="自定义View" scheme="http://cczhr.ltd/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/"/>
+    
+  </entry>
   
   <entry>
     <title>Android自定义view-测量与布局</title>
@@ -422,78 +495,6 @@
     
     
       <category term="数据库,MySQL" scheme="http://cczhr.ltd/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java的反射与注解</title>
-    <link href="http://cczhr.ltd/2018/07/21/Java%E7%9A%84%E5%8F%8D%E5%B0%84%E4%B8%8E%E6%B3%A8%E8%A7%A3/"/>
-    <id>http://cczhr.ltd/2018/07/21/Java的反射与注解/</id>
-    <published>2018-07-21T13:32:39.000Z</published>
-    <updated>2018-07-29T01:48:00.994Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;反射&quot;&gt;&lt;a href=&quot;#反射&quot; class=&quot;headerlink&quot; title=&quot;反射&quot;&gt;&lt;/a&gt;反射&lt;/h2&gt;&lt;h3 id=&quot;理论&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Java笔记" scheme="http://cczhr.ltd/tags/Java%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>树莓派使用日志</title>
-    <link href="http://cczhr.ltd/2018/07/15/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8%E6%97%A5%E5%BF%97/"/>
-    <id>http://cczhr.ltd/2018/07/15/树莓派使用日志/</id>
-    <published>2018-07-15T10:00:39.000Z</published>
-    <updated>2018-07-15T13:48:43.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;买了个树莓派3b+
-        
-      
-    
-    </summary>
-    
-    
-      <category term="树莓派" scheme="http://cczhr.ltd/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android的GreenDao笔记</title>
-    <link href="http://cczhr.ltd/2018/07/04/Android%E7%9A%84GreenDao%E7%AC%94%E8%AE%B0/"/>
-    <id>http://cczhr.ltd/2018/07/04/Android的GreenDao笔记/</id>
-    <published>2018-07-04T12:11:05.000Z</published>
-    <updated>2018-07-08T06:36:18.467Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;ORM概念&quot;&gt;&lt;a href=&quot;#ORM概念&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Android 数据库" scheme="http://cczhr.ltd/tags/Android-%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   

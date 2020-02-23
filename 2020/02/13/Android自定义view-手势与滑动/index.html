@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言  总所周知，自定义view在写对应的触控事件要重写onTouchEvent，根据不同的Action来进行我们的处理，Android也提供了一个GestureDetectorCompat来方便开发者快速的获取一些常用的手势事件。  处理滑动也有ScrollTo() ScrollBy()最原始的移动view内容的方法，而且都是瞬间移动没有平滑处理的，而Android同样提供了一个OverScr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android自定义view-手势与滑动">
+<meta property="og:url" content="http://cczhr.ltd/2020/02/13/Android自定义view-手势与滑动/index.html">
+<meta property="og:site_name" content="Not Found Blog">
+<meta property="og:description" content="前言  总所周知，自定义view在写对应的触控事件要重写onTouchEvent，根据不同的Action来进行我们的处理，Android也提供了一个GestureDetectorCompat来方便开发者快速的获取一些常用的手势事件。  处理滑动也有ScrollTo() ScrollBy()最原始的移动view内容的方法，而且都是瞬间移动没有平滑处理的，而Android同样提供了一个OverScr">
+<meta property="og:image" content="http://cczhr.ltd/2020/02/13/Android自定义view-手势与滑动/1.gif">
+<meta property="og:updated_time" content="2020-02-15T03:34:25.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android自定义view-手势与滑动">
+<meta name="twitter:description" content="前言  总所周知，自定义view在写对应的触控事件要重写onTouchEvent，根据不同的Action来进行我们的处理，Android也提供了一个GestureDetectorCompat来方便开发者快速的获取一些常用的手势事件。  处理滑动也有ScrollTo() ScrollBy()最原始的移动view内容的方法，而且都是瞬间移动没有平滑处理的，而Android同样提供了一个OverScr">
+<meta name="twitter:image" content="http://cczhr.ltd/2020/02/13/Android自定义view-手势与滑动/1.gif">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Not Found Blog" type="application/atom+xml"/>
+
+
+
+
+  <link rel="canonical" href="http://cczhr.ltd/2020/02/13/Android自定义view-手势与滑动/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android自定义view-手势与滑动 | Not Found Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Not Found Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cczhr.ltd/2020/02/13/Android自定义view-手势与滑动/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android自定义view-手势与滑动
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-13 17:21:19" itemprop="dateCreated datePublished" datetime="2020-02-13T17:21:19+08:00">2020-02-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-15 11:34:25" itemprop="dateModified" datetime="2020-02-15T11:34:25+08:00">2020-02-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2020/02/13/Android自定义view-手势与滑动/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/02/13/Android自定义view-手势与滑动/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">10k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">9 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="\assets\js\APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  总所周知，自定义view在写对应的触控事件要重写onTouchEvent，根据不同的Action来进行我们的处理，Android也提供了一个GestureDetectorCompat来方便开发者快速的获取一些常用的手势事件。<br>  处理滑动也有ScrollTo() ScrollBy()最原始的移动view内容的方法，而且都是瞬间移动没有平滑处理的，而Android同样提供了一个OverScroller来方便开发者进行view的平滑处理。</p>
+<h1 id="GestureDetectorCompat（触摸手势识别）"><a href="#GestureDetectorCompat（触摸手势识别）" class="headerlink" title="GestureDetectorCompat（触摸手势识别）"></a>GestureDetectorCompat（触摸手势识别）</h1><ol>
+<li>单击的情况<br>点击时间很短：onDown —-&gt; onSingleTapUp —-&gt; onSingleTapConfirmed<br>点击时间稍长：onDown —-&gt; onShowPress   —-&gt; onSingleTapUp —-&gt; onSingleTapConfirmed</li>
+</ol>
+<p>2.长按的情况<br> onDown —-&gt; onShowPress —-&gt; onLongPress</p>
+<p>3.滑动的情况<br> 手指触动屏幕后，稍微滑动后立即松开:<br>  onDown —-&gt; onScroll —-&gt; onScroll —-&gt; onScroll —-&gt; ………  —-&gt; onFling</p>
+<p>4双击的情况<br> 双击 onDown —-&gt; onSingleTapUp —-&gt; onDoubleTap</p>
+<p> 示例代码<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GestureDetectorCompatSimple</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> GestureDetectorCompat detector;</div><div class="line">  </div><div class="line">    <span class="keyword">private</span> GestureListener gestureListener = <span class="keyword">new</span> GestureListener();</div><div class="line"></div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GestureDetectorCompatSimple</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GestureDetectorCompatSimple</span><span class="params">(Context context, @Nullable AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">        detector = <span class="keyword">new</span> GestureDetectorCompat(context, gestureListener);</div><div class="line">      </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> detector.onTouchEvent(event);<span class="comment">//返回是否消耗事件</span></div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">GestureListener</span> <span class="keyword">extends</span> <span class="title">GestureDetector</span>.<span class="title">SimpleOnGestureListener</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">//手指放下会触发</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDown</span><span class="params">(MotionEvent e)</span> </span>&#123;<span class="comment">//返回值决定下面的事件是否触发</span></div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//单击 时间稍长ViewConfiguration.TAP_TIMEOUT  按下100ms会触发</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onShowPress</span><span class="params">(MotionEvent e)</span> </span>&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="comment">//在按下并抬起时发生，只要符合这个条件就触发该函数。</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onSingleTapUp</span><span class="params">(MotionEvent e)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//拖动时不断触发 distanceX distanceY 上一个坐标减当前触摸坐标的距离</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onScroll</span><span class="params">(MotionEvent down, MotionEvent event, <span class="keyword">float</span> distanceX, <span class="keyword">float</span> distanceY)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//长按触发  500ms  ViewConfiguration.DEFAULT_LONG_PRESS_TIMEOUT</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLongPress</span><span class="params">(MotionEvent e)</span> </span>&#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//拖动结束后触发 一般用于惯性滑动  XY方向的滑动的速度（意思为一秒时间内运动了多少个像素）</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onFling</span><span class="params">(MotionEvent down, MotionEvent event, <span class="keyword">float</span> velocityX, <span class="keyword">float</span> velocityY)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">       <span class="comment">//真正意义上的单击事件 双击不会触发</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onSingleTapConfirmed</span><span class="params">(MotionEvent e)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//  双击</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDoubleTap</span><span class="params">(MotionEvent e)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//双击后滑动事件监听</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDoubleTapEvent</span><span class="params">(MotionEvent e)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="OverScroller（滑动处理计算器）"><a href="#OverScroller（滑动处理计算器）" class="headerlink" title="OverScroller（滑动处理计算器）"></a>OverScroller（滑动处理计算器）</h1><p>OverScroller 这个类只负责计算坐标，移动要自己实现。</p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="移动view-ViewGroup的内容的位置"><a href="#移动view-ViewGroup的内容的位置" class="headerlink" title="移动view/ViewGroup的内容的位置"></a>移动view/ViewGroup的内容的位置</h3><h4 id="scrollTo-scrollBy"><a href="#scrollTo-scrollBy" class="headerlink" title="scrollTo  scrollBy"></a>scrollTo  scrollBy</h4><p> 注意scrollTo  scrollBy 滑动的是view/ViewGroup的内容，而不是自己本身。<br> scrollTo是绝对位置移动，scrollBy是在当前位置叠加。以被移动的内容做参照物，它的坐标轴是和平时相反的，例如移动到（300，100）在scrollTo上表达的是scrollTo(-300,-100)，例如当前坐标叠加（x+30,y+40）在scrollBy上表达的是scrollBy(-30,-40)</p>
+<h4 id="getScrollX-getScrollY"><a href="#getScrollX-getScrollY" class="headerlink" title="getScrollX getScrollY"></a>getScrollX getScrollY</h4><p>原点和已滑动的坐标相减，表示滑动的偏移量</p>
+<h3 id="移动view-ViewGroup本身的位置"><a href="#移动view-ViewGroup本身的位置" class="headerlink" title="移动view/ViewGroup本身的位置"></a>移动view/ViewGroup本身的位置</h3><h4 id="offsetLeftAndRight-offsetTopAndBottom"><a href="#offsetLeftAndRight-offsetTopAndBottom" class="headerlink" title="offsetLeftAndRight  offsetTopAndBottom"></a>offsetLeftAndRight  offsetTopAndBottom</h4><p> 在当前位置叠加偏移</p>
+<h4 id="layout"><a href="#layout" class="headerlink" title="layout"></a>layout</h4><p>  最直接修改view布局的位置</p>
+<h4 id="setLayoutParams"><a href="#setLayoutParams" class="headerlink" title="setLayoutParams"></a>setLayoutParams</h4><p> 修改布局的参数来修改位置</p>
+<h3 id="VelocityTracker-计算滑动速度"><a href="#VelocityTracker-计算滑动速度" class="headerlink" title="VelocityTracker 计算滑动速度"></a>VelocityTracker 计算滑动速度</h3><p> 直接上实例代码<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VelocityTrackerSimple</span> <span class="keyword">extends</span> <span class="title">ViewGroup</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">float</span> minVelocity;</div><div class="line">    <span class="keyword">float</span> maxVelocity;</div><div class="line">    ViewConfiguration viewConfiguration;</div><div class="line">    VelocityTracker velocityTracker = VelocityTracker.obtain();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">VelocityTrackerSimple</span><span class="params">(Context context, @Nullable AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">        viewConfiguration = ViewConfiguration.get(context);</div><div class="line">        maxVelocity = viewConfiguration.getScaledMaximumFlingVelocity();<span class="comment">//滑动的最大值</span></div><div class="line">        minVelocity = viewConfiguration.getScaledMinimumFlingVelocity();<span class="comment">//开始滑动的最小值</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLayout</span><span class="params">(<span class="keyword">boolean</span> changed, <span class="keyword">int</span> l, <span class="keyword">int</span> t, <span class="keyword">int</span> r, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">        <span class="comment">//布局处理</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</div><div class="line">        measureChildren(widthMeasureSpec, heightMeasureSpec);</div><div class="line">        <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (event.getActionMasked() == MotionEvent.ACTION_DOWN) &#123;</div><div class="line">            velocityTracker.clear();<span class="comment">//清空计速器</span></div><div class="line">        &#125;</div><div class="line">        velocityTracker.addMovement(event);</div><div class="line"></div><div class="line">        <span class="keyword">switch</span> (event.getActionMasked()) &#123;</div><div class="line"></div><div class="line">            <span class="keyword">case</span> MotionEvent.ACTION_UP:</div><div class="line">                <span class="comment">// 速度追踪器  设置units的值为1000，意思为一秒时间内运动了多少个像素  表示速率的最大值</span></div><div class="line">                velocityTracker.computeCurrentVelocity(<span class="number">1000</span>, maxVelocity);</div><div class="line"></div><div class="line">                <span class="keyword">float</span> vx = velocityTracker.getXVelocity();<span class="comment">//横向速度</span></div><div class="line">                <span class="keyword">float</span> vy = velocityTracker.getYVelocity();<span class="comment">//纵向速度</span></div><div class="line"></div><div class="line">                <span class="keyword">if</span> (Math.abs(vx) &lt; minVelocity) &#123;</div><div class="line">                    <span class="comment">//处理</span></div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="comment">//处理</span></div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (Math.abs(vy) &lt; minVelocity) &#123;</div><div class="line">                    <span class="comment">//处理</span></div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="comment">//处理</span></div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h2><p>getStartX() 滑动的起点x轴坐标<br>getStartY() 滑动的起点y轴坐标<br>getFinalX()滑动的终点x轴坐标<br>getFinalY()滑动的终点y轴坐标<br>getCurrX()滑动中途x轴坐标<br>getCurrY()滑动中途y轴坐标</p>
+<h2 id="startScroll（平滑移动）"><a href="#startScroll（平滑移动）" class="headerlink" title="startScroll（平滑移动）"></a>startScroll（平滑移动）</h2><p>startX startY 开始移动的坐标， dx dy水平和垂直方向滑动的距离偏移值，duration 移动时间/ms。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">startScroll(<span class="keyword">int</span> startX, <span class="keyword">int</span> startY, <span class="keyword">int</span> dx, <span class="keyword">int</span> dy)</div><div class="line">startScroll(<span class="keyword">int</span> startX, <span class="keyword">int</span> startY, <span class="keyword">int</span> dx, <span class="keyword">int</span> dy, <span class="keyword">int</span> duration)</div></pre></td></tr></table></figure></p>
+<h2 id="fling（带加速度的移动）"><a href="#fling（带加速度的移动）" class="headerlink" title="fling（带加速度的移动）"></a>fling（带加速度的移动）</h2><p>startX startY 开始移动坐标，velocityX velocityY 速度，minX minY 最小能移动到的xy坐标位置， maxX maxY最大能移动到的xy坐标位置 ， overX overY允许溢出边界 回弹效果。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fling(<span class="keyword">int</span> startX, <span class="keyword">int</span> startY, <span class="keyword">int</span> velocityX, <span class="keyword">int</span> velocityY, <span class="keyword">int</span> minX, <span class="keyword">int</span> maxX, <span class="keyword">int</span> minY, <span class="keyword">int</span> maxY)</div><div class="line">fling(<span class="keyword">int</span> startX, <span class="keyword">int</span> startY, <span class="keyword">int</span> velocityX, <span class="keyword">int</span> velocityY, <span class="keyword">int</span> minX, <span class="keyword">int</span> maxX, <span class="keyword">int</span> minY, <span class="keyword">int</span> maxY, <span class="keyword">int</span> overX, <span class="keyword">int</span> overY)</div></pre></td></tr></table></figure></p>
+<h2 id="computeScrollOffset（判断移动是否完成）"><a href="#computeScrollOffset（判断移动是否完成）" class="headerlink" title="computeScrollOffset（判断移动是否完成）"></a>computeScrollOffset（判断移动是否完成）</h2><p>用来判断是否滑动是否结束<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">computeScroll</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="keyword">if</span> (scroller.computeScrollOffset()) &#123;<span class="comment">//true表示滑动未完成</span></div><div class="line">          offsetX = scroller.getCurrX();</div><div class="line">          offsetY = scroller.getCurrY();</div><div class="line">      &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<h1 id="示例代码与效果"><a href="#示例代码与效果" class="headerlink" title="示例代码与效果"></a>示例代码与效果</h1><p> <img src="/2020/02/13/Android自定义view-手势与滑动/1.gif" alt=""></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GestureDetectorCompatSimple</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> GestureDetectorCompat detector;</div><div class="line">    <span class="keyword">private</span> OverScroller scroller;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> offsetX;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> offsetY;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> rectWidth=<span class="number">300</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> rectHeight=<span class="number">300</span>;</div><div class="line">    <span class="keyword">private</span> GestureListener gestureListener = <span class="keyword">new</span> GestureListener();</div><div class="line">    <span class="keyword">private</span> Paint mPaint=<span class="keyword">new</span> Paint();</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GestureDetectorCompatSimple</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GestureDetectorCompatSimple</span><span class="params">(Context context, @Nullable AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">        mPaint.setColor(Color.RED);</div><div class="line">        detector = <span class="keyword">new</span> GestureDetectorCompat(context, gestureListener);</div><div class="line">        scroller = <span class="keyword">new</span> OverScroller(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> detector.onTouchEvent(event);<span class="comment">//返回是否消耗事件</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDraw(canvas);</div><div class="line">        canvas.drawRect(offsetX,offsetY,offsetX+rectWidth,offsetY+rectHeight,mPaint);</div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">computeScroll</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (scroller.computeScrollOffset()) &#123;<span class="comment">//滑动 刷新界面</span></div><div class="line">            offsetX = scroller.getCurrX();</div><div class="line">            offsetY = scroller.getCurrY();</div><div class="line">            ViewCompat.postInvalidateOnAnimation(<span class="keyword">this</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">GestureListener</span> <span class="keyword">extends</span> <span class="title">GestureDetector</span>.<span class="title">SimpleOnGestureListener</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">//手指放下会触发</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDown</span><span class="params">(MotionEvent e)</span> </span>&#123;<span class="comment">//返回值决定下面的事件是否触发</span></div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">//单击 时间稍长ViewConfiguration.TAP_TIMEOUT  按下100ms会触发</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onShowPress</span><span class="params">(MotionEvent e)</span> </span>&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="comment">//在按下并抬起时发生，只要符合这个条件就触发该函数。</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onSingleTapUp</span><span class="params">(MotionEvent e)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">//拖动时不断触发 distanceX distanceY 上一个坐标减当前触摸坐标的距离</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onScroll</span><span class="params">(MotionEvent down, MotionEvent event, <span class="keyword">float</span> distanceX, <span class="keyword">float</span> distanceY)</span> </span>&#123;</div><div class="line">            offsetX -= distanceX;<span class="comment">//上一个坐标减当前触摸坐标的距离 所以distance往右滑是负数 但画布向右移动是正数 所以用减号</span></div><div class="line">            offsetY -= distanceY;</div><div class="line">            offsetX=Math.max(<span class="number">0</span>,offsetX);</div><div class="line">            offsetX=Math.min(getWidth()-rectWidth,offsetX);</div><div class="line">            offsetY=Math.max(<span class="number">0</span>,offsetY);</div><div class="line">            offsetY=Math.min(getHeight()-rectHeight,offsetY);</div><div class="line">            invalidate();</div><div class="line"></div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">//长按触发  500ms  ViewConfiguration.DEFAULT_LONG_PRESS_TIMEOUT</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLongPress</span><span class="params">(MotionEvent e)</span> </span>&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//拖动结束后触发 一般用于惯性滑动  XY方向的滑动的速度（意思为一秒时间内运动了多少个像素）</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onFling</span><span class="params">(MotionEvent down, MotionEvent event, <span class="keyword">float</span> velocityX, <span class="keyword">float</span> velocityY)</span> </span>&#123;</div><div class="line">            scroller.fling((<span class="keyword">int</span>) offsetX, (<span class="keyword">int</span>) offsetY, (<span class="keyword">int</span>) velocityX, (<span class="keyword">int</span>) velocityY,</div><div class="line">                    <span class="number">0</span>,</div><div class="line">                    (<span class="keyword">int</span>)(getWidth()-rectWidth),</div><div class="line">                    <span class="number">0</span>,</div><div class="line">                    (<span class="keyword">int</span>)(getHeight()-rectHeight),rectWidth/<span class="number">2</span>,rectHeight/<span class="number">2</span>);</div><div class="line"></div><div class="line">            postInvalidateOnAnimation();</div><div class="line"></div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">       <span class="comment">//真正意义上的单击事件 双击不会触发</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onSingleTapConfirmed</span><span class="params">(MotionEvent e)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//  双击</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDoubleTap</span><span class="params">(MotionEvent e)</span> </span>&#123;</div><div class="line">            scroller.startScroll((<span class="keyword">int</span>)offsetX,(<span class="keyword">int</span>)offsetY,<span class="number">200</span>,<span class="number">200</span>,<span class="number">1000</span>);</div><div class="line">            postInvalidateOnAnimation();</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//双击后滑动事件监听</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDoubleTapEvent</span><span class="params">(MotionEvent e)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义View/" rel="tag"># 自定义View</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/13/Android自定义view-几种刷新方法的区别/" rel="next" title="Android自定义view-几种刷新方法的区别">
+                <i class="fa fa-chevron-left"></i> Android自定义view-几种刷新方法的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/15/Android自定义view-多点触控与拖拽/" rel="prev" title="Android自定义view-多点触控与拖拽">
+                Android自定义view-多点触控与拖拽 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"
+                alt="cczhr"/>
+            
+              <p class="site-author-name" itemprop="name">cczhr</p>
+              <p class="site-description motion-element" itemprop="description">或许你真的可以改变世界。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">69</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/cczhr" title="GitHub &rarr; https://github.com/cczhr" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:cczhr.dev@gmail.com" title="E-Mail &rarr; mailto:cczhr.dev@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/cczhr" title="Weibo &rarr; https://weibo.com/cczhr" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GestureDetectorCompat（触摸手势识别）"><span class="nav-number">2.</span> <span class="nav-text">GestureDetectorCompat（触摸手势识别）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OverScroller（滑动处理计算器）"><span class="nav-number">3.</span> <span class="nav-text">OverScroller（滑动处理计算器）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识"><span class="nav-number">3.1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#移动view-ViewGroup的内容的位置"><span class="nav-number">3.1.1.</span> <span class="nav-text">移动view/ViewGroup的内容的位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#scrollTo-scrollBy"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">scrollTo  scrollBy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getScrollX-getScrollY"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">getScrollX getScrollY</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动view-ViewGroup本身的位置"><span class="nav-number">3.1.2.</span> <span class="nav-text">移动view/ViewGroup本身的位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#offsetLeftAndRight-offsetTopAndBottom"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">offsetLeftAndRight  offsetTopAndBottom</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#layout"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">layout</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setLayoutParams"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">setLayoutParams</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VelocityTracker-计算滑动速度"><span class="nav-number">3.1.3.</span> <span class="nav-text">VelocityTracker 计算滑动速度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坐标"><span class="nav-number">3.2.</span> <span class="nav-text">坐标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#startScroll（平滑移动）"><span class="nav-number">3.3.</span> <span class="nav-text">startScroll（平滑移动）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fling（带加速度的移动）"><span class="nav-number">3.4.</span> <span class="nav-text">fling（带加速度的移动）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#computeScrollOffset（判断移动是否完成）"><span class="nav-number">3.5.</span> <span class="nav-text">computeScrollOffset（判断移动是否完成）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例代码与效果"><span class="nav-number">4.</span> <span class="nav-text">示例代码与效果</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cczhr</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">341k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">5:10</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.2.2</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'aMSu6hzeOMWDmzPvSSupyCSz-gzGzoHsz',
+    appKey: 'kXxUv0I5NdmApftPNoX8nBul',
+    placeholder: 'leave a message',
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":112.5,"height":225,"vOffset":-110},"mobile":{"show":false},"log":false});</script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
