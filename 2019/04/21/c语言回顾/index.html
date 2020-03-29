@@ -114,7 +114,7 @@ int b; 定义变量b
 *a a内容为地址存放的变量
 空指针不能直接赋值，要先赋予地址。
 野指针指的是还没有初始化的指针指针的范围和系统有关比如你的32位系统，指针长度为4，在64位操作系统下为8，变量也一样和系统有关具体用sizeof()判断字节。在C语言中">
-<meta property="og:updated_time" content="2020-03-03T13:37:35.847Z">
+<meta property="og:updated_time" content="2020-03-29T15:09:47.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c语言回顾">
 <meta name="twitter:description" content="指针和变量int *a; 定义int变量的地址（指针变量a）
@@ -415,7 +415,7 @@ int b; 定义变量b
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-03 21:37:35" itemprop="dateModified" datetime="2020-03-03T21:37:35+08:00">2020-03-03</time>
+                <time title="修改时间：2020-03-29 23:09:47" itemprop="dateModified" datetime="2020-03-29T23:09:47+08:00">2020-03-29</time>
               
             
           </span>
@@ -455,7 +455,7 @@ int b; 定义变量b
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">7.5k</span>
+                <span title="本文字数">7.4k</span>
               
 
               
@@ -501,12 +501,56 @@ int b; 定义变量b
 <h2 id="数组的指针"><a href="#数组的指针" class="headerlink" title="数组的指针"></a>数组的指针</h2><p>例子 用数组的指针取数组的值<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//一维数组 </span></div><div class="line">	<span class="keyword">int</span> i2[<span class="number">3</span>] = &#123; <span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span> &#125;;</div><div class="line">	<span class="comment">//一维数组的指针</span></div><div class="line">	<span class="keyword">int</span>(*p2) = i2;</div><div class="line"></div><div class="line">	<span class="comment">//二维数组</span></div><div class="line">	<span class="keyword">int</span> i1[<span class="number">2</span>][<span class="number">3</span>] = &#123; &#123;<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>&#125;,&#123;<span class="number">44</span>,<span class="number">55</span>,<span class="number">66</span>&#125; &#125;;</div><div class="line">	<span class="keyword">int</span> (*p1)[<span class="number">3</span>] = i1;<span class="comment">//二维数组指针  意思是 3个元素的一维数组的指针</span></div><div class="line"> </div><div class="line">	<span class="comment">//要获取 二维数组的55的话</span></div><div class="line">	<span class="keyword">int</span> *i1_1 = *(p1 + <span class="number">1</span>);<span class="comment">//把3个元素的一维数组的指针 推进一格到第二个数组的地址开头 可以传给一维数组指针接收</span></div><div class="line">	<span class="keyword">int</span> i1_2 = *(i1_1 + <span class="number">1</span>);<span class="comment">//一维数组指针移动一个位置 再解引用</span></div><div class="line"></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, i1_2);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,*(*(p1+<span class="number">1</span>) + <span class="number">1</span>));<span class="comment">//省略写法</span></div></pre></td></tr></table></figure></p>
 <h2 id="指针的数组"><a href="#指针的数组" class="headerlink" title="指针的数组"></a>指针的数组</h2><p>存放指针的数组<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> *p[<span class="number">5</span>];</div></pre></td></tr></table></figure></p>
 <h2 id="分辨小技巧"><a href="#分辨小技巧" class="headerlink" title="分辨小技巧"></a>分辨小技巧</h2><p>最外边 * +变量名   加括号肯定就是指针</p>
-<ul>
-<li>+变量名后面带数组  没加括号就是数组</li>
-</ul>
+<p>*+变量名后面带数组  没加括号就是数组</p>
 <h1 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h1><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">void println(char *buffer) &#123;</div><div class="line">	printf("%s\n", buffer);</div><div class="line">&#125;</div><div class="line">//接受一个函数作为参数</div><div class="line">void say(void(*p)(char*), char *buffer) &#123;</div><div class="line">	p(buffer);</div><div class="line">&#125;</div><div class="line">void(*p)(char*) = println;//函数指针 void是返回值 p是指针名  char* 是函数参数</div><div class="line">p("hello");</div><div class="line">//传递参数</div><div class="line">say(println, "hello");</div><div class="line"></div><div class="line"></div><div class="line">//类似java的回调函数</div><div class="line">typedef void(*Callback)(int);</div><div class="line"></div><div class="line">void test(Callback callback) &#123;</div><div class="line">	callback("成功");</div><div class="line">	callback("失败");</div><div class="line">&#125;</div><div class="line">void callback(char *msg) &#123;</div><div class="line">	printf("%s\n", msg);</div><div class="line">&#125;</div><div class="line"></div><div class="line">test(callback);</div></pre></td></tr></table></figure>
 <h1 id="typedef"><a href="#typedef" class="headerlink" title="typedef"></a>typedef</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> BYTE;</div><div class="line"><span class="comment">//在这个类型定义之后，标识符 BYTE 可作为类型 unsigned char 的缩写，例如：</span></div><div class="line"></div><div class="line">BYTE  b1, b2;</div></pre></td></tr></table></figure>
-<h1 id="预处理器"><a href="#预处理器" class="headerlink" title="预处理器"></a>预处理器</h1><p>预处理器是一个文本替换工具<br>| 预处理器 | 说明         |<br>| ——– | ———— |<br>| #include | 导入头文件   |<br>| #if      | if           |<br>| #elif    | else if      |<br>| #else    | else         |<br>| #endif   | 结束 if      |<br>| #define  | 宏定义       |<br>| #ifdef   | 如果定义了宏 |<br>| #ifndef  | 如果未定义宏 |<br>| #undef   | 取消宏定义   |</p>
+<h1 id="预处理器"><a href="#预处理器" class="headerlink" title="预处理器"></a>预处理器</h1><p>预处理器是一个文本替换工具</p>
+<table>
+<thead>
+<tr>
+<th>预处理器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#include</td>
+<td>导入头文件</td>
+</tr>
+<tr>
+<td>#if</td>
+<td>if</td>
+</tr>
+<tr>
+<td>#elif</td>
+<td>else if</td>
+</tr>
+<tr>
+<td>#else</td>
+<td>else</td>
+</tr>
+<tr>
+<td>#endif</td>
+<td>结束 if</td>
+</tr>
+<tr>
+<td>#define</td>
+<td>宏定义</td>
+</tr>
+<tr>
+<td>#ifdef</td>
+<td>如果定义了宏</td>
+</tr>
+<tr>
+<td>#ifndef</td>
+<td>如果未定义宏</td>
+</tr>
+<tr>
+<td>#undef</td>
+<td>取消宏定义</td>
+</tr>
+</tbody>
+</table>
 <h1 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h1><p>文本替换，每个使用到的地方都会替换为宏定义。<br>宏是在编译期间起作用，还没到运行期间,不会造成函数调用的开销（开辟栈空间，记录返回地址，将形参压栈，从函数返回还要释放堆<br>生成的目标文件大，不会执行代码检查</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">一般使用大写区分</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> TEST(i) i &gt; 10 ? 1 : 0<span class="comment">//宏函数</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A 1<span class="comment">//宏变量 </span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	 </div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, TEST(<span class="number">11</span>));</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,A);</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//可变宏</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LOGE(...) __android_log_print(ANDROID_LOG_ERROR,<span class="meta-string">"NDK"</span>, __VA_ARGS__);</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> DN_INT(arg) int dn_ ## arg<span class="comment">//连接符</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	DN_INT(i) = <span class="number">10</span>;<span class="comment">//相当于 dn_ ## arg变成了 dn_i</span></div><div class="line">	dn_i = <span class="number">100</span>;<span class="comment">//</span></div><div class="line">	 </div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// \ 换行符</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> PRINT_I(arg) <span class="meta-keyword">if</span>(arg) &#123; \</span></div><div class="line"> printf(<span class="meta-string">"%d\n"</span>,arg); \</div><div class="line"> &#125;</div><div class="line"><span class="comment">//陷阱</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MULTI(x,y)  x*y</span></div><div class="line"><span class="comment">//获得 4</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, MULTI(<span class="number">2</span>, <span class="number">2</span>));</div><div class="line"><span class="comment">//获得 1+1*2  = 3</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, MULTI(<span class="number">1</span>+<span class="number">1</span>, <span class="number">2</span>));</div></pre></td></tr></table></figure>
@@ -656,7 +700,7 @@ int b; 定义变量b
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">70</span>
+                    <span class="site-state-item-count">71</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -725,7 +769,9 @@ int b; 定义变量b
                     
                       
                     
-                    <span class="site-state-item-count">27</span>
+                      
+                    
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -844,7 +890,7 @@ int b; 定义变量b
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">356k</span>
+    <span title="站点总字数">364k</span>
   
 
   
@@ -853,7 +899,7 @@ int b; 定义变量b
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">5:23</span>
+    <span title="站点阅读时长">5:31</span>
   
 </div>
 
