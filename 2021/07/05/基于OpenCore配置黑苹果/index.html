@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="这个教程适用于双硬盘双系统(即一个硬盘装Windows一个硬盘装Mac OS)或者单硬盘单系统直接就装上Mac OS 。黑苹果最重要的就是EFI分区里面文件，里面存放各种驱动和配置文件。基于64位系统配置。
+力求简洁快上手，这个教程限定适用于双硬盘双系统(即一个硬盘装Windows一个硬盘装Mac OS)或者单硬盘单系统直接就装上Mac OS 。黑苹果最重要的就是EFI分区里面文件，里面存放各种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于OpenCore配置黑苹果">
+<meta property="og:url" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/index.html">
+<meta property="og:site_name" content="Not Found Blog">
+<meta property="og:description" content="这个教程适用于双硬盘双系统(即一个硬盘装Windows一个硬盘装Mac OS)或者单硬盘单系统直接就装上Mac OS 。黑苹果最重要的就是EFI分区里面文件，里面存放各种驱动和配置文件。基于64位系统配置。
+力求简洁快上手，这个教程限定适用于双硬盘双系统(即一个硬盘装Windows一个硬盘装Mac OS)或者单硬盘单系统直接就装上Mac OS 。黑苹果最重要的就是EFI分区里面文件，里面存放各种">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/diskGenius3.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/balenaEtcher.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/diskGenius1.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/diskGenius2.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/o1.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/o2.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/o3.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/o4.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/o5.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/o8.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/o6.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/o7.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/o9.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/o10.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/o11.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/mac1.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/mac2.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/mac3.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/mac4.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/efi1.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/efi2.jpg">
+<meta property="og:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/efi3.jpg">
+<meta property="og:updated_time" content="2021-07-10T15:02:26.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于OpenCore配置黑苹果">
+<meta name="twitter:description" content="这个教程适用于双硬盘双系统(即一个硬盘装Windows一个硬盘装Mac OS)或者单硬盘单系统直接就装上Mac OS 。黑苹果最重要的就是EFI分区里面文件，里面存放各种驱动和配置文件。基于64位系统配置。
+力求简洁快上手，这个教程限定适用于双硬盘双系统(即一个硬盘装Windows一个硬盘装Mac OS)或者单硬盘单系统直接就装上Mac OS 。黑苹果最重要的就是EFI分区里面文件，里面存放各种">
+<meta name="twitter:image" content="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/diskGenius3.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Not Found Blog" type="application/atom+xml"/>
+
+
+
+
+  <link rel="canonical" href="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>基于OpenCore配置黑苹果 | Not Found Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Not Found Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cczhr"/>
+      <meta itemprop="description" content="或许你真的可以改变世界。"/>
+      <meta itemprop="image" content="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Not Found Blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基于OpenCore配置黑苹果
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-07-05 20:48:52" itemprop="dateCreated datePublished" datetime="2021-07-05T20:48:52+08:00">2021-07-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-07-10 23:02:26" itemprop="dateModified" datetime="2021-07-10T23:02:26+08:00">2021-07-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2021/07/05/基于OpenCore配置黑苹果/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2021/07/05/基于OpenCore配置黑苹果/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">3 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="\assets\js\APlayer.min.js"> </script><p>这个教程适用于双硬盘双系统(即一个硬盘装Windows一个硬盘装Mac OS)或者单硬盘单系统直接就装上Mac OS 。黑苹果最重要的就是EFI分区里面文件，里面存放各种驱动和配置文件。基于64位系统配置。</p>
+<p>力求简洁快上手，这个教程限定适用于双硬盘双系统(即一个硬盘装Windows一个硬盘装Mac OS)或者单硬盘单系统直接就装上Mac OS 。黑苹果最重要的就是EFI分区里面文件，里面存放各种驱动和配置文件。下面内容基于<a href="https://jingyan.baidu.com/article/a17d5285cde8c88098c8f2b2.html" target="_blank" rel="external">64位系统</a>配置,且支持<a href="https://zhidao.baidu.com/question/509197951.html" target="_blank" rel="external">uefi</a>。</p>
+<h2 id="懒人包"><a href="#懒人包" class="headerlink" title="懒人包"></a>懒人包</h2><p>直接去<a href="https://github.com/daliansky/Hackintosh" target="_blank" rel="external">Hackintosh</a> 搜索你机型的EFI文件下载(一般是品牌机或者笔记本)，如果是组装机可以在搜索引擎搜一下主板号加黑苹果找到对应的EFI， 相当于跳过配置OpenCore EFI步骤（这种方法最好系统镜像版本也要搭配上，而且不要随便升级，躺平就好）</p>
+<h2 id="检查你的配置"><a href="#检查你的配置" class="headerlink" title="检查你的配置"></a>检查你的配置</h2><p>1.强烈推荐使用的是Intel的CPU，并且知道自己CPU的代号(例如Intel 的i5 10600k 代号为Comet Lake)参考:<a href="https://dortania.github.io/OpenCore-Install-Guide/macos-limits.html#cpu-support" target="_blank" rel="external">链接</a> </p>
+<p>2.显卡用Intel核显，或者AMD的，Nvidia的跑新系统基本不行只能放弃掉用核显。如果你用Nvidia显卡而且CPU不带核显(基本劝退系列)参考:<a href="https://dortania.github.io/GPU-Buyers-Guide/#a-quick-refresher-with-nvidia-and-webdrivers" target="_blank" rel="external">链接</a> </p>
+<p>3.硬盘<br>除了 Intel 600p 三星 PM981、PM991 和镁光的 2200S NVMe SSD，其它都可以。</p>
+<p>4.网卡<br>有线网卡，基本都没什么问题。参考:<a href="https://dortania.github.io/OpenCore-Install-Guide/macos-limits.html#wired-networking" target="_blank" rel="external">链接</a><br>无线网卡，推荐博通的。参考:<a href="https://dortania.github.io/Wireless-Buyers-Guide/unsupported.html#supported-chipsets" target="_blank" rel="external">链接</a> </p>
+<p>5.其它<br>参考:<a href="https://dortania.github.io/OpenCore-Install-Guide/macos-limits.html#miscellaneous" target="_blank" rel="external">链接</a></p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>1.U盘一个 16GB以上, 一块用于装系统的硬盘，Mac OS 系统镜像，系统镜像推荐从<a href="https://blog.daliansky.net/" target="_blank" rel="external">黑兵小果</a>的网站下载，选双EFI分区版即可。</p>
+<p>2.<a href="https://www.balena.io/etcher/" target="_blank" rel="external">写入镜像工具balenaEtcher</a></p>
+<p>3.<a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank" rel="external">OpenCore</a> 黑苹果引导 这里我选的是正式版本的OpenCore-0.7.0-RELEASE.zip  选最新的即可</p>
+<p>4.<a href="https://www.python.org/downloads/" target="_blank" rel="external">Python3</a></p>
+<p>5.<a href="https://github.com/corpnewt/ProperTree/archive/refs/heads/master.zip" target="_blank" rel="external">ProperTree</a> OpenCore引导配置文件编辑器</p>
+<p>6.<a href="https://github.com/corpnewt/SSDTTime/archive/refs/heads/master.zip" target="_blank" rel="external">SSDTTime </a>制作DSDT补丁工具</p>
+<p>7.<a href="https://www.diskgenius.cn/download.php" target="_blank" rel="external">Diskgenius </a>分区管理工具 下载选单文件pe版就够用</p>
+<p>8.<a href="https://github.com/USBToolBox/tool/releases/" target="_blank" rel="external">USBToolBox</a>  解除USB端口限制，选最新版本的Windows.exe 即可</p>
+<p>9.翻译软件</p>
+<p>10.不拍折腾(主要指配置EFI步骤) 保持良好的心态</p>
+<p>11.电脑能上google 查错误方便</p>
+<h2 id="BIOS-设定"><a href="#BIOS-设定" class="headerlink" title="BIOS 设定"></a>BIOS 设定</h2><p>这里有些设置假如自己主板bios没有的忽略即可(不会进入bios 请百度)</p>
+<p>参考:<a href="https://dortania.github.io/OpenCore-Install-Guide/config-HEDT/broadwell-e.html#intel-bios-settings" target="_blank" rel="external">链接</a><br>禁用<br>Fast Boot<br>Secure Boot<br>Serial/COM Port<br>Parallel Port<br>VT-d (can be enabled if you set DisableIoMapper to YES)<br>CSM<br>Thunderbolt<br>Intel SGX<br>Intel Platform Trust<br>CFG Lock</p>
+<p>开启<br>VT-x<br>Above 4G decoding<br>Hyper-Threading<br>Execute Disable Bit<br>EHCI/XHCI Hand-off<br>UEFI Mode<br>SATA Mode: AHCI</p>
+<h2 id="硬盘分区"><a href="#硬盘分区" class="headerlink" title="硬盘分区"></a>硬盘分区</h2><p>如果你用于装系统的硬盘有重要资料请先备份好，下列操作会清空硬盘内所有数据。</p>
+<p>打开DiskGenius，选中你的硬盘右键选择“快速分区”(注意勾选创建EFI分区并把大小调到400MB),然后点击确定即可。</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/diskGenius3.jpg" width="50%" height="50%"><br></p>
+
+
+<h2 id="下载系统镜像到U盘"><a href="#下载系统镜像到U盘" class="headerlink" title="下载系统镜像到U盘"></a>下载系统镜像到U盘</h2><p>这里推荐从<a href="https://blog.daliansky.net/" target="_blank" rel="external">黑兵小果</a>的网站下载，选你要的系统版本(我选的是Big Sur 11.4，一般选最新即可)然后选双EFI分区版下载即可。</p>
+<p>下载后插入u盘，打开balenaEtcher，按照图中步骤刷写。</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/balenaEtcher.jpg" width="50%" height="50%"><br></p>
+
+
+
+<p>刷写完毕打开DiskGenius ，找到你的U盘，删除EFI分区内所有的内容。</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/diskGenius1.jpg" width="50%" height="50%"><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/diskGenius2.jpg" width="50%" height="50%"><br></p>
+
+
+<h2 id="配置OpenCore-配置EFI文件"><a href="#配置OpenCore-配置EFI文件" class="headerlink" title="配置OpenCore(配置EFI文件)"></a>配置OpenCore(配置EFI文件)</h2><p>把下载好的<a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank" rel="external">OpenCore</a> 压缩包里面的 <code>X64</code>文件夹下的<code>EFI</code>文件夹单独解压出来，然后把压缩包里面的<code>Docs</code>文件夹里<code>Sample.plist</code>放到解压后<code>EFI</code>文件夹里面的<code>OC</code>文件夹上，并重命名为<code>config.plist</code>的接下来我们要配置各种驱动在这个EFI文件夹里面。</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o1.jpg" width="50%" height="50%"><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o2.jpg" width="50%" height="50%"><br></p>
+
+<p>接下来参考<a href="https://dortania.github.io/OpenCore-Install-Guide/ktext.html" target="_blank" rel="external">OpenCore-Install-Guide</a>继续配置</p>
+<h3 id="Firmware-Drivers"><a href="#Firmware-Drivers" class="headerlink" title="Firmware Drivers"></a>Firmware Drivers</h3><p>对应文件夹 <code>\EFI\OC\Drivers</code></p>
+<p>Drivers 文件夹只需要 <code>OpenRuntime.efi</code> (文件夹已经含有)<code>HfsPlus.efi</code> (需另外下载)其余的删掉</p>
+<p>下载 <a href="https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi" target="_blank" rel="external">HfsPlus.efi</a>  </p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o3.jpg" width="50%" height="50%"><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o4.jpg" width="50%" height="50%"><br></p>
+
+<h3 id="Kexts"><a href="#Kexts" class="headerlink" title="Kexts"></a>Kexts</h3><p>对应文件夹 <code>\EFI\OC\Kexts</code></p>
+<h4 id="必须文件"><a href="#必须文件" class="headerlink" title="必须文件"></a>必须文件</h4><p>必须要有的三个Kexts  <code>Lilu.kext</code> <code>VirtualSMC.kext</code> <code>WhateverGreen</code> (我这里是台式机所以保留了<code>SMCSuperIO.kext</code> <code>SMCProcessor.kext</code>  )</p>
+<p><a href="https://github.com/acidanthera/VirtualSMC/releases" target="_blank" rel="external">VirtualSMC</a></p>
+<p><a href="https://github.com/acidanthera/Lilu/releases" target="_blank" rel="external">Lilu</a></p>
+<p><a href="https://github.com/acidanthera/WhateverGreen/releases" target="_blank" rel="external">WhateverGreen</a></p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o5.jpg" width="50%" height="50%"><br>     <img src="/2021/07/05/基于OpenCore配置黑苹果/o8.jpg" width="50%" height="50%"><br>    <img src="/2021/07/05/基于OpenCore配置黑苹果/o6.jpg" width="50%" height="50%"><br>     <img src="/2021/07/05/基于OpenCore配置黑苹果/o7.jpg" width="50%" height="50%"><br></p>
+
+<h4 id="其它驱动"><a href="#其它驱动" class="headerlink" title="其它驱动"></a>其它驱动</h4><p>集成声卡  有线网卡 USB WiFi 和蓝牙 笔记本键盘和触控板 配置请阅读下面内容 因为每一台电脑都不一定相同 （这些也可以再安装黑苹果后再慢慢配置)<br>参考<a href="https://dortania.github.io/OpenCore-Install-Guide/ktext.html#audio" target="_blank" rel="external">OpenCore-Install-Guide</a></p>
+<h3 id="ACPI"><a href="#ACPI" class="headerlink" title="ACPI"></a>ACPI</h3><p>对应文件夹 <code>\EFI\OC\ACPI</code><br>参考<a href="https://dortania.github.io/OpenCore-Install-Guide/ktext.html#ssdts" target="_blank" rel="external">OpenCore-Install-Guide</a><br>根据你的cpu平台点击相对应的链接配置即可，一般就下载<code>Prebuilt</code>预设文件即可，动手能力强的可以使用 <code>SSDTTime</code>生成，例如我的平台是Comet Lake 主板msi z490 a pro文件就有三个 (SSDT-RHUB点击后发现我的主板不需要)</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o9.jpg" width="50%" height="50%"><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o10.jpg" width="50%" height="50%"><br></p><br> ## config.plist<br><br>对应文件 <code>\EFI\OC\config.plist</code><br><br>首先解压下好的<a href="https://github.com/corpnewt/ProperTree/archive/refs/heads/master.zip" target="_blank" rel="external">ProperTree</a> 打开 ProperTree.bat<br><br>然后<code>Ctrl+O</code> 选择 <code>\EFI\OC\config.plist</code>  然后再<code>Ctrl+Shift+O</code> 接着按下网址选择你的平台配置即可<br><br><a href="https://dortania.github.io/OpenCore-Install-Guide/config.plist/#selecting-your-platform" target="_blank" rel="external">OpenCore-Install-Guide</a><br><br>## 把EFI文件放进U盘<br><br>配置好后 把EFI 文件放进U盘EFI分区 重启电脑选择U盘启动<br><br><p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o11.jpg" width="50%" height="50%"><br></p>
+
+
+<h2 id="安装MAC-OS"><a href="#安装MAC-OS" class="headerlink" title="安装MAC OS"></a>安装MAC OS</h2><p>U盘启动后选择 install macOS，然后选择磁盘工具，把要装系统的磁盘抹掉一边，注意格式选APFS，完成后返回选择菜单 点击安装macOS 选择刚抹掉的硬盘，点击安装即可。</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/mac1.jpg" width="50%" height="50%"><br>      <img src="/2021/07/05/基于OpenCore配置黑苹果/mac2.jpg" width="50%" height="50%"><br>      <img src="/2021/07/05/基于OpenCore配置黑苹果/mac3.jpg" width="50%" height="50%"><br>    <img src="/2021/07/05/基于OpenCore配置黑苹果/mac4.jpg" width="50%" height="50%"><br></p>
+
+<h2 id="把U盘的EFI文件放进硬盘分区"><a href="#把U盘的EFI文件放进硬盘分区" class="headerlink" title="把U盘的EFI文件放进硬盘分区"></a>把U盘的EFI文件放进硬盘分区</h2><p>安装完毕后就可以看到macos的桌面了，这时候系统虽然装在硬盘上，可是引导还是在U盘上，需要把u盘的引导放进硬盘上，重启，选择windows(external)进入PE系统，打开分区工具 把u盘的efi放到硬盘上，重启进入bios，选择mac的硬盘启动即完成所有安装工作</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/efi1.jpg" width="50%" height="50%"><br>      <img src="/2021/07/05/基于OpenCore配置黑苹果/efi2.jpg" width="50%" height="50%"><br>      <img src="/2021/07/05/基于OpenCore配置黑苹果/efi3.jpg" width="50%" height="50%"><br></p>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>还是觉得看不懂的需要手把手的详细教程可以参考<br><a href="https://www.bilibili.com/video/BV18V41187JZ/" target="_blank" rel="external">https://www.bilibili.com/video/BV18V41187JZ/</a><br><a href="https://www.bilibili.com/video/BV1kK4y1S74C/" target="_blank" rel="external">https://www.bilibili.com/video/BV1kK4y1S74C/</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/黑苹果/" rel="tag"># 黑苹果</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/20/回顾数据结构与算法/" rel="next" title="回顾数据结构与算法">
+                <i class="fa fa-chevron-left"></i> 回顾数据结构与算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://tva2.sinaimg.cn/crop.0.103.494.494.180/95a356e5jw8erb6uslwmrj20dq0jgjry.jpg"
+                alt="cczhr"/>
+            
+              <p class="site-author-name" itemprop="name">cczhr</p>
+              <p class="site-description motion-element" itemprop="description">或许你真的可以改变世界。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">72</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/cczhr" title="GitHub &rarr; https://github.com/cczhr" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:cczhr.dev@gmail.com" title="E-Mail &rarr; mailto:cczhr.dev@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/cczhr" title="Weibo &rarr; https://weibo.com/cczhr" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#懒人包"><span class="nav-number">1.</span> <span class="nav-text">懒人包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查你的配置"><span class="nav-number">2.</span> <span class="nav-text">检查你的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-number">3.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BIOS-设定"><span class="nav-number">4.</span> <span class="nav-text">BIOS 设定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬盘分区"><span class="nav-number">5.</span> <span class="nav-text">硬盘分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载系统镜像到U盘"><span class="nav-number">6.</span> <span class="nav-text">下载系统镜像到U盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置OpenCore-配置EFI文件"><span class="nav-number">7.</span> <span class="nav-text">配置OpenCore(配置EFI文件)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Firmware-Drivers"><span class="nav-number">7.1.</span> <span class="nav-text">Firmware Drivers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kexts"><span class="nav-number">7.2.</span> <span class="nav-text">Kexts</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#必须文件"><span class="nav-number">7.2.1.</span> <span class="nav-text">必须文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它驱动"><span class="nav-number">7.2.2.</span> <span class="nav-text">其它驱动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ACPI"><span class="nav-number">7.3.</span> <span class="nav-text">ACPI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装MAC-OS"><span class="nav-number">8.</span> <span class="nav-text">安装MAC OS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把U盘的EFI文件放进硬盘分区"><span class="nav-number">9.</span> <span class="nav-text">把U盘的EFI文件放进硬盘分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">10.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cczhr</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">383k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">5:48</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.2.2</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'aMSu6hzeOMWDmzPvSSupyCSz-gzGzoHsz',
+    appKey: 'kXxUv0I5NdmApftPNoX8nBul',
+    placeholder: 'leave a message',
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":112.5,"height":225,"vOffset":-110},"mobile":{"show":false},"log":false});</script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

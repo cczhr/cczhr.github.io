@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cczhr.ltd/"/>
-  <updated>2020-06-27T13:46:00.603Z</updated>
+  <updated>2021-07-10T15:02:26.800Z</updated>
   <id>http://cczhr.ltd/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于OpenCore配置黑苹果</title>
+    <link href="http://cczhr.ltd/2021/07/05/%E5%9F%BA%E4%BA%8EOpenCore%E9%85%8D%E7%BD%AE%E9%BB%91%E8%8B%B9%E6%9E%9C/"/>
+    <id>http://cczhr.ltd/2021/07/05/基于OpenCore配置黑苹果/</id>
+    <published>2021-07-05T12:48:52.000Z</published>
+    <updated>2021-07-10T15:02:26.800Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;这个教程适用于双硬盘双系统(即一个硬盘装Windows一个硬盘装Mac OS)或者单硬盘单系统直接就装上Mac OS
+        
+      
+    
+    </summary>
+    
+    
+      <category term="黑苹果" scheme="http://cczhr.ltd/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>回顾数据结构与算法</title>
@@ -470,30 +494,6 @@
     
     
       <category term="面向切面,AOP" scheme="http://cczhr.ltd/tags/%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2-AOP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>线性代数</title>
-    <link href="http://cczhr.ltd/2018/09/24/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
-    <id>http://cczhr.ltd/2018/09/24/线性代数/</id>
-    <published>2018-09-24T03:32:41.000Z</published>
-    <updated>2018-09-24T09:11:23.831Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="线性代数" scheme="http://cczhr.ltd/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
     
   </entry>
   

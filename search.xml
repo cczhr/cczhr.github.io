@@ -4,6 +4,85 @@
   
     
     <entry>
+      <title><![CDATA[基于OpenCore配置黑苹果]]></title>
+      <url>http://cczhr.ltd/2021/07/05/%E5%9F%BA%E4%BA%8EOpenCore%E9%85%8D%E7%BD%AE%E9%BB%91%E8%8B%B9%E6%9E%9C/</url>
+      <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p>这个教程适用于双硬盘双系统(即一个硬盘装Windows一个硬盘装Mac OS)或者单硬盘单系统直接就装上Mac OS 。黑苹果最重要的就是EFI分区里面文件，里面存放各种驱动和配置文件。基于64位系统配置。</p>
+<p>力求简洁快上手，这个教程限定适用于双硬盘双系统(即一个硬盘装Windows一个硬盘装Mac OS)或者单硬盘单系统直接就装上Mac OS 。黑苹果最重要的就是EFI分区里面文件，里面存放各种驱动和配置文件。下面内容基于<a href="https://jingyan.baidu.com/article/a17d5285cde8c88098c8f2b2.html" target="_blank" rel="external">64位系统</a>配置,且支持<a href="https://zhidao.baidu.com/question/509197951.html" target="_blank" rel="external">uefi</a>。</p>
+<h2 id="懒人包"><a href="#懒人包" class="headerlink" title="懒人包"></a>懒人包</h2><p>直接去<a href="https://github.com/daliansky/Hackintosh" target="_blank" rel="external">Hackintosh</a> 搜索你机型的EFI文件下载(一般是品牌机或者笔记本)，如果是组装机可以在搜索引擎搜一下主板号加黑苹果找到对应的EFI， 相当于跳过配置OpenCore EFI步骤（这种方法最好系统镜像版本也要搭配上，而且不要随便升级，躺平就好）</p>
+<h2 id="检查你的配置"><a href="#检查你的配置" class="headerlink" title="检查你的配置"></a>检查你的配置</h2><p>1.强烈推荐使用的是Intel的CPU，并且知道自己CPU的代号(例如Intel 的i5 10600k 代号为Comet Lake)参考:<a href="https://dortania.github.io/OpenCore-Install-Guide/macos-limits.html#cpu-support" target="_blank" rel="external">链接</a> </p>
+<p>2.显卡用Intel核显，或者AMD的，Nvidia的跑新系统基本不行只能放弃掉用核显。如果你用Nvidia显卡而且CPU不带核显(基本劝退系列)参考:<a href="https://dortania.github.io/GPU-Buyers-Guide/#a-quick-refresher-with-nvidia-and-webdrivers" target="_blank" rel="external">链接</a> </p>
+<p>3.硬盘<br>除了 Intel 600p 三星 PM981、PM991 和镁光的 2200S NVMe SSD，其它都可以。</p>
+<p>4.网卡<br>有线网卡，基本都没什么问题。参考:<a href="https://dortania.github.io/OpenCore-Install-Guide/macos-limits.html#wired-networking" target="_blank" rel="external">链接</a><br>无线网卡，推荐博通的。参考:<a href="https://dortania.github.io/Wireless-Buyers-Guide/unsupported.html#supported-chipsets" target="_blank" rel="external">链接</a> </p>
+<p>5.其它<br>参考:<a href="https://dortania.github.io/OpenCore-Install-Guide/macos-limits.html#miscellaneous" target="_blank" rel="external">链接</a></p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>1.U盘一个 16GB以上, 一块用于装系统的硬盘，Mac OS 系统镜像，系统镜像推荐从<a href="https://blog.daliansky.net/" target="_blank" rel="external">黑兵小果</a>的网站下载，选双EFI分区版即可。</p>
+<p>2.<a href="https://www.balena.io/etcher/" target="_blank" rel="external">写入镜像工具balenaEtcher</a></p>
+<p>3.<a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank" rel="external">OpenCore</a> 黑苹果引导 这里我选的是正式版本的OpenCore-0.7.0-RELEASE.zip  选最新的即可</p>
+<p>4.<a href="https://www.python.org/downloads/" target="_blank" rel="external">Python3</a></p>
+<p>5.<a href="https://github.com/corpnewt/ProperTree/archive/refs/heads/master.zip" target="_blank" rel="external">ProperTree</a> OpenCore引导配置文件编辑器</p>
+<p>6.<a href="https://github.com/corpnewt/SSDTTime/archive/refs/heads/master.zip" target="_blank" rel="external">SSDTTime </a>制作DSDT补丁工具</p>
+<p>7.<a href="https://www.diskgenius.cn/download.php" target="_blank" rel="external">Diskgenius </a>分区管理工具 下载选单文件pe版就够用</p>
+<p>8.<a href="https://github.com/USBToolBox/tool/releases/" target="_blank" rel="external">USBToolBox</a>  解除USB端口限制，选最新版本的Windows.exe 即可</p>
+<p>9.翻译软件</p>
+<p>10.不拍折腾(主要指配置EFI步骤) 保持良好的心态</p>
+<p>11.电脑能上google 查错误方便</p>
+<h2 id="BIOS-设定"><a href="#BIOS-设定" class="headerlink" title="BIOS 设定"></a>BIOS 设定</h2><p>这里有些设置假如自己主板bios没有的忽略即可(不会进入bios 请百度)</p>
+<p>参考:<a href="https://dortania.github.io/OpenCore-Install-Guide/config-HEDT/broadwell-e.html#intel-bios-settings" target="_blank" rel="external">链接</a><br>禁用<br>Fast Boot<br>Secure Boot<br>Serial/COM Port<br>Parallel Port<br>VT-d (can be enabled if you set DisableIoMapper to YES)<br>CSM<br>Thunderbolt<br>Intel SGX<br>Intel Platform Trust<br>CFG Lock</p>
+<p>开启<br>VT-x<br>Above 4G decoding<br>Hyper-Threading<br>Execute Disable Bit<br>EHCI/XHCI Hand-off<br>UEFI Mode<br>SATA Mode: AHCI</p>
+<h2 id="硬盘分区"><a href="#硬盘分区" class="headerlink" title="硬盘分区"></a>硬盘分区</h2><p>如果你用于装系统的硬盘有重要资料请先备份好，下列操作会清空硬盘内所有数据。</p>
+<p>打开DiskGenius，选中你的硬盘右键选择“快速分区”(注意勾选创建EFI分区并把大小调到400MB),然后点击确定即可。</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/diskGenius3.jpg" width="50%" height="50%"><br></p>
+
+
+<h2 id="下载系统镜像到U盘"><a href="#下载系统镜像到U盘" class="headerlink" title="下载系统镜像到U盘"></a>下载系统镜像到U盘</h2><p>这里推荐从<a href="https://blog.daliansky.net/" target="_blank" rel="external">黑兵小果</a>的网站下载，选你要的系统版本(我选的是Big Sur 11.4，一般选最新即可)然后选双EFI分区版下载即可。</p>
+<p>下载后插入u盘，打开balenaEtcher，按照图中步骤刷写。</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/balenaEtcher.jpg" width="50%" height="50%"><br></p>
+
+
+
+<p>刷写完毕打开DiskGenius ，找到你的U盘，删除EFI分区内所有的内容。</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/diskGenius1.jpg" width="50%" height="50%"><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/diskGenius2.jpg" width="50%" height="50%"><br></p>
+
+
+<h2 id="配置OpenCore-配置EFI文件"><a href="#配置OpenCore-配置EFI文件" class="headerlink" title="配置OpenCore(配置EFI文件)"></a>配置OpenCore(配置EFI文件)</h2><p>把下载好的<a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank" rel="external">OpenCore</a> 压缩包里面的 <code>X64</code>文件夹下的<code>EFI</code>文件夹单独解压出来，然后把压缩包里面的<code>Docs</code>文件夹里<code>Sample.plist</code>放到解压后<code>EFI</code>文件夹里面的<code>OC</code>文件夹上，并重命名为<code>config.plist</code>的接下来我们要配置各种驱动在这个EFI文件夹里面。</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o1.jpg" width="50%" height="50%"><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o2.jpg" width="50%" height="50%"><br></p>
+
+<p>接下来参考<a href="https://dortania.github.io/OpenCore-Install-Guide/ktext.html" target="_blank" rel="external">OpenCore-Install-Guide</a>继续配置</p>
+<h3 id="Firmware-Drivers"><a href="#Firmware-Drivers" class="headerlink" title="Firmware Drivers"></a>Firmware Drivers</h3><p>对应文件夹 <code>\EFI\OC\Drivers</code></p>
+<p>Drivers 文件夹只需要 <code>OpenRuntime.efi</code> (文件夹已经含有)<code>HfsPlus.efi</code> (需另外下载)其余的删掉</p>
+<p>下载 <a href="https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi" target="_blank" rel="external">HfsPlus.efi</a>  </p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o3.jpg" width="50%" height="50%"><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o4.jpg" width="50%" height="50%"><br></p>
+
+<h3 id="Kexts"><a href="#Kexts" class="headerlink" title="Kexts"></a>Kexts</h3><p>对应文件夹 <code>\EFI\OC\Kexts</code></p>
+<h4 id="必须文件"><a href="#必须文件" class="headerlink" title="必须文件"></a>必须文件</h4><p>必须要有的三个Kexts  <code>Lilu.kext</code> <code>VirtualSMC.kext</code> <code>WhateverGreen</code> (我这里是台式机所以保留了<code>SMCSuperIO.kext</code> <code>SMCProcessor.kext</code>  )</p>
+<p><a href="https://github.com/acidanthera/VirtualSMC/releases" target="_blank" rel="external">VirtualSMC</a></p>
+<p><a href="https://github.com/acidanthera/Lilu/releases" target="_blank" rel="external">Lilu</a></p>
+<p><a href="https://github.com/acidanthera/WhateverGreen/releases" target="_blank" rel="external">WhateverGreen</a></p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o5.jpg" width="50%" height="50%"><br>     <img src="/2021/07/05/基于OpenCore配置黑苹果/o8.jpg" width="50%" height="50%"><br>    <img src="/2021/07/05/基于OpenCore配置黑苹果/o6.jpg" width="50%" height="50%"><br>     <img src="/2021/07/05/基于OpenCore配置黑苹果/o7.jpg" width="50%" height="50%"><br></p>
+
+<h4 id="其它驱动"><a href="#其它驱动" class="headerlink" title="其它驱动"></a>其它驱动</h4><p>集成声卡  有线网卡 USB WiFi 和蓝牙 笔记本键盘和触控板 配置请阅读下面内容 因为每一台电脑都不一定相同 （这些也可以再安装黑苹果后再慢慢配置)<br>参考<a href="https://dortania.github.io/OpenCore-Install-Guide/ktext.html#audio" target="_blank" rel="external">OpenCore-Install-Guide</a></p>
+<h3 id="ACPI"><a href="#ACPI" class="headerlink" title="ACPI"></a>ACPI</h3><p>对应文件夹 <code>\EFI\OC\ACPI</code><br>参考<a href="https://dortania.github.io/OpenCore-Install-Guide/ktext.html#ssdts" target="_blank" rel="external">OpenCore-Install-Guide</a><br>根据你的cpu平台点击相对应的链接配置即可，一般就下载<code>Prebuilt</code>预设文件即可，动手能力强的可以使用 <code>SSDTTime</code>生成，例如我的平台是Comet Lake 主板msi z490 a pro文件就有三个 (SSDT-RHUB点击后发现我的主板不需要)</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o9.jpg" width="50%" height="50%"><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o10.jpg" width="50%" height="50%"><br></p><br> ## config.plist<br><br>对应文件 <code>\EFI\OC\config.plist</code><br><br>首先解压下好的<a href="https://github.com/corpnewt/ProperTree/archive/refs/heads/master.zip" target="_blank" rel="external">ProperTree</a> 打开 ProperTree.bat<br><br>然后<code>Ctrl+O</code> 选择 <code>\EFI\OC\config.plist</code>  然后再<code>Ctrl+Shift+O</code> 接着按下网址选择你的平台配置即可<br><br><a href="https://dortania.github.io/OpenCore-Install-Guide/config.plist/#selecting-your-platform" target="_blank" rel="external">OpenCore-Install-Guide</a><br><br>## 把EFI文件放进U盘<br><br>配置好后 把EFI 文件放进U盘EFI分区 重启电脑选择U盘启动<br><br><p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o11.jpg" width="50%" height="50%"><br></p>
+
+
+<h2 id="安装MAC-OS"><a href="#安装MAC-OS" class="headerlink" title="安装MAC OS"></a>安装MAC OS</h2><p>U盘启动后选择 install macOS，然后选择磁盘工具，把要装系统的磁盘抹掉一边，注意格式选APFS，完成后返回选择菜单 点击安装macOS 选择刚抹掉的硬盘，点击安装即可。</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/mac1.jpg" width="50%" height="50%"><br>      <img src="/2021/07/05/基于OpenCore配置黑苹果/mac2.jpg" width="50%" height="50%"><br>      <img src="/2021/07/05/基于OpenCore配置黑苹果/mac3.jpg" width="50%" height="50%"><br>    <img src="/2021/07/05/基于OpenCore配置黑苹果/mac4.jpg" width="50%" height="50%"><br></p>
+
+<h2 id="把U盘的EFI文件放进硬盘分区"><a href="#把U盘的EFI文件放进硬盘分区" class="headerlink" title="把U盘的EFI文件放进硬盘分区"></a>把U盘的EFI文件放进硬盘分区</h2><p>安装完毕后就可以看到macos的桌面了，这时候系统虽然装在硬盘上，可是引导还是在U盘上，需要把u盘的引导放进硬盘上，重启，选择windows(external)进入PE系统，打开分区工具 把u盘的efi放到硬盘上，重启进入bios，选择mac的硬盘启动即完成所有安装工作</p>
+<p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/efi1.jpg" width="50%" height="50%"><br>      <img src="/2021/07/05/基于OpenCore配置黑苹果/efi2.jpg" width="50%" height="50%"><br>      <img src="/2021/07/05/基于OpenCore配置黑苹果/efi3.jpg" width="50%" height="50%"><br></p>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>还是觉得看不懂的需要手把手的详细教程可以参考<br><a href="https://www.bilibili.com/video/BV18V41187JZ/" target="_blank" rel="external">https://www.bilibili.com/video/BV18V41187JZ/</a><br><a href="https://www.bilibili.com/video/BV1kK4y1S74C/" target="_blank" rel="external">https://www.bilibili.com/video/BV1kK4y1S74C/</a></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 黑苹果 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[回顾数据结构与算法]]></title>
       <url>http://cczhr.ltd/2020/06/20/%E5%9B%9E%E9%A1%BE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</url>
       <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>数据结构是计算机存储、组织数据的方式。<br>数据结构是指相互之间存在一种或多种特定关系的数据元素的集合。</p>
