@@ -62,7 +62,8 @@
 <h3 id="ACPI"><a href="#ACPI" class="headerlink" title="ACPI"></a>ACPI</h3><p>对应文件夹 <code>\EFI\OC\ACPI</code><br>参考<a href="https://dortania.github.io/OpenCore-Install-Guide/ktext.html#ssdts" target="_blank" rel="external">OpenCore-Install-Guide</a><br>根据你的cpu平台点击相对应的链接配置即可，一般就下载<code>Prebuilt</code>预设文件即可，动手能力强的可以使用 <code>SSDTTime</code>生成，例如我的平台是Comet Lake 主板msi z490 a pro文件就有三个 (SSDT-RHUB点击后发现我的主板不需要)</p>
 <p><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o9.jpg" width="50%" height="50%"><br>   <img src="/2021/07/05/基于OpenCore配置黑苹果/o10.jpg" width="50%" height="50%"><br></p>
 
-<h2 id="config-plist"><a href="#config-plist" class="headerlink" title="config.plist"></a>config.plist</h2><p>对应文件 <code>\EFI\OC\config.plist</code></p>
+
+<h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p>对应文件 <code>\EFI\OC\config.plist</code></p>
 <p>首先解压下好的<a href="https://github.com/corpnewt/ProperTree/archive/refs/heads/master.zip" target="_blank" rel="external">ProperTree</a> 打开 ProperTree.bat</p>
 <p>然后<code>Ctrl+O</code> 选择 <code>\EFI\OC\config.plist</code>  然后再<code>Ctrl+Shift+O</code> 接着按下网址选择你的平台配置即可</p>
 <p><a href="https://dortania.github.io/OpenCore-Install-Guide/config.plist/#selecting-your-platform" target="_blank" rel="external">OpenCore-Install-Guide</a></p>
